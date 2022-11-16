@@ -3,7 +3,7 @@
 ## fire-base
 https://console.firebase.google.com/u/1/project/smart-fridge-c19d3/overview
 
-##rouls 
+## rouls 
 ariel - backend
 
 eran - database
