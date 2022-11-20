@@ -1,5 +1,6 @@
 package com.example.smartfridge;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -11,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.smartfridge.ui.main.SectionsPagerAdapter;
@@ -23,19 +25,24 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseFirestore firestore;
-
+    FirebaseFirestore firestore; //item that represent the DB firestore
+    private Button whatToCook; //Button that represent the Button "whatToCook"
+    private Button myShoppingList;//Button that represent the Button "myShoppingList"
+    private Button recipes;//Button that represent the Button "recipes"
     private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        firestore = FirebaseFirestore.getInstance();
+        firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
 
+//gonna change, not gonna by here!!!!
+        //************************************************
         Map<String, Object> users = new HashMap<>();
 //        users.put("ariel","backend");
 //        users.put("eran","database");
@@ -76,20 +83,55 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
             }
         });
+//************************************************ gonna change, not gonna by here!!!!
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = binding.viewPager;
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = binding.tabs;
-        tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = binding.fab;
+        /*
+        Jump buttons by mouse click
+         */
+        whatToCook = (Button) findViewById(R.id.WhatToCook);
+        myShoppingList = (Button) findViewById(R.id.MyShoppingList);
+        recipes = (Button) findViewById(R.id.Recipes);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*
+        Application of the transition buttons
+         */
+        whatToCook.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                openWhatToCook();
             }
         });
+        myShoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMyShoppingList();
+            }
+        });
+        recipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRecipes();
+            }
+        });
+
+
+    }
+/*
+Functions that send the click on the transition
+buttons to the activity intended for them
+ */
+    public void openWhatToCook() {
+        Intent intent = new Intent(this, whatToCook.class);
+        startActivity(intent);
+    }
+
+    public void openMyShoppingList() {
+        Intent intent = new Intent(this, myShoppingList.class);
+        startActivity(intent);
+    }
+
+    public void openRecipes() {
+        Intent intent = new Intent(this, recipes.class);
+        startActivity(intent);
     }
 }

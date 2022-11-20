@@ -1,5 +1,9 @@
 package com.example.smartfridge;
 
+/*
+Retrieval. Update of the database based on the keys (commodities)
+ we received from the user.
+ */
 public class KeyToTheRecipe {
     private String keyA;
     private String keyB;
@@ -26,6 +30,10 @@ public class KeyToTheRecipe {
         this.keyC = keyC;
     }
 
+    /*
+    Generating the key by accepting objects from the user and
+    turning them into a long string that is a key
+    */
     public String createKey()
     {
         if (this.keyB == null && this.keyC == null)

@@ -11,3 +11,6 @@ eran - database
 ofir - administration + database
 
 afik - design
+
+list in shopping list:
+https://www.youtube.com/watch?v=7yZngVxaZDM
