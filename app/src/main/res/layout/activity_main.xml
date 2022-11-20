@@ -8,40 +8,39 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Activity 1" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/my_sh_list" />
 
     <Button
         android:id="@+id/WhatToCook"
-        android:layout_width="373dp"
-        android:layout_height="192dp"
-        android:layout_below="@id/textView"
+        android:layout_width="286dp"
+        android:layout_height="142dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-327dp"
-        android:text="WHAT TO COOK?"
-        android:textSize="50dp" />
+        android:layout_below="@id/textView"
+        android:layout_marginTop="-706dp"
+        android:text="UPLOAD RECIPES"
+        android:textSize="35sp" />
 
     <Button
         android:id="@+id/MyShoppingList"
-        android:layout_width="378dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
+        android:layout_width="277dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-122dp"
+        android:layout_height="107dp"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="-480dp"
         android:text="MY SHOPPING LIST"
-        android:textSize="50dp" />
+        android:textSize="35sp" />
 
     <Button
         android:id="@+id/Recipes"
-        android:layout_width="370dp"
-        android:layout_height="199dp"
+        android:layout_width="274dp"
+        android:layout_height="132dp"
         android:layout_below="@id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="-287dp"
         android:text="RECIPES"
-        android:textSize="50dp" />
+        android:textSize="35sp" />
 
 </RelativeLayout>
