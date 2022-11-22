@@ -24,20 +24,20 @@
 
     <ImageView
         android:id="@+id/copy"
-        android:layout_width="22sp"
-        android:layout_height="22sp"
+        android:layout_width="67dp"
+        android:layout_height="55dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="18sp"
+        android:layout_marginRight="-4dp"
         android:layout_toLeftOf="@id/remove"
         android:src="@drawable/copy" />
 
     <ImageView
         android:id="@+id/remove"
-        android:layout_width="22sp"
-        android:layout_height="22sp"
-        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="18sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="297dp"
         android:src="@drawable/remove" />
 
 </RelativeLayout>
