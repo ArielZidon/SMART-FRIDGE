@@ -10,8 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:background="@drawable/my_sh_list" />
+        android:layout_centerInParent="true" />
 
     <Button
         android:id="@+id/WhatToCook"
@@ -20,16 +19,16 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textView"
         android:layout_marginTop="-706dp"
+        android:background="@drawable/fb"
         android:text="UPLOAD RECIPES"
         android:textSize="35sp" />
 
     <Button
         android:id="@+id/MyShoppingList"
         android:layout_width="277dp"
-        android:layout_centerHorizontal="true"
         android:layout_height="107dp"
         android:layout_below="@id/textView"
-        android:layout_marginTop="-480dp"
+        android:layout_marginTop="-460dp"
         android:text="MY SHOPPING LIST"
         android:textSize="35sp" />
 
@@ -42,5 +41,12 @@
         android:layout_marginTop="-287dp"
         android:text="RECIPES"
         android:textSize="35sp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="600dp"
+        android:layout_height="200dp"
+        app:srcCompat="@mipmap/cooking_test_foreground" />
+
 
 </RelativeLayout>
