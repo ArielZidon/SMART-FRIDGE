@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.smartfridge.ui.main.SectionsPagerAdapter;
@@ -26,9 +27,9 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore firestore; //item that represent the DB firestore
-    private Button whatToCook; //Button that represent the Button "whatToCook"
-    private Button myShoppingList;//Button that represent the Button "myShoppingList"
-    private Button recipes;//Button that represent the Button "recipes"
+    ImageButton Cooking;        //ImageButton that represent the Button "whatToCook"
+    ImageButton My_shoping;     //ImageButton that represent the Button "myShoppingList"
+    ImageButton Recipes;        //ImageButton that represent the Button "recipes"
     private ActivityMainBinding binding;
 
     @Override
@@ -88,26 +89,26 @@ public class MainActivity extends AppCompatActivity {
         /*
         Jump buttons by mouse click
          */
-        whatToCook = (Button) findViewById(R.id.WhatToCook);
-        myShoppingList = (Button) findViewById(R.id.MyShoppingList);
-        recipes = (Button) findViewById(R.id.Recipes);
+        Cooking = (ImageButton) findViewById(R.id.cooking);
+        My_shoping = (ImageButton) findViewById(R.id.my_shoping);
+        Recipes = (ImageButton) findViewById(R.id.recipes);
 
         /*
         Application of the transition buttons
          */
-        whatToCook.setOnClickListener(new View.OnClickListener() {
+        Cooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openWhatToCook();
             }
         });
-        myShoppingList.setOnClickListener(new View.OnClickListener() {
+        My_shoping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMyShoppingList();
             }
         });
-        recipes.setOnClickListener(new View.OnClickListener() {
+        Recipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openRecipes();
