@@ -14,6 +14,7 @@ public class customer_USER extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_user);
 
+        //Write a func that checks if the name,email,pass is legal - in the user DB
         TextView username = (TextView) findViewById(R.id.username);
         TextView password = (TextView) findViewById(R.id.password);
 
@@ -22,7 +23,7 @@ public class customer_USER extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //IF user in the user DB | Go to - main_app wind.
             }
         });
 

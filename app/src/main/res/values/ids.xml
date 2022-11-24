@@ -8,4 +8,5 @@
     <item name="managementbtn" type="id" />
     <item name="mamagebtn" type="id" />
     <item name="m_loginbtn" type="id" />
+    <item name="createbtn" type="id" />
 </resources>

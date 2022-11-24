@@ -19,23 +19,28 @@ public class first_LOGIN extends AppCompatActivity {
 
         MaterialButton signupbtn = (MaterialButton) findViewById(R.id.signupbtn);
         MaterialButton signinbtn = (MaterialButton) findViewById(R.id.signinbtn);
-//        MaterialButton Managementbtn = (MaterialButton) findViewById(R.id.mamagebtn);
+        MaterialButton mamagebtn = (MaterialButton) findViewById(R.id.mamagebtn);
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Go to - create_account wind.
             }
         });
 
         signinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Go to - customer_user login wind.
             }
         });
 
-
+        mamagebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Go to - management_user login wind.
+            }
+        });
 
     }
 }
