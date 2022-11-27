@@ -5,4 +5,5 @@
     <string name="what_to_cook">WHAT TO COOK?</string>
     <string name="recipes">RECIPES</string>
     <string name="upload_recipes">Upload recipes</string>
+    <string name="title_activity_shoping_list_new">shopingListNew</string>
 </resources>

@@ -27,7 +27,7 @@ public class customer_USER extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                if(username.getText().toString().equals("") && password.getText().toString().equals("")){
                     //correct
                     Toast.makeText(customer_USER.this,"LOGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
                     openUploadRecipes();
