@@ -18,7 +18,7 @@ public class management_USER extends AppCompatActivity {
         setContentView(R.layout.activity_management_user);
 
 
-        TextView username =(TextView) findViewById(R.id.m_login);
+        TextView username =(TextView) findViewById(R.id.m_username);
         TextView password =(TextView) findViewById(R.id.m_password);
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.m_loginbtn);
@@ -28,7 +28,7 @@ public class management_USER extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                if(username.getText().toString().equals("") && password.getText().toString().equals("")){
                     //correct
                     Toast.makeText(management_USER.this,"LOGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
                     openUploadRecipes();
@@ -39,7 +39,7 @@ public class management_USER extends AppCompatActivity {
         });
     }
     public void openUploadRecipes() {
-        Intent intent = new Intent(this, Upload_Recipes.class);
+        Intent intent = new Intent(this, manager.class);
         startActivity(intent);
     }
 //    ic_baseline_person_outline_24

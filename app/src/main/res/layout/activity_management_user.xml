@@ -49,17 +49,14 @@
         android:drawablePadding="20dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@id/m_loginbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@id/m_loginbtn"
         android:layout_below="@+id/m_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:text="LOGIN"
         android:backgroundTint="#EC8B1A"
-        android:text="LOGIN" />
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"

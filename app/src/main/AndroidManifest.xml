@@ -13,6 +13,13 @@
         android:theme="@style/Theme.SmartFRIDGE"
         tools:targetApi="31">
         <activity
+            android:name=".manager"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".customer_USER"
             android:exported="false">
             <meta-data

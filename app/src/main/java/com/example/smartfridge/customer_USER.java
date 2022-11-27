@@ -15,13 +15,13 @@ public class customer_USER extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_what_to_cook);
+        setContentView(R.layout.activity_customer_user);
 
         TextView username =(TextView) findViewById(R.id.username);
         TextView password =(TextView) findViewById(R.id.password);
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
-
+//        activity_customer_user.xml
         //admin and admin
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
@@ -29,7 +29,7 @@ public class customer_USER extends AppCompatActivity {
             public void onClick(View v) {
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
                     //correct
-                    Toast.makeText(customer_USER.this,"LOGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(customer_USER.this,"LOGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
                     openUploadRecipes();
                 }else
                     //incorrect
