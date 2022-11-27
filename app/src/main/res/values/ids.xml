@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="button" type="id" />
-    <item name="singupbtn" type="id" />
-    <item name="signupbtn" type="id" />
-    <item name="signinbtn" type="id" />
-    <item name="Managementbtn" type="id" />
-    <item name="managementbtn" type="id" />
     <item name="mamagebtn" type="id" />
-    <item name="m_loginbtn" type="id" />
-    <item name="createbtn" type="id" />
 </resources>

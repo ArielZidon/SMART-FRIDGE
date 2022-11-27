@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Categories_text"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#D5D6D6"
+    android:foregroundTint="#EC3A3A"
+    tools:context=".costumers">
+
+    <TextView
+        android:id="@+id/Categories"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginBottom="233dp" />
+
+    <ImageButton
+        android:id="@+id/my_shoping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="233dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_my_shopping_list"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_shoping"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-308dp"
+        android:layout_marginBottom="240dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_recipes"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/cooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recipes"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-300dp"
+        android:layout_marginBottom="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_cooking"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D6D7D9"
+        android:backgroundTint="#D5D6D6"
+        android:foregroundTint="#982E2E"
+        android:gravity="center|top|center_vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp"
+        android:text="Categories"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textColorHighlight="#BC0B0B"
+        android:textIsSelectable="false"
+        android:textSize="26sp"
+        android:textStyle="bold|italic" />
+
+</RelativeLayout>
