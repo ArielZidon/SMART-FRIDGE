@@ -53,7 +53,7 @@
         android:id="@+id/loginbtn"
         android:layout_below="@id/password"
         android:text="LOGIN"
-        android:backgroundTint="@color/design_default_color_secondary"
+        android:backgroundTint="#EC8B1A"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         />

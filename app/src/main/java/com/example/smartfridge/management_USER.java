@@ -6,9 +6,18 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartfridge.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.arch.core.executor.ArchTaskExecutor;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.Query;
 
 public class management_USER extends AppCompatActivity {
 
@@ -17,14 +26,14 @@ public class management_USER extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_user);
 
-
         TextView username =(TextView) findViewById(R.id.m_username);
         TextView password =(TextView) findViewById(R.id.m_password);
+
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("USERS");
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.m_loginbtn);
 
         //admin and admin
-
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

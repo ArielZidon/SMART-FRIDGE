@@ -6,6 +6,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartfridge.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -17,8 +26,12 @@ public class customer_USER extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_user);
 
+
         TextView username =(TextView) findViewById(R.id.username);
         TextView password =(TextView) findViewById(R.id.password);
+
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("USERS");
+        Query q= usersRef.orderByKey().equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
 //        activity_customer_user.xml
