@@ -20,12 +20,14 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
                 return new page_meat();
             case 1:
                 return new page_vegetables();
+            case 2:
+                return new page_dry();
             default:
                 return new page_milky();
         }
     }
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }

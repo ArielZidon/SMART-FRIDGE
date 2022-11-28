@@ -30,9 +30,12 @@ public class ShoppingTables extends AppCompatActivity {
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        if(position == 0) tab.setText("Meat ");
-                        if(position == 2)tab.setText("Milky ");
-                        if(position == 1) tab.setText("Vegetables ");
+                        if(position == 0) tab.setText("Meat");
+                        if(position == 1) tab.setText("Greenery");
+                        if(position == 2) tab.setText("Dry");
+                        if(position == 3)tab.setText("Milky");
+
+
 
                     }
                 }).attach();
