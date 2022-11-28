@@ -44,7 +44,7 @@ public class costumers extends AppCompatActivity {
     }
 
     public void openMyShoppingList() {
-        Intent intent = new Intent(this, ShoppingTables.class);
+        Intent intent = new Intent(this, myShoppingList.class);
         startActivity(intent);
     }
 
