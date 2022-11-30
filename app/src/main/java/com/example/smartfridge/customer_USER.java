@@ -31,7 +31,7 @@ public class customer_USER extends AppCompatActivity {
         TextView password =(TextView) findViewById(R.id.password);
 
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("USERS");
-        Query q= usersRef.orderByKey().equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Query q = usersRef.orderByKey().equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
 //        activity_customer_user.xml

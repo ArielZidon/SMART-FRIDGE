@@ -35,6 +35,7 @@ public class createAccount extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
+
         Map<TextView, ArrayList<TextView>> USERS = new HashMap<>();
 
         firestore.collection("USERS").add(USERS).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
