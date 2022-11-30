@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".recipes">
 
     <ListView
         android:id="@+id/listViewMeat"
@@ -13,29 +14,31 @@
         android:layout_height="670dp"
         android:choiceMode="multipleChoice" />
 
-    <EditText
-        android:id="@+id/input"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentBottom="true"
-        android:ems="10"
-        android:layout_marginBottom="5dp"
-        android:gravity="center"
-        android:hint="Enter item here" />
-
     <Button
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_centerHorizontal="false"
+        android:layout_marginBottom="10dp"
         android:text="Add" />
+    <Button
+    android:id="@+id/savaData"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="40dp"
+    android:layout_marginBottom="10dp"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:text="SAVE" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_size"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="20dp"-->
+<!--        />-->
 
 
     <ScrollView

@@ -43,9 +43,23 @@
                      android:layout_alignParentEnd="true"
                      android:layout_marginRight="90dp"/>
 
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="@id/name"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="49dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="190dp"
+                    android:layout_toEndOf="@+id/name"
+                    android:text="Number"
+                    android:textFontWeight="400"
+                    android:textColor="@color/black"
+                    android:textSize="20dp">
+
+                </TextView>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-
-
 </RelativeLayout>
