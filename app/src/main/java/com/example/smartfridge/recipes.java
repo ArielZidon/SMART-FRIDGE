@@ -50,7 +50,6 @@ public class recipes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
 
-        loadData();
         listViewDate = findViewById(R.id.listViewMeat);
         name = findViewById(R.id.nameEdit);
         number = findViewById(R.id.numberEdit);
@@ -65,10 +64,11 @@ public class recipes extends AppCompatActivity {
                 dialog.show();
             }
         });
+//        loadData();
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveData();
+                saveData(name.getText().toString(), number.getText().toString());
             }
         });
     }
@@ -81,6 +81,10 @@ public class recipes extends AppCompatActivity {
         arrayList = gson.fromJson(json, type);
         if(arrayList == null){
             arrayList = new ArrayList<>();
+        }else {
+            for (int i = 0; i < arrayList.size(); i++){
+                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
+            }
         }
     }
 //            tvSize.setText("" + 0);
@@ -92,14 +96,14 @@ public class recipes extends AppCompatActivity {
 //                tvSize.setText(tvSize.getText().toString() + "\n" + arrayList.get(i).itemName + "\n");
 //            }
 
-    private void saveData() {
+    private void saveData(String name, String number) {
         SharedPreferences sharedPreferences = getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(arrayList);
         editor.putString("Item Data", json);
         editor.apply();
-//        arrayList.add(new ModelClass(name, number));
+        arrayList.add(new ModelClass(name, number));
 //        loadData();
     }
 
