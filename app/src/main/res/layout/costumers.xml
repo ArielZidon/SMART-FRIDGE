@@ -56,12 +56,13 @@
 
         <ImageButton
             android:id="@+id/my_shoping"
-            android:layout_width="380dp"
+            android:layout_width="wrap_content"
             android:layout_height="160dp"
             android:background="@drawable/image_my_shopping_list"/>
     </LinearLayout>
     <LinearLayout
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:id="@+id/image_recipes"
         android:layout_below="@+id/image_shoping"
         android:layout_width="match_parent"
@@ -70,8 +71,7 @@
 
         <ImageButton
             android:id="@+id/recipes"
-            android:layout_marginLeft="18dp"
-            android:layout_width="380dp"
+            android:layout_width="wrap_content"
             android:layout_height="160dp"
             android:background="@drawable/image_recipes"/>
     </LinearLayout>
@@ -79,14 +79,15 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/image_cooking_manager"
         android:layout_below="@+id/image_recipes"
+        android:layout_centerVertical="true"
+
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/cooking"
-            android:layout_marginLeft="18dp"
-            android:layout_width="380dp"
+            android:layout_width="wrap_content"
             android:layout_height="160dp"
             android:background="@drawable/image_cooking"/>
     </LinearLayout>

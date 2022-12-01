@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcom Customer"
+                android:text="Welcom Manager"
                 android:fontFamily="sans-serif"
                 android:textColor="@color/white"/>
         </LinearLayout>
@@ -47,7 +47,6 @@
 
     <LinearLayout
         android:layout_centerHorizontal="true"
-
         android:id="@+id/image_shoping_manager"
         android:layout_below="@+id/category"
         android:layout_width="match_parent"
@@ -56,8 +55,7 @@
 
         <ImageButton
             android:id="@+id/bt_shoping_manager"
-            android:layout_marginLeft="18dp"
-            android:layout_width="380dp"
+            android:layout_width="wrap_content"
             android:layout_height="160dp"
             android:background="@drawable/image_my_shopping_list"/>
     </LinearLayout>
@@ -71,8 +69,7 @@
 
         <ImageButton
             android:id="@+id/recipes_manager"
-            android:layout_marginLeft="18dp"
-            android:layout_width="380dp"
+            android:layout_width="wrap_content"
             android:layout_height="160dp"
             android:background="@drawable/image_recipes"/>
     </LinearLayout>
@@ -86,8 +83,7 @@
 
         <ImageButton
             android:id="@+id/cooking_manager"
-            android:layout_marginLeft="18dp"
-            android:layout_width="380dp"
+            android:layout_width="wrap_content"
             android:layout_height="160dp"
             android:background="@drawable/image_cooking"/>
     </LinearLayout>
