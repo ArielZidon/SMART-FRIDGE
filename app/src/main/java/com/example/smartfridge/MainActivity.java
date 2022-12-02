@@ -56,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, management_USER.class);
         startActivity(intent);
     }
-/*
-    public void openRecipes() {
-        Intent intent = new Intent(this, recipes.class);
-        startActivity(intent);
-    }
- */
+
+//    public void openRecipes() {
+//        Intent intent = new Intent(this, recipes.class);
+//        startActivity(intent);
+//    }
 }

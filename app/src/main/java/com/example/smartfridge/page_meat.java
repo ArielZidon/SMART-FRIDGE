@@ -1,59 +1,75 @@
 package com.example.smartfridge;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class page_meat extends Fragment {
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class page_meat extends AppCompatActivity {
 
-    public page_meat() {
-        // Required empty public constructor
-    }
+    EditText etName;
+    EditText etCount;
+    Button btSave;
+    TextView tvSize;
+    ArrayList<ModelClass> arrayList;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment page1.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static page_meat newInstance(String param1, String param2) {
-        page_meat fragment = new page_meat();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    @SuppressLint("MissingInflatedId")
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        setContentView(R.layout.activity_page_meat);
+
+        etName = findViewById(R.id.et_name);
+        etCount = findViewById(R.id.et_count);
+        btSave = findViewById(R.id.bt_sava);
+        tvSize = findViewById(R.id.tv_size);
+        loadData();
+
+        btSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData(etName.getText().toString(), etCount.getText().toString());
+            }
+        });
+
+    }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("Item_Data", null);
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        arrayList = gson.fromJson(json, type);
+        if(arrayList == null){
+            arrayList = new ArrayList<>();
+            tvSize.setText(""+0);
+        }else {
+            for (int i = 0; i < arrayList.size(); i++){
+                tvSize.setText(tvSize.getText().toString()+"\n"+arrayList.get(i).itemName);
+            }
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page_meat, container, false);
+    private void saveData(String name, String count) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        arrayList.add((new ModelClass(name, count)));
+        String json = gson.toJson(arrayList);
+        editor.putString("Item_Data", json);
+        editor.apply();
+        tvSize.setText("List Data\n");
+        loadData();
     }
 }
