@@ -1,6 +1,8 @@
-package com.example.smartfridge;
+package costumer;
 
 import static android.content.ContentValues.TAG;
+
+import static com.example.smartfridge.SortProducts.giveMeKeys;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartfridge.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -19,10 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 public class recipes extends AppCompatActivity {
-    int i = 0;
     MaterialButton read;
     FirebaseFirestore db;
-    ArrayList<String> recipes = new ArrayList<>();
+    static ArrayList<String> recipes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class recipes extends AppCompatActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                recipes.clear();
+                giveMeKeys(recipes);
                 DocumentReference docRef = db.collection("accounts").document("314789264");
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override

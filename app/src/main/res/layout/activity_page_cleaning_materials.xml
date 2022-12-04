@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".page_cleaning_materials">
+    tools:context="costumer.page_cleaning_materials">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
