@@ -1,10 +1,12 @@
-package com.example.smartfridge;
+package manager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartfridge.R;
 
 public class manager extends AppCompatActivity {
     ImageButton Recipes;        //ImageButton that represent the Button "recipes"

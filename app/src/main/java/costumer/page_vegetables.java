@@ -1,8 +1,10 @@
-package com.example.smartfridge;
+package costumer;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.smartfridge.R;
 
 public class page_vegetables extends AppCompatActivity {
 

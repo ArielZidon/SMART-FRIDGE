@@ -1,7 +1,9 @@
 package com.example.smartfridge;
 
-public class SortProducts {
+import java.util.ArrayList;
 
+public class SortProducts {
+    protected static ArrayList<String> keys = new ArrayList<>();
     /* arr[]  ---> Input Array
      data[] ---> Temporary array to store current combination
      start & end ---> Starting and Ending indexes in arr[]
@@ -12,7 +14,7 @@ public class SortProducts {
         // Current combination is ready to be printed, print it
         if (index == r) {
             String key = sort(groupOfProducts);
-            System.out.println(key);
+            keys.add(key);
             return;
         }
         // replace index with all possible elements. The condition
@@ -54,6 +56,12 @@ public class SortProducts {
             key.append(groupOfProduct).append(",");
         }
         return key.toString();
+    }
+
+    public static void giveMeKeys(ArrayList<String> recipes)
+    {
+        recipes.addAll(keys);
+        keys.clear();
     }
 }
 

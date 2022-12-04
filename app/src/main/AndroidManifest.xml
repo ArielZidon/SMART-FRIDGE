@@ -20,49 +20,49 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".page_vegetables"
+            android:name="costumer.page_vegetables"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".page_dryFood"
+            android:name="costumer.page_dryFood"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".page_milky"
+            android:name="costumer.page_milky"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".page_meat"
+            android:name="costumer.page_meat"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".page_cleaning_materials"
+            android:name="costumer.page_cleaning_materials"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ShoppingTables"
+            android:name="costumer.ShoppingTables"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".manager"
+            android:name="manager.manager"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -70,35 +70,35 @@
         </activity>
 
         <activity
-            android:name=".customer_USER"
+            android:name="costumer.customer_USER"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".management_USER"
+            android:name="manager.management_USER"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumers"
+            android:name="costumer.costumers"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Upload_Recipes"
+            android:name="manager.Upload_Recipes"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".recipes"
+            android:name="costumer.recipes"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

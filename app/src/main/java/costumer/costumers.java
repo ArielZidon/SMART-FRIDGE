@@ -1,10 +1,13 @@
-package com.example.smartfridge;
+package costumer;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartfridge.R;
+import com.example.smartfridge.whatToCook;
 
 public class costumers extends AppCompatActivity {
 

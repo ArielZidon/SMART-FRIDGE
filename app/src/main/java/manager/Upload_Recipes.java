@@ -1,9 +1,10 @@
-package com.example.smartfridge;
+package manager;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartfridge.R;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -49,6 +50,5 @@ public class Upload_Recipes extends AppCompatActivity {
         data4.put("Country", "israel");
         data4.put("Password","123 :(");
         accounts.document("208567198").set(data4);
-
     }
 }
