@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Go to - create_account wind.
+                openCreateAccount();
             }
         });
 
@@ -87,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void  openCreateAccount(){
+        Intent intent = new Intent(this, createAccount.class);
+        startActivity(intent);
     }
 
     public void openLogin() {

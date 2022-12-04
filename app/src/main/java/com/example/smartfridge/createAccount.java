@@ -1,5 +1,6 @@
 package com.example.smartfridge;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.smartfridge.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -36,20 +38,29 @@ public class createAccount extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
 
-        Map<TextView, ArrayList<TextView>> USERS = new HashMap<>();
+        CollectionReference USERS = firestore.collection("USERS");
 
-        firestore.collection("USERS").add(USERS).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+        Map<Object, Map<String, Object>> user_data = new HashMap<>();
 
-            }
-        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
-            }
-        });
+        Map<String, Object> INFO_t = new HashMap<>();
+        INFO_t.put("name","erantzarum");
+        INFO_t.put("user_type","user");
+        INFO_t.put("password","password");
+//        user_data.put("tzarum77@gmail.com",INFO_t);
+        USERS.document("email").set(INFO_t);
+
+//        firestore.collection("USERS").add(USERS).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//            @Override
+//            public void onSuccess(DocumentReference documentReference) {
+//                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+//
+//            }
+//        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//            @Override
+//            public void onSuccess(DocumentReference documentReference) {
+//                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
         //tital
@@ -64,13 +75,21 @@ public class createAccount extends AppCompatActivity {
         TextView password = (TextView) findViewById(R.id.password);
         TextView user = (TextView) findViewById(R.id.user);
 
-        if(!(USERS.containsKey(email))){
-            ArrayList<TextView> INFO = new ArrayList<>();
-            INFO.add(name);
-            INFO.add(user);
-            INFO.add(password);
 
-            USERS.put(email,INFO);
+        if(!(user_data.containsKey(email))){
+            Map<String, Object> INFO = new HashMap<>();
+            INFO.put("name",name);
+            INFO.put("user_type",user);
+            INFO.put("password",password);
+
+
+//            ArrayList<TextView> INFO = new ArrayList<>();
+//            INFO.add(name);
+//            INFO.add(user);
+//            INFO.add(password);
+
+//            user_data.put(email,INFO);
+            USERS.document("email").set(INFO);
             Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
         }
         else{
