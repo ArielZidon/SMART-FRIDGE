@@ -106,7 +106,7 @@ public class createAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // if user == customer | go to customer app wind
-                // else (user == manager | go to manager app wind)
+                // else (user == manager | go to manager app wind)/
             }
         });
 

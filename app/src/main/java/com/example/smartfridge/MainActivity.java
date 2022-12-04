@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Go to - create_account wind.
+                //Go to - create_account wind..
                 openCreateAccount();
             }
         });
