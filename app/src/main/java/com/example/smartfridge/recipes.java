@@ -32,17 +32,13 @@ import java.util.Arrays;
 public class recipes extends AppCompatActivity {
     AlertDialog dialog;
     LinearLayout layout;
-//    ArrayAdapter<String> adapter;
 
     ListView listViewDate;
     EditText name;
     EditText number;
     Button buttonSave;
     Button add;
-    TextView tvSize;
-    ArrayList<ModelClass> arrayList;
 
-//    String[] array = {"afik damri", "Cabin in the wood", "doctor sleep"};
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -64,47 +60,6 @@ public class recipes extends AppCompatActivity {
                 dialog.show();
             }
         });
-//        loadData();
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveData(name.getText().toString(), number.getText().toString());
-            }
-        });
-    }
-
-    private void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("DATA",MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("Item Data", null);
-        Type type = new TypeToken<ArrayAdapter<ModelClass>>(){}.getType();
-        arrayList = gson.fromJson(json, type);
-        if(arrayList == null){
-            arrayList = new ArrayList<>();
-        }else {
-            for (int i = 0; i < arrayList.size(); i++){
-                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
-            }
-        }
-    }
-//            tvSize.setText("" + 0);
-//        }else{
-//            for(int i = 0; i < arrayList.size(); i++) {
-//                name = view.findViewWithTag(arrayList.get(i).itemName.toString());
-//                number = view.findViewWithTag(arrayList.get(i).itemNumber.toString());
-//                addCard(arrayList.get(i).itemName.toString(), arrayList.get(i).itemNumber.toString());
-//                tvSize.setText(tvSize.getText().toString() + "\n" + arrayList.get(i).itemName + "\n");
-//            }
-
-    private void saveData(String name, String number) {
-        SharedPreferences sharedPreferences = getSharedPreferences("DATA",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(arrayList);
-        editor.putString("Item Data", json);
-        editor.apply();
-        arrayList.add(new ModelClass(name, number));
-//        loadData();
     }
 
     private void buildDialog() {
@@ -155,19 +110,5 @@ public class recipes extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
-
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item){
-//        int id = item.getItemId();
-//        if(id == R.id.item_done){
-//            String itemSelected = "Selected  item: \n";
-//            for (int i = 0; i < listViewDate.getCount(); i++){
-//                if(listViewDate.isItemChecked(i)) {
-//                    itemSelected += listViewDate.getItemAtPosition(i) + "\n";
-//                }
-//            }
-//            Toast.makeText(this, itemSelected, Toast.LENGTH_SHORT).show();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
 }

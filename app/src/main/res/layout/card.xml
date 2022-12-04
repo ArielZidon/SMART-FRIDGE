@@ -11,6 +11,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/new_color"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp">
 
@@ -24,9 +25,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textColor="@android:color/holo_purple"
+                    android:textColor="@android:color/white"
                     android:textFontWeight="1000"
-                    android:textSize="30dp"/>
+                    android:textSize="25dp"/>
 
                 <Button
                     android:id="@+id/delete"
@@ -34,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="Delete"
+                    android:backgroundTint="@color/black"
                     android:layout_alignParentRight="true"/>
 
                  <CheckBox
@@ -55,7 +57,7 @@
                     android:layout_toEndOf="@+id/name"
                     android:text="Number"
                     android:textFontWeight="400"
-                    android:textColor="@color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="20dp">
 
                 </TextView>
