@@ -105,6 +105,14 @@
                 android:value="" />
         </activity>
         <activity
+            android:name="costumer.recipesDisplay"
+            android:exported="false"
+            tools:ignore="DuplicateActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".myShoppingList"
             android:exported="false">
             <meta-data

@@ -2,8 +2,7 @@ package costumer;
 
 import static android.content.ContentValues.TAG;
 
-import static com.example.smartfridge.SortProducts.giveMeKeys;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +24,7 @@ public class recipes extends AppCompatActivity {
     MaterialButton read;
     FirebaseFirestore db;
     static ArrayList<String> recipes = new ArrayList<>();
+    static ArrayList<String> recipesToDisplay = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,26 +35,41 @@ public class recipes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recipes.clear();
-                giveMeKeys(recipes);
-                DocumentReference docRef = db.collection("accounts").document("314789264");
+                //giveMeKeys(recipes);
+                recipes.add("milk,eggs,bread");
+                recipes.add("eggs,milk,bread");
+                for (String s : recipes) {
+                DocumentReference docRef = db.collection("recipes").document(s);
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
-                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                } else {
-                                    Log.d(TAG, "No such document");
-                                }
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                recipesToDisplay.add(s);
                             } else {
-                                Log.d(TAG, "get failed with ", task.getException());
+                                Log.d(TAG, "No such document");
                             }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
                         }
+                    }
                 });
-
+            }
             }
         });
+        openRecipesMenu(recipesToDisplay);
+    }
+
+
+    public void openRecipesMenu(ArrayList <String> recipesDisplay) { //this function display the relevant recipes
+
+        Intent i = new Intent(this, recipesDisplay.class);
+        for (String s : recipesDisplay) {
+            i.putExtra("recipes",s);
+        }
+        startActivity(i);
     }
 }
 
