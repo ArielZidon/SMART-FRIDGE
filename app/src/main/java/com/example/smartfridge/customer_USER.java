@@ -53,5 +53,6 @@ public class customer_USER extends AppCompatActivity {
     public void openUploadRecipes() {
         Intent intent = new Intent(this, costumers.class);
         startActivity(intent);
+        //test
     }
 }
