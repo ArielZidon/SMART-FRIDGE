@@ -1,10 +1,13 @@
-package com.example.smartfridge;
+package costumer;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartfridge.R;
+import com.example.smartfridge.whatToCook;
 
 public class costumers extends AppCompatActivity {
 
@@ -44,7 +47,7 @@ public class costumers extends AppCompatActivity {
     }
 
     public void openMyShoppingList() {
-        Intent intent = new Intent(this, myShoppingList.class);
+        Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
 

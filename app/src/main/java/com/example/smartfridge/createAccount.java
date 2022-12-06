@@ -3,6 +3,7 @@ package com.example.smartfridge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -22,6 +23,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import costumer.costumers;
+import manager.manager;
+
 public class createAccount extends AppCompatActivity {
 
     FirebaseFirestore firestore;
@@ -32,72 +36,66 @@ public class createAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
-
-        CollectionReference USERS = firestore.collection("USERS");
-
-        Map<Object, Map<String, Object>> user_data = new HashMap<>();
-
-        Map<String, Object> INFO_t = new HashMap<>();
-        INFO_t.put("name","erantzarum");
-        INFO_t.put("user_type","user");
-        INFO_t.put("password","password");
-//        user_data.put("tzarum77@gmail.com",INFO_t);
-        USERS.document("email").set(INFO_t);
-
-//        firestore.collection("USERS").add(USERS).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
-//
-//            }
-//        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
-//            }
-//        });
-
 
         //tital
         TextView createaccount = (TextView) findViewById(R.id.createaccount);
 
-        //Need to:
-        //Make sure they work.
-        //Write a func that checks if the name,email,pass is legal.
-        //Write a func that put the user in a DB of users.
+
         TextView name = (TextView) findViewById(R.id.name);
         TextView email = (TextView) findViewById(R.id.email);
         TextView password = (TextView) findViewById(R.id.password);
         TextView user = (TextView) findViewById(R.id.user);
 
+        Map<Object, Map<String, Object>> costumer_accounts = new HashMap<>();
 
-        if(!(user_data.containsKey(email))){
-            Map<String, Object> INFO = new HashMap<>();
-            INFO.put("name",name);
-            INFO.put("user_type",user);
-            INFO.put("password",password);
+        firestore.collection("costumer_accounts").add(costumer_accounts).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
 
-
-//            ArrayList<TextView> INFO = new ArrayList<>();
-//            INFO.add(name);
-//            INFO.add(user);
-//            INFO.add(password);
-
-//            user_data.put(email,INFO);
-            USERS.document("email").set(INFO);
-            Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(createAccount.this,"The email: "+email+" is already registered in the system",Toast.LENGTH_SHORT).show();
-        }
+            }
+        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
+            }
+        });
 
 
-        //make the insert_user work!!!!
+        Map<Object, Map<String, Object>> manager_accounts = new HashMap<>();
+
+        firestore.collection("manager_accounts").add(manager_accounts).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        CollectionReference costumer_DB = firestore.collection("costumer_accounts");
+        CollectionReference manager_DB = firestore.collection("manager_accounts");
+
+        //tast - insert eran as a costumer and as a manager
+        //DONT FORGET TO DELETE THIS!!!!!!
+        Map<String, Object> info = new HashMap<>();
+        info.put("name","erantzarum");
+        info.put("user_type","user");
+        info.put("password","password");
+        costumer_DB.document("tzarum77@gmail.com").set(info);
+
+        Map<String, Object> info_m = new HashMap<>();
+        info_m.put("name","erantzarum");
+        info_m.put("user_type","user");
+        info_m.put("password","password");
+        manager_DB.document("eran.davidtz@gmail.com").set(info);
+        //DONT FORGET TO DELETE THIS!!!!!!
+
 
 
         MaterialButton createbtn = (MaterialButton) findViewById(R.id.createbtn);
@@ -105,26 +103,46 @@ public class createAccount extends AppCompatActivity {
         createbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // if user == customer | go to customer app wind
-                // else (user == manager | go to manager app wind)/
+
+                if(String.valueOf(user) == "costumer"){
+                    if(!(costumer_accounts.containsKey(email))){
+                        Map<String, Object> info = new HashMap<>();
+                        info.put("name",name);
+                        info.put("user_type",user);
+                        info.put("password",password);
+                        costumer_DB.document(String.valueOf(email)).set(info);
+                        Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
+                        openCostumers();
+                    }
+                    else{
+                        Toast.makeText(createAccount.this,"The email: "+email+" is already registered in the system",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    if(!(manager_accounts.containsKey(email))){
+                        Map<String, Object> info = new HashMap<>();
+                        info.put("name",name);
+                        info.put("user_type",user);
+                        info.put("password",password);
+                        manager_DB.document(String.valueOf(email)).set(info);
+                        Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
+                        openManagers();
+                    }
+                    else{
+                        Toast.makeText(createAccount.this,"The email: "+email+" is already registered in the system",Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
-
-
     }
 
-//    public static void insert_user(FirebaseFirestore USERS,TextView name,TextView email,TextView password,TextView user){
-//        if(!(USERS.containsKey(email))){
-//            ArrayList<TextView> INFO = new ArrayList<>();
-//            INFO.add(name);
-//            INFO.add(user);
-//            INFO.add(password);
-//
-//            USERS.put(email,INFO);
-//            Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
-//        }
-//        else{
-//            Toast.makeText(createAccount.this,"The email: "+email+" is already registered in the system",Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    public void  openCostumers(){
+        Intent intent = new Intent(this, costumers.class);
+        startActivity(intent);
+    }
+
+    public void  openManagers(){
+        Intent intent = new Intent(this, manager.class);
+        startActivity(intent);
+    }
 }

@@ -23,6 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
+import costumer.customer_USER;
+import manager.management_USER;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,22 +44,31 @@ public class MainActivity extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
 
-//        Map<String, Object> USERS = new HashMap<>();
-//
-//        firestore.collection("USERS").add(USERS).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
-//
-//            }
-//        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
-//            }
-//        });
+        //tast - insert eran as a costumer and as a manager
+        //DONT FORGET TO DELETE THIS!!!!!!
+        Map<String, Object> accounts2 = new HashMap<>();
 
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("USERS");
+        Map<String, Object> INFO_t = new HashMap<>();
+        INFO_t.put("name","erantzarum");
+        INFO_t.put("user_type","user");
+        INFO_t.put("password","password");
+        accounts2.put("tzarum77@email.com",INFO_t);
+
+        firestore.collection("accounts2").add(accounts2).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
+            }
+        });
+        //DONT FORGET TO DELETE THIS!!!!!!
+
+//        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("USERS");
 
         TextView tital = (TextView) findViewById(R.id.title);
 
