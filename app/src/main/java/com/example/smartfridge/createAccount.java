@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.smartfridge.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,7 +30,7 @@ import manager.manager;
 public class createAccount extends AppCompatActivity {
 
     FirebaseFirestore firestore;
-    private ActivityMainBinding binding;
+    FirebaseAuth authentication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class createAccount extends AppCompatActivity {
                         info.put("user_type",user);
                         info.put("password",password);
                         costumer_DB.document(String.valueOf(email)).set(info);
+                        authentication.createUserWithEmailAndPassword(String.valueOf(email),String.valueOf(password));
                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
                         openCostumers();
                     }
@@ -125,6 +127,7 @@ public class createAccount extends AppCompatActivity {
                         info.put("user_type",user);
                         info.put("password",password);
                         manager_DB.document(String.valueOf(email)).set(info);
+                        authentication.createUserWithEmailAndPassword(String.valueOf(email),String.valueOf(password));
                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
                         openManagers();
                     }
