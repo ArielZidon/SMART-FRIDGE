@@ -1,13 +1,11 @@
 package com.example.smartfridge;
 
-import static android.content.ContentValues.TAG;
-
-import android.util.Log;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SortProducts {
     protected static ArrayList<String> keys = new ArrayList<>();
+    protected static ArrayList<String> singel_key = new ArrayList<>();
     /* arr[]  ---> Input Array
      data[] ---> Temporary array to store current combination
      start & end ---> Starting and Ending indexes in arr[]
@@ -17,9 +15,10 @@ public class SortProducts {
                                 int end, int index, int r) {
         // Current combination is ready to be printed, print it
         if (index == r) {
-            String key = sort(groupOfProducts);
+            singel_key.addAll(Arrays.asList(groupOfProducts));
+            String key = sort(singel_key);
             keys.add(key);
-            Log.d(TAG, "combinationUtil: "+ key);
+            singel_key.clear();
             return;
         }
         // replace index with all possible elements. The condition
@@ -35,33 +34,33 @@ public class SortProducts {
     // The main function that prints all combinations of size r
     // in arr[] of size n. This function mainly uses combinationUtil()
     public static void mixCombination(String[] products, int n, int r) {
+        keys.clear();
         String[] TreesOfProducts = new String[r];
         combinationUtil(products, TreesOfProducts, 0, n - 1, 0, r);
     }
 
 //bad sort need to replace it!!!!!!
     /* *********************-----SORT-----********************** */
-    static String sort(String[] groupOfProducts) {
-        int size = groupOfProducts.length;
+    static String sort(ArrayList<String> groupOfProducts) {
         //logic for sorting
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = i + 1; j < groupOfProducts.length; j++) {
+        for (int i = 0; i < groupOfProducts.size() - 1; i++) {
+            for (int j = i + 1; j < groupOfProducts.size(); j++) {
                 //compares each elements of the array to all the remaining elements
-                if (groupOfProducts[i].compareTo(groupOfProducts[j]) > 0) {
+                if (groupOfProducts.get(i).compareTo(groupOfProducts.get(j)) > 0) {
                     //swapping array elements
-                    String temp = groupOfProducts[i];
-                    groupOfProducts[i] = groupOfProducts[j];
-                    groupOfProducts[j] = temp;
+                    String temp = groupOfProducts.get(i);
+                    groupOfProducts.set(i, groupOfProducts.get(j));
+                    groupOfProducts.set(j, temp);
                 }
             }
         }
         /* *********************-----CREATE KEY-----********************** */
         StringBuilder key = new StringBuilder();
 
-        for (int i = 0; i < groupOfProducts.length; i++) {
-            String groupOfProduct = groupOfProducts[i];
+        for (int i = 0; i < groupOfProducts.size(); i++) {
+            String groupOfProduct = groupOfProducts.get(i);
             key.append(groupOfProduct);
-            if(i < groupOfProducts.length-1)
+            if(i < groupOfProducts.size()-1)
                 key.append(",");
         }
         return key.toString();
@@ -73,4 +72,3 @@ public class SortProducts {
         keys.clear();
     }
 }
-
