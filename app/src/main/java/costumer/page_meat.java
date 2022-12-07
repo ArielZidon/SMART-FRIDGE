@@ -1,7 +1,4 @@
-package com.example.smartfridge;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+package costumer;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -16,8 +13,13 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.gson.reflect.TypeToken;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.R;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

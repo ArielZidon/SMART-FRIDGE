@@ -1,7 +1,6 @@
 package costumer;
 
 import static android.content.ContentValues.TAG;
-
 import static com.example.smartfridge.SortProducts.giveMeKeys;
 
 import android.os.Bundle;
@@ -32,12 +31,15 @@ public class recipes extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         read = findViewById(R.id.read);
         read.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 recipes.clear();
                 giveMeKeys(recipes);
-                DocumentReference docRef = db.collection("accounts").document("314789264");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                Log.d(TAG, "SIZE DATA: " + recipes.size());
+                for (int i = 0; i <recipes.size() ; i++) {
+                    DocumentReference docRef = db.collection("recipes").document(recipes.get(i));
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
@@ -51,10 +53,9 @@ public class recipes extends AppCompatActivity {
                                 Log.d(TAG, "get failed with ", task.getException());
                             }
                         }
-                });
-
+                    });
+                }
             }
         });
     }
 }
-

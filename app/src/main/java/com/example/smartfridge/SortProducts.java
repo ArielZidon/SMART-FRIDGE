@@ -1,5 +1,9 @@
 package com.example.smartfridge;
 
+import static android.content.ContentValues.TAG;
+
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class SortProducts {
@@ -15,6 +19,7 @@ public class SortProducts {
         if (index == r) {
             String key = sort(groupOfProducts);
             keys.add(key);
+            Log.d(TAG, "combinationUtil: "+ key);
             return;
         }
         // replace index with all possible elements. The condition
@@ -29,14 +34,14 @@ public class SortProducts {
 
     // The main function that prints all combinations of size r
     // in arr[] of size n. This function mainly uses combinationUtil()
-    static void printCombination(String[] products, int n, int r) {
+    public static void mixCombination(String[] products, int n, int r) {
         String[] TreesOfProducts = new String[r];
         combinationUtil(products, TreesOfProducts, 0, n - 1, 0, r);
     }
 
 //bad sort need to replace it!!!!!!
     /* *********************-----SORT-----********************** */
-    private static String sort(String[] groupOfProducts) {
+    static String sort(String[] groupOfProducts) {
         int size = groupOfProducts.length;
         //logic for sorting
         for (int i = 0; i < size - 1; i++) {
@@ -52,8 +57,12 @@ public class SortProducts {
         }
         /* *********************-----CREATE KEY-----********************** */
         StringBuilder key = new StringBuilder();
-        for (String groupOfProduct : groupOfProducts) {
-            key.append(groupOfProduct).append(",");
+
+        for (int i = 0; i < groupOfProducts.length; i++) {
+            String groupOfProduct = groupOfProducts[i];
+            key.append(groupOfProduct);
+            if(i < groupOfProducts.length-1)
+                key.append(",");
         }
         return key.toString();
     }

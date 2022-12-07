@@ -1,16 +1,11 @@
-package com.example.smartfridge;
+package costumer;
 
-
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +14,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -79,7 +79,7 @@ public class page_vegetables extends AppCompatActivity {
         });
     }
     private void openClean() {
-        Intent intent = new Intent(this, page_cleaning_materials.class);
+        Intent intent = new Intent(this, costumer.page_cleaning_materials.class);
         startActivity(intent);
     }
 

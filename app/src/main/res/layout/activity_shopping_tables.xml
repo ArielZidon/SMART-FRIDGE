@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background2"
-    tools:context="costumer.ShoppingTables">
+    tools:context=".ShoppingTables">
 
     <LinearLayout
         android:id="@+id/welcom"
@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:layout_height="70dp">
-        
+
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -214,6 +214,14 @@
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/bt_recipes"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="145dp"
+            android:background="@drawable/rec2" />
+
     </LinearLayout>
 
 </RelativeLayout>
