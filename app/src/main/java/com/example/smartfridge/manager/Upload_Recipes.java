@@ -1,4 +1,4 @@
-package manager;
+package com.example.smartfridge.manager;
 
 import android.os.Bundle;
 

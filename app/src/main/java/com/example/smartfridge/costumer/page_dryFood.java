@@ -1,4 +1,4 @@
-package costumer;
+package com.example.smartfridge.costumer;
 
 import androidx.appcompat.app.AppCompatActivity;
 

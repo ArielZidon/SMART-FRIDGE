@@ -1,4 +1,4 @@
-package costumer;
+package com.example.smartfridge.costumer;
 
 import android.content.Intent;
 import android.os.Bundle;

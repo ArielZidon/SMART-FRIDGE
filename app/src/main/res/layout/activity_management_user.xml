@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context="costumer.customer_USER">
+    tools:context=".costumer.customer_USER">
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/m_username"
         android:layout_below="@id/m_login"
-        android:hint="Username"
+        android:hint="Email"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_margin="10dp"

@@ -1,4 +1,4 @@
-package costumer;
+package com.example.smartfridge.costumer;
 
 public class paga_open_recepe {
 
