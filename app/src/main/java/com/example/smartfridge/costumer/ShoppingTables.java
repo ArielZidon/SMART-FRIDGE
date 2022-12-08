@@ -1,16 +1,20 @@
 package com.example.smartfridge.costumer;
 
+import static android.content.ContentValues.TAG;
 import static com.example.smartfridge.SortProducts.mixCombination;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.createAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -90,10 +94,21 @@ public class ShoppingTables extends AppCompatActivity {
         arrayList_all.addAll(arrayList_temp);
 
         String[] products = new String[arrayList_all.size()];
-
-        for (int i = 0; i <products.length ; i++) {
-            products[i] = arrayList_all.get(i).getItemName();
+        if (products.length!=0) {
+            for (int i = 0; i < products.length; i++) {
+                products[i] = arrayList_all.get(i).getItemName();
+            }
         }
-        mixCombination( products,products.length,3);
+
+        boolean algo_has_been_activated = false;
+        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipe.
+            if (products.length >= i)
+            {
+                mixCombination(products, products.length, 3);
+                algo_has_been_activated = true;
+            }
+        }
+        if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
+            Toast.makeText(ShoppingTables.this,"There is not enough products to create a recipe!",Toast.LENGTH_LONG).show();
     }
 }

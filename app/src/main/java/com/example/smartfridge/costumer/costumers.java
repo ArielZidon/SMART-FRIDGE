@@ -21,14 +21,14 @@ public class costumers extends AppCompatActivity {
         setContentView(R.layout.costumers);
 
 
-        /*
+        /**
         Jump buttons by mouse click
          */
         Cooking = (ImageButton) findViewById(R.id.cooking);
         My_shoping = (ImageButton) findViewById(R.id.my_shoping);
         Recipes = findViewById(R.id.recipes);
 
-        /*
+        /**
         Application of the transition buttons
          */
         Cooking.setOnClickListener(v -> openWhatToCook());
@@ -37,7 +37,7 @@ public class costumers extends AppCompatActivity {
 
 
     }
-    /*
+    /**
     Functions that send the click on the transition
     buttons to the activity intended for them
      */
