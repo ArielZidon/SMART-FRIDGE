@@ -85,10 +85,6 @@ public class ShoppingTables extends AppCompatActivity {
         arrayList_temp = gson.fromJson(json, type);
         arrayList_all.addAll(arrayList_temp);
 
-        json = sharedPreferences.getString("Item_Data_Clean", null);
-        arrayList_temp = gson.fromJson(json, type);
-        arrayList_all.addAll(arrayList_temp);
-
         json = sharedPreferences.getString("Item_Data_Dry", null);
         arrayList_temp = gson.fromJson(json, type);
         arrayList_all.addAll(arrayList_temp);

@@ -79,7 +79,7 @@ public class page_vegetables extends AppCompatActivity {
         });
     }
     private void openClean() {
-        Intent intent = new Intent(this, costumer.page_cleaning_materials.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_cleaning_materials.class);
         startActivity(intent);
     }
 

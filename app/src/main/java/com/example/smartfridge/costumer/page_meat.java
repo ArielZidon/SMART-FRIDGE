@@ -82,7 +82,7 @@ public class page_meat extends AppCompatActivity {
     }
 
     private void openMilaky() {
-        Intent intent = new Intent(this, page_milky.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_milky.class);
         startActivity(intent);
     }
 

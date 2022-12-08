@@ -81,7 +81,7 @@ public class page_cleaning_materials extends AppCompatActivity {
     }
 
     private void openDryFood() {
-        Intent intent = new Intent(this, page_dryFood.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_dryFood.class);
         startActivity(intent);
     }
 

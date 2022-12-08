@@ -82,7 +82,7 @@ public class page_dryFood extends AppCompatActivity {
     }
 
     private void openMeat() {
-        Intent intent = new Intent(this, page_meat.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_meat.class);
         startActivity(intent);
     }
 

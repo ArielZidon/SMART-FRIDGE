@@ -81,7 +81,7 @@ public class page_milky extends AppCompatActivity {
     }
 
     private void openVegetables() {
-        Intent intent = new Intent(this, costumer.page_vegetables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_vegetables.class);
         startActivity(intent);
     }
 
