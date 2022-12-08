@@ -1,4 +1,4 @@
-package costumer;
+package com.example.smartfridge.costumer;
 
 import static android.content.ContentValues.TAG;
 import static com.example.smartfridge.SortProducts.giveMeKeys;

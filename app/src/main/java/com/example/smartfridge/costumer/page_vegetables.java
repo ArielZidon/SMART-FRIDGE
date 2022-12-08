@@ -1,4 +1,5 @@
-package costumer;
+package com.example.smartfridge.costumer;
+
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -24,25 +25,23 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class page_dryFood extends AppCompatActivity {
+public class page_vegetables extends AppCompatActivity {
 
     AlertDialog dialog;
     LinearLayout layout;
     EditText name;
     EditText number;
-
     Button btSave;
     TextView tvSize;
     ArrayList<ModelClass> arrayList;
     ImageButton nextView;
-
     Button del;
 
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_page_dry_food);
+        setContentView(R.layout.activity_page_vegetables);
 
         btSave = findViewById(R.id.bt_sava);
         tvSize = findViewById(R.id.tv_size);
@@ -52,12 +51,11 @@ public class page_dryFood extends AppCompatActivity {
         loadData();
         buildDialog();
 
-        nextView = (ImageButton) findViewById(R.id.next_to_meat);
-
+        nextView = (ImageButton) findViewById(R.id.next_to_clean);
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMeat();
+                openClean();
             }
         });
 
@@ -80,36 +78,37 @@ public class page_dryFood extends AppCompatActivity {
             }
         });
     }
-
-    private void openMeat() {
-        Intent intent = new Intent(this, page_meat.class);
+    private void openClean() {
+        Intent intent = new Intent(this, costumer.page_cleaning_materials.class);
         startActivity(intent);
     }
 
     private void loadData() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("Item_Data_Dry", null);
-        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        String json = sharedPreferences.getString("Item_Data_vege", null);
+        Type type = new TypeToken<ArrayList<ModelClass>>() {
+        }.getType();
         arrayList = gson.fromJson(json, type);
-        if(arrayList == null){
+        if (arrayList == null) {
             arrayList = new ArrayList<>();
-            tvSize.setText(""+0);
-        }else {
-            for (int i = 0; i < arrayList.size(); i++){
+            tvSize.setText("" + 0);
+        } else {
+            for (int i = 0; i < arrayList.size(); i++) {
                 addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
     }
 
     private void saveData(String name, String count) {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         arrayList.add((new ModelClass(name, count)));
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_Dry", json);
+        editor.putString("Item_Data_vege", json);
         editor.apply();
+        tvSize.setText("My Vegetables List \n");
         addCard(name, count);
     }
 
@@ -137,7 +136,7 @@ public class page_dryFood extends AppCompatActivity {
         dialog = builder.create();
     }
 
-    public boolean onCreteOptionsMenu(Menu menu){
+    public boolean onCreteOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
@@ -173,7 +172,7 @@ public class page_dryFood extends AppCompatActivity {
             }
         }
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_Dry", json);
+        editor.putString("Item_Data_vege", json);
         editor.apply();
     }
 }

@@ -1,4 +1,4 @@
-package costumer;
+package com.example.smartfridge.costumer;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;

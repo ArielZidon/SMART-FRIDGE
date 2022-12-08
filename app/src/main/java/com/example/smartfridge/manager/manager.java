@@ -1,4 +1,4 @@
-package manager;
+package com.example.smartfridge.manager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ public class manager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
-        Recipes = findViewById(R.id.recipes);
+        Recipes = findViewById(R.id.recipes_manager);
 
         Recipes.setOnClickListener(v -> uploadRecipes());
     }
