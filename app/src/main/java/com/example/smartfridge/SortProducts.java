@@ -6,6 +6,23 @@ import java.util.Arrays;
 public class SortProducts {
     protected static ArrayList<String> keys = new ArrayList<>();
     protected static ArrayList<String> singel_key = new ArrayList<>();
+
+    public static ArrayList<String> getKeys() {
+        return keys;
+    }
+
+    public static void setKeys(ArrayList<String> keys) {
+        SortProducts.keys = keys;
+    }
+
+    public static ArrayList<String> getSingel_key() {
+        return singel_key;
+    }
+
+    public static void setSingel_key(ArrayList<String> singel_key) {
+        SortProducts.singel_key = singel_key;
+    }
+
     /**
      arr[]  ---> Input Array
      data[] ---> Temporary array to store current combination
@@ -40,7 +57,6 @@ public class SortProducts {
      in arr[] of size n. This function mainly uses combinationUtil()
      */
     public static void mixCombination(String[] products, int n, int r) {
-        keys.clear();
         String[] TreesOfProducts = new String[r];
         combinationUtil(products, TreesOfProducts, 0, n - 1, 0, r);
     }

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.SortProducts;
 import com.example.smartfridge.createAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -72,30 +73,28 @@ public class ShoppingTables extends AppCompatActivity {
         startActivity(intent);
     }
     public void createRecipes(){
-        ArrayList<ModelClass> arrayList_all = new ArrayList<ModelClass>();
-        ArrayList<ModelClass> arrayList_temp = new ArrayList<ModelClass>();
-
+        SortProducts.getKeys().clear();
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
 
         String json = sharedPreferences.getString("Item_Data_meat", null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-        arrayList_all = gson.fromJson(json, type);
+        ArrayList<ModelClass> arrayList_all = gson.fromJson(json, type);
 
-        /**needed to be fix*/
-//        json = sharedPreferences.getString("Item_Data_milky", null);
-//        arrayList_temp = gson.fromJson(json, type);
-//        arrayList_all.addAll(arrayList_temp);
-//
-//        json = sharedPreferences.getString("Item_Data_vege", null);
-//        arrayList_temp = gson.fromJson(json, type);
-//        arrayList_all.addAll(arrayList_temp);
-//
-//        json = sharedPreferences.getString("Item_Data_Dry", null);
-//        arrayList_temp = gson.fromJson(json, type);
-//        arrayList_all.addAll(arrayList_temp);
+        json = sharedPreferences.getString("Item_Data_milky", null);
+        ArrayList<ModelClass> arrayList_temp = gson.fromJson(json, type);
+        if (arrayList_temp.size() != 0)
+            arrayList_all.addAll(arrayList_temp);
 
-        /**until here*/
+        json = sharedPreferences.getString("Item_Data_vege", null);
+        arrayList_temp = gson.fromJson(json, type);
+        if (arrayList_temp.size() != 0)
+            arrayList_all.addAll(arrayList_temp);
+
+        json = sharedPreferences.getString("Item_Data_Dry", null);
+        arrayList_temp = gson.fromJson(json, type);
+        if (arrayList_temp.size() != 0)
+            arrayList_all.addAll(arrayList_temp);
 
         String[] products = new String[arrayList_all.size()];
         if (products.length!=0) {

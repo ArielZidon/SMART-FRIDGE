@@ -60,7 +60,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
         </activity>
         <activity
             android:name=".costumer.customer_USER"
@@ -104,7 +103,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".createAccount"
             android:exported="false">
@@ -135,4 +133,5 @@
                 android:value="" />
         </activity>
     </application>
+
 </manifest>
