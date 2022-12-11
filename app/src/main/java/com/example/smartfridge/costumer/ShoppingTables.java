@@ -30,6 +30,8 @@ public class ShoppingTables extends AppCompatActivity {
     private ImageButton bt_dry;
     private ImageButton bt_vegetables;
     private ImageButton bt_recipes;
+//    private ArrayList<ModelClass> arrayList_all;
+//    private ArrayList<ModelClass> arrayList_temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,45 +75,64 @@ public class ShoppingTables extends AppCompatActivity {
         startActivity(intent);
     }
     public void createRecipes(){
-        SortProducts.getKeys().clear();
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+//        SortProducts.getKeys().clear();
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
         Gson gson = new Gson();
-
         String json = sharedPreferences.getString("Item_Data_meat", null);
-        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        Type type = new TypeToken<ArrayList<ModelClass>>() {}.getType();
         ArrayList<ModelClass> arrayList_all = gson.fromJson(json, type);
 
-        json = sharedPreferences.getString("Item_Data_milky", null);
-        ArrayList<ModelClass> arrayList_temp = gson.fromJson(json, type);
-        if (arrayList_temp.size() != 0)
-            arrayList_all.addAll(arrayList_temp);
-
         json = sharedPreferences.getString("Item_Data_vege", null);
+        ArrayList<ModelClass> arrayList_temp = gson.fromJson(json, type);
+        arrayList_all.addAll(arrayList_temp);
+
+        json = sharedPreferences.getString("Item_Data_milky", null);
         arrayList_temp = gson.fromJson(json, type);
-        if (arrayList_temp.size() != 0)
-            arrayList_all.addAll(arrayList_temp);
+        arrayList_all.addAll(arrayList_temp);
 
         json = sharedPreferences.getString("Item_Data_Dry", null);
         arrayList_temp = gson.fromJson(json, type);
-        if (arrayList_temp.size() != 0)
-            arrayList_all.addAll(arrayList_temp);
+        arrayList_all.addAll(arrayList_temp);
 
-        String[] products = new String[arrayList_all.size()];
-        if (products.length!=0) {
-            for (int i = 0; i < products.length; i++) {
-                products[i] = arrayList_all.get(i).getItemName();
-            }
+        for (int i = 0; i < arrayList_all.size(); i++) {
+            Log.d(TAG, "createRecipes: "+ arrayList_all.get(i).getItemName());
         }
 
-        boolean algo_has_been_activated = false;
-        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipe.
-            if (products.length >= i)
-            {
-                mixCombination(products, products.length, i);
-                algo_has_been_activated = true;
-            }
-        }
-        if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
-            Toast.makeText(ShoppingTables.this,"There is not enough products to create a recipe!",Toast.LENGTH_LONG).show();
+
+
+
+
+
+//        if (arrayList_temp.size() != 0)
+//            arrayList_all.addAll(arrayList_temp);
+//
+//        json = sharedPreferences.getString("Item_Data_vege", null);
+//        arrayList_temp = gson.fromJson(json, type);
+//        if (arrayList_temp.size() != 0)
+//            arrayList_all.addAll(arrayList_temp);
+//
+//        json = sharedPreferences.getString("Item_Data_Dry", null);
+//        arrayList_temp = gson.fromJson(json, type);
+//        if (arrayList_temp.size() != 0)
+//            arrayList_all.addAll(arrayList_temp);
+//
+//        String[] products = new String[arrayList_all.size()];
+//        if (products.length!=0) {
+//            for (int i = 0; i < products.length; i++) {
+//                products[i] = arrayList_all.get(i).getItemName();
+//            }
+//        }
+//
+//        boolean algo_has_been_activated = false;
+//        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipe.
+//            if (products.length >= i)
+//            {
+//                mixCombination(products, products.length, i);
+//                algo_has_been_activated = true;
+//            }
+//        }
+//        if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
+//            Toast.makeText(ShoppingTables.this,"There is not enough products to create a recipe!",Toast.LENGTH_LONG).show();
+//
     }
 }
