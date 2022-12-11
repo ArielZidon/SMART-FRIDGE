@@ -77,21 +77,25 @@ public class ShoppingTables extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
+
         String json = sharedPreferences.getString("Item_Data_meat", null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
         arrayList_all = gson.fromJson(json, type);
 
-        json = sharedPreferences.getString("Item_Data_milky", null);
-        arrayList_temp = gson.fromJson(json, type);
-        arrayList_all.addAll(arrayList_temp);
+        /**needed to be fix*/
+//        json = sharedPreferences.getString("Item_Data_milky", null);
+//        arrayList_temp = gson.fromJson(json, type);
+//        arrayList_all.addAll(arrayList_temp);
+//
+//        json = sharedPreferences.getString("Item_Data_vege", null);
+//        arrayList_temp = gson.fromJson(json, type);
+//        arrayList_all.addAll(arrayList_temp);
+//
+//        json = sharedPreferences.getString("Item_Data_Dry", null);
+//        arrayList_temp = gson.fromJson(json, type);
+//        arrayList_all.addAll(arrayList_temp);
 
-        json = sharedPreferences.getString("Item_Data_vege", null);
-        arrayList_temp = gson.fromJson(json, type);
-        arrayList_all.addAll(arrayList_temp);
-
-        json = sharedPreferences.getString("Item_Data_Dry", null);
-        arrayList_temp = gson.fromJson(json, type);
-        arrayList_all.addAll(arrayList_temp);
+        /**until here*/
 
         String[] products = new String[arrayList_all.size()];
         if (products.length!=0) {
@@ -104,7 +108,7 @@ public class ShoppingTables extends AppCompatActivity {
         for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipe.
             if (products.length >= i)
             {
-                mixCombination(products, products.length, 3);
+                mixCombination(products, products.length, i);
                 algo_has_been_activated = true;
             }
         }
