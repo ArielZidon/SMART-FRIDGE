@@ -34,7 +34,6 @@ public class page_meat extends AppCompatActivity {
     TextView tvSize;
     ArrayList<ModelClass> arrayList;
     ImageButton nextView;
-//    Button del;
     ImageButton beckView;
     ImageButton home;
 
@@ -88,7 +87,7 @@ public class page_meat extends AppCompatActivity {
     }
 
     private void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
         startActivity(intent);
     }
 
@@ -177,6 +176,7 @@ public class page_meat extends AppCompatActivity {
     /**
      * @param name => item name
      * @param number => number of item
+     * update the view screen with new card (name, cumber)
      */
     private void addCard(String name, String number) {
         View view = getLayoutInflater().inflate(R.layout.card, null);
@@ -198,6 +198,12 @@ public class page_meat extends AppCompatActivity {
         layout.addView(view);
     }
 
+    /**
+     * @param name => item name that customer select to delete
+     * @param count => count item that customer select to delete
+     *  1. remove item from the screen
+     *  2. remove item from sharedPreferences
+     */
     private void removeArray(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
