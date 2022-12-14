@@ -140,7 +140,7 @@ public class page_meat extends AppCompatActivity {
     }
 
     /**
-     * create a view dialog between the customers on use to adds items
+     * create a view dialog between the customers on user to adds items
      * add new card with the name and number from the dialog
      * update the list with the new item
      */
@@ -176,7 +176,7 @@ public class page_meat extends AppCompatActivity {
     /**
      * @param name => item name
      * @param number => number of item
-     * update the view screen with new card (name, cumber)
+     * update the view screen with new card (name, number)
      */
     private void addCard(String name, String number) {
         View view = getLayoutInflater().inflate(R.layout.card, null);
