@@ -29,13 +29,11 @@ public class page_cleaning_materials extends AppCompatActivity {
     LinearLayout layout;
     EditText name;
     EditText number;
-
     Button btSave;
     TextView tvSize;
     ArrayList<ModelClass> arrayList;
     ImageButton nextView;
 
-    Button del;
 
 
     @SuppressLint("MissingInflatedId")
