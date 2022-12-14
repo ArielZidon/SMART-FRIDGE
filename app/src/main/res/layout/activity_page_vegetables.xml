@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background2"
-    tools:context=".page_vegetables">
+    tools:context=".costumer.page_vegetables">
 
     <TextView
         android:id="@+id/tv_size"
