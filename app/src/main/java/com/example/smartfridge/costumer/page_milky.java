@@ -213,4 +213,10 @@ public class page_milky extends AppCompatActivity {
         editor.putString("Item_Data_milky", json);
         editor.apply();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        startActivity(intent);
+    }
 }
