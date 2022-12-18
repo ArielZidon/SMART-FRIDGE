@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:background="@drawable/background2"
     tools:context=".costumer.recipes">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="2dp"
         android:textStyle="bold"
         android:textSize="50dp"
         android:textColor="@color/black"
@@ -21,13 +22,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/read"
-        android:layout_centerInParent="true"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"
         android:paddingBottom="10dp"
-        android:text="GET RESIPES" />
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/new_color"
+        android:text="GET RESIPES"
+        />
+
+
 
 
 </RelativeLayout>

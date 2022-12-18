@@ -87,7 +87,7 @@ public class page_meat extends AppCompatActivity {
     }
 
     private void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
 
