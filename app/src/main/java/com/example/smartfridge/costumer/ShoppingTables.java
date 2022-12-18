@@ -126,4 +126,10 @@ public class ShoppingTables extends AppCompatActivity {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        startActivity(intent);
+    }
 }
