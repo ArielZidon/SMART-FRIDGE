@@ -86,7 +86,7 @@ public class page_milky extends AppCompatActivity {
     }
 
     private void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
 
@@ -103,7 +103,7 @@ public class page_milky extends AppCompatActivity {
     /**
      * Upload items form sharedPreferences
      * if list == null => create new empty list
-     * else => show on the screen all items from the sharedPreferences "Item_Data_meat"
+     * else => show on the screen all items from the sharedPreferences "Item_Data_milky"
      */
     private void loadData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
