@@ -71,4 +71,9 @@ public class recipes extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        startActivity(intent);
+    }
 }
