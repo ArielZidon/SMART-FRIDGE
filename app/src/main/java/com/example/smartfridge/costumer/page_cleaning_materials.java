@@ -219,4 +219,9 @@ public class page_cleaning_materials extends AppCompatActivity {
         editor.putString("Item_Data_Clean", json);
         editor.apply();
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        startActivity(intent);
+    }
 }

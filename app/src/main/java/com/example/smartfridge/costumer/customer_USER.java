@@ -88,4 +88,10 @@ public class customer_USER extends AppCompatActivity {
         Intent intent = new Intent(this, costumers.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.MainActivity.class);
+        startActivity(intent);
+    }
 }

@@ -220,4 +220,10 @@ public class page_vegetables extends AppCompatActivity {
         editor.putString("Item_Data_vege", json);
         editor.apply();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        startActivity(intent);
+    }
 }
