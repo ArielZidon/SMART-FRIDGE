@@ -35,24 +35,24 @@ public class MainActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
 
 //        CollectionReference account = firestore.collection("account");
-        CollectionReference costumers_DB = firestore.collection("costumer_accounts");
-        CollectionReference managers_DB = firestore.collection("manager_accounts");
+//        CollectionReference costumers_DB = firestore.collection("costumer_accounts");
+//        CollectionReference managers_DB = firestore.collection("manager_accounts");
 
 
 
         //tast - insert eran as a costumer and as a manager
         //DONT FORGET TO DELETE THIS!!!!!!
-        Map<String, Object> info_c = new HashMap<>();
-        info_c.put("name","erantzarum");
-        info_c.put("user_type","user");
-        info_c.put("password","password");
-        costumers_DB.document("tzarum77@gmail.com").set(info_c);
-
-        Map<String, Object> info_m = new HashMap<>();
-        info_m.put("name","erantzarum");
-        info_m.put("user_type","user");
-        info_m.put("password","password");
-        managers_DB.document("eran.davidtz@gmail.com").set(info_m);
+//        Map<String, Object> info_c = new HashMap<>();
+//        info_c.put("name","erantzarum");
+//        info_c.put("user_type","user");
+//        info_c.put("password","password");
+//        costumers_DB.document("tzarum77@gmail.com").set(info_c);
+//
+//        Map<String, Object> info_m = new HashMap<>();
+//        info_m.put("name","erantzarum");
+//        info_m.put("user_type","user");
+//        info_m.put("password","password");
+//        managers_DB.document("eran.davidtz@gmail.com").set(info_m);
         //DONT FORGET TO DELETE THIS!!!!!!
 
 //        //tast - insert eran as a costumer and as a manager
