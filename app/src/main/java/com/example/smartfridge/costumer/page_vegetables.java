@@ -181,11 +181,11 @@ public class page_vegetables extends AppCompatActivity {
      * update the view screen with new card (name, cumber)
      */
     private void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.card, null);
+        View view = getLayoutInflater().inflate(R.layout.vege_card, null);
 
-        TextView nameView = view.findViewById(R.id.name);
-        TextView countView = view.findViewById(R.id.number);
-        Button delete = view.findViewById(R.id.delete);
+        TextView nameView = view.findViewById(R.id.vege_name);
+        TextView countView = view.findViewById(R.id.vege_number);
+        Button delete = view.findViewById(R.id.vege_delete);
 
         nameView.setText(name);
         countView.setText(number);

@@ -180,11 +180,11 @@ public class page_cleaning_materials extends AppCompatActivity {
      * update the view screen with new card (name, cumber)
      */
     private void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.card, null);
+        View view = getLayoutInflater().inflate(R.layout.clean_card, null);
 
-        TextView nameView = view.findViewById(R.id.name);
-        TextView countView = view.findViewById(R.id.number);
-        Button delete = view.findViewById(R.id.delete);
+        TextView nameView = view.findViewById(R.id.clean_name);
+        TextView countView = view.findViewById(R.id.clean_number);
+        Button delete = view.findViewById(R.id.clean_delete);
 
         nameView.setText(name);
         countView.setText(number);

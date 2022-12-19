@@ -11,7 +11,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/new_color"
+            app:cardBackgroundColor="@color/milky_color"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="2dp"
             app:cardElevation="10dp">
@@ -38,12 +38,12 @@
                     android:backgroundTint="@color/black"
                     android:layout_alignParentRight="true"/>
 
-                 <CheckBox
-                     android:id="@+id/checkbox"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_alignParentEnd="true"
-                     android:layout_marginRight="90dp"/>
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="90dp"/>
 
                 <TextView
                     android:id="@+id/number"
