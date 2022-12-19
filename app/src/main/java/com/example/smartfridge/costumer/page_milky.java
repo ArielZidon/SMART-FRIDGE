@@ -174,7 +174,7 @@ public class page_milky extends AppCompatActivity {
      * update the view screen with new card (name, cumber)
      */
     private void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.card, null);
+        View view = getLayoutInflater().inflate(R.layout.milky_card, null);
 
         TextView nameView = view.findViewById(R.id.name);
         TextView countView = view.findViewById(R.id.number);
