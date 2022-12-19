@@ -27,7 +27,7 @@
 
     <ImageButton
         android:id="@+id/next_to_dry"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="80dp"
         android:layout_alignParentRight="true"
         android:background="@drawable/ic_baseline_navigate_next_24">
@@ -64,7 +64,7 @@
 
     <ImageButton
         android:id="@+id/bt_beck"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="80dp"
         android:backgroundTint="@color/white"
         android:background="@drawable/ic_baseline_navigate_before_24">
