@@ -29,14 +29,12 @@ public class page_milky extends AppCompatActivity {
     LinearLayout layout;
     EditText name;
     EditText number;
-
     Button btSave;
     TextView tvSize;
     ArrayList<ModelClass> arrayList;
     ImageButton nextView;
-
-    Button del;
-
+    ImageButton beckView;
+    ImageButton home;
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +49,8 @@ public class page_milky extends AppCompatActivity {
         loadData();
         buildDialog();
 
+        /* Button to go next milky page */
         nextView = (ImageButton) findViewById(R.id.next_to_vege);
-
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +58,16 @@ public class page_milky extends AppCompatActivity {
             }
         });
 
+        /* Button to go beck to dry food page */
+        beckView = (ImageButton) findViewById(R.id.bt_beck);
+        beckView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                beckPage();
+            }
+        });
+
+        /* Button to add new item */
         btSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,17 +75,24 @@ public class page_milky extends AppCompatActivity {
             }
         });
 
-        del = findViewById(R.id.delete_test);
-        del.setOnClickListener(new View.OnClickListener() {
+        /* Button to return home costumer */
+        home = (ImageButton) findViewById(R.id.bt_home);
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear().apply();
-                loadData();
-
+                homePage();
             }
         });
+    }
+
+    private void homePage() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        startActivity(intent);
+    }
+
+    private void beckPage() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_meat.class);
+        startActivity(intent);
     }
 
     private void openVegetables() {
@@ -85,6 +100,11 @@ public class page_milky extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Upload items form sharedPreferences
+     * if list == null => create new empty list
+     * else => show on the screen all items from the sharedPreferences "Item_Data_milky"
+     */
     private void loadData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
@@ -101,6 +121,12 @@ public class page_milky extends AppCompatActivity {
         }
     }
 
+    /**
+     * @param name => item name
+     * @param count => count of items (it String because we want to be able to show different options)
+     *  save on sharedPreferences item (name, count)
+     *  and upload the view with the new item
+     */
     private void saveData(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -113,6 +139,11 @@ public class page_milky extends AppCompatActivity {
         addCard(name, count);
     }
 
+    /**
+     * create a view dialog between the customers on use to adds items
+     * add new card with the name and number from the dialog
+     * update the list with the new item
+     */
     private void buildDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog, null);
@@ -137,13 +168,13 @@ public class page_milky extends AppCompatActivity {
         dialog = builder.create();
     }
 
-    public boolean onCreteOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
+    /**
+     * @param name => item name
+     * @param number => number of item
+     * update the view screen with new card (name, cumber)
+     */
     private void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.card, null);
+        View view = getLayoutInflater().inflate(R.layout.milky_card, null);
 
         TextView nameView = view.findViewById(R.id.name);
         TextView countView = view.findViewById(R.id.number);
@@ -162,6 +193,12 @@ public class page_milky extends AppCompatActivity {
         layout.addView(view);
     }
 
+    /**
+     * @param name => item name that customer select to delete
+     * @param count => count item that customer select to delete
+     *  1. remove item from the screen
+     *  2. remove item from sharedPreferences
+     */
     private void removeArray(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -175,5 +212,11 @@ public class page_milky extends AppCompatActivity {
         String json = gson.toJson(arrayList);
         editor.putString("Item_Data_milky", json);
         editor.apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        startActivity(intent);
     }
 }

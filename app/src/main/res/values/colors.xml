@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="new_color">#2D2D2D</color>
+
+    <color name="vege_color">#529157</color>
+    <color name="meat_color">#C40519</color>
+    <color name="milky_color">#5479C3</color>
+    <color name="clean_color">#AF9FC6</color>
+    <color name="dry_color">#D1D63D</color>
 </resources>

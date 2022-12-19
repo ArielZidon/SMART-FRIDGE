@@ -7,15 +7,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background2"
-    tools:context=".page_cleaning_materials">
+    tools:context=".costumer.page_cleaning_materials">
 
     <TextView
         android:id="@+id/tv_size"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:text="        My Cleaning Materials List"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+
+        android:text="     My Cleaning Materials List"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold">
@@ -23,9 +27,9 @@
 
     <ImageButton
         android:id="@+id/next_to_dry"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="320dp"
+        android:layout_alignParentRight="true"
         android:background="@drawable/ic_baseline_navigate_next_24">
     </ImageButton>
 
@@ -58,12 +62,23 @@
         android:textSize="20dp">
     </Button>
 
-    <Button
-        android:id="@+id/delete_test"
-        android:layout_marginTop="5dp"
-        android:text="Clear"
-        android:backgroundTint="@color/new_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Button>
+    <ImageButton
+        android:id="@+id/bt_beck"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/ic_baseline_navigate_before_24">
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/bt_home"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/ic_baseline_home_24">
+    </ImageButton>
+
 </RelativeLayout>

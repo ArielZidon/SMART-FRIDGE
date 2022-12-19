@@ -11,7 +11,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/new_color"
+            app:cardBackgroundColor="@color/clean_color"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="2dp"
             app:cardElevation="10dp">
@@ -21,7 +21,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/clean_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
@@ -30,7 +30,7 @@
                     android:textSize="25dp"/>
 
                 <Button
-                    android:id="@+id/delete"
+                    android:id="@+id/clean_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -38,23 +38,23 @@
                     android:backgroundTint="@color/black"
                     android:layout_alignParentRight="true"/>
 
-                 <CheckBox
-                     android:id="@+id/checkbox"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_alignParentEnd="true"
-                     android:layout_marginRight="90dp"/>
-
-                <TextView
-                    android:id="@+id/number"
+                <CheckBox
+                    android:id="@+id/checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="@id/name"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="90dp"/>
+
+                <TextView
+                    android:id="@+id/clean_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="@id/clean_name"
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="49dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="190dp"
-                    android:layout_toEndOf="@+id/name"
+                    android:layout_toEndOf="@+id/clean_name"
                     android:text="Number"
                     android:textFontWeight="400"
                     android:textColor="@android:color/white"

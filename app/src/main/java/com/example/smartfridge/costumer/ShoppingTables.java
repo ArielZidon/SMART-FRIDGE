@@ -104,6 +104,7 @@ public class ShoppingTables extends AppCompatActivity {
         if (products.length!=0) {
             for (int i = 0; i < products.length; i++) {
                 products[i] = arrayList_all.get(i).getItemName();
+//                Log.d(TAG, "createRecipes: " + products[i]);
             }
         }
 
@@ -117,5 +118,12 @@ public class ShoppingTables extends AppCompatActivity {
         }
         if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
             Toast.makeText(ShoppingTables.this,"There is not enough products to create a recipe!",Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        startActivity(intent);
     }
 }

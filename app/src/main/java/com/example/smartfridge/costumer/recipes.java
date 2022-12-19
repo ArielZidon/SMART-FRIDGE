@@ -26,7 +26,8 @@ import java.util.ArrayList;
 public class recipes extends AppCompatActivity {
     MaterialButton read;
     FirebaseFirestore db;
-    static ArrayList<String> keys = new ArrayList<>(); //will hold the data and send the keys to FireBase
+    static ArrayList<String> keys = new ArrayList<>();  /* will hold the data and send the keys to FireBase */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,15 @@ public class recipes extends AppCompatActivity {
                 keys.clear();
                 giveMeKeys(keys);
                 Log.d(TAG, "SIZE DATA: " + keys.size());//for test only
+                for (int i = 0; i < keys.size(); i++) {
+//                    Log.d(TAG, "onClick: " + keys.get(i).toString());
+                    if(keys.get(i).contains("eggs,tomatoes,garlic,onion\n")){
+                        Log.d(TAG, "onClick: --------------------yes!! capara /n-------------------");
+                    }
+                    if(keys.get(i).contains("eggs,tomatoes,garlic,onion")){
+                        Log.d(TAG, "onClick: --------------------yes!! capara-------------------");
+                    }
+                }
                 if (keys.size() == 0) //if we dont have enough products, dont make the search
                 {
                     Toast.makeText(recipes.this, "There is not enough products to \ncreate a recipe!\nAdd some products and try again!!", Toast.LENGTH_LONG).show();
@@ -70,5 +80,10 @@ public class recipes extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        startActivity(intent);
     }
 }
