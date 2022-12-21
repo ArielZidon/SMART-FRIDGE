@@ -30,6 +30,8 @@ public class ShoppingTables extends AppCompatActivity {
     private ImageButton bt_dry;
     private ImageButton bt_vegetables;
     private ImageButton bt_recipes;
+    private ImageButton bt_fullView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class ShoppingTables extends AppCompatActivity {
         bt_dry = (ImageButton) findViewById(R.id.bt_dty);
         bt_vegetables = (ImageButton) findViewById(R.id.bt_vegetables);
         bt_recipes = (ImageButton) findViewById(R.id.bt_recipes);
+        bt_fullView = (ImageButton) findViewById(R.id.bt_full_view);
 
         bt_meat.setOnClickListener(v -> openPage_meat());
         bt_milky.setOnClickListener(v -> openPage_milky());
@@ -49,7 +52,13 @@ public class ShoppingTables extends AppCompatActivity {
         bt_dry.setOnClickListener(v -> openPage_dry());
         bt_vegetables.setOnClickListener(v -> openPage_bt_vegetables());
         bt_recipes.setOnClickListener(v -> createRecipes());
+        bt_fullView.setOnClickListener(v -> openPage_full());
 
+    }
+
+    private void openPage_full() {
+        Intent intent = new Intent(this, full_view.class);
+        startActivity(intent);
     }
 
     public void openPage_meat() {
