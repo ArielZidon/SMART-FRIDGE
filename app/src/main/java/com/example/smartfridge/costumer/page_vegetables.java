@@ -115,7 +115,7 @@ public class page_vegetables extends AppCompatActivity {
         arrayList = gson.fromJson(json, type);
         if (arrayList == null) {
             arrayList = new ArrayList<>();
-            tvSize.setText("" + 0);
+//            tvSize.setText("" + 0);
         } else {
             for (int i = 0; i < arrayList.size(); i++) {
                 addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
