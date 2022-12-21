@@ -60,7 +60,6 @@ public class ShoppingTables extends AppCompatActivity {
         Intent intent = new Intent(this, full_view.class);
         startActivity(intent);
     }
-
     public void openPage_meat() {
         Intent intent = new Intent(this, page_meat.class);
         startActivity(intent);
@@ -81,6 +80,7 @@ public class ShoppingTables extends AppCompatActivity {
         Intent intent = new Intent(this, page_vegetables.class);
         startActivity(intent);
     }
+
     public void createRecipes(){
         SortProducts.getKeys().clear();
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
