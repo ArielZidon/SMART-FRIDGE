@@ -30,7 +30,6 @@ public class full_view extends AppCompatActivity {
     ImageButton beckView;
     ImageButton home;
     ArrayList<ModelClass> arrayList = new ArrayList<>();
-    ArrayList<ModelClass> arrayList_temp = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +71,7 @@ public class full_view extends AppCompatActivity {
     }
 
     /**
-     * 1 -> meat    // Item_Data_meat
-     * 2 -> milky   // Item_Data_milky
-     * 3 -> vege    // Item_Data_vege
-     * 4 -> clean   // Item_Data_clean
-     * 5 -> dry     // Item_Data_dry
+     * reload data to full view with all card and type of card
      */
     public void loadData(){
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
@@ -87,7 +82,7 @@ public class full_view extends AppCompatActivity {
         if (json != null) {
             arrayList = gson.fromJson(json, type);
             for (int i = 0; i < arrayList.size(); i++) {
-                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber, 1);
+                addCard_meat(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
 
@@ -95,7 +90,7 @@ public class full_view extends AppCompatActivity {
         if (json != null) {
             arrayList = gson.fromJson(json, type);
             for (int i = 0; i < arrayList.size(); i++) {
-                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber, 2);
+                addCard_milky(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
 
@@ -103,48 +98,50 @@ public class full_view extends AppCompatActivity {
         if (json != null) {
             arrayList = gson.fromJson(json, type);
             for (int i = 0; i < arrayList.size(); i++) {
-                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber, 3);
+                addCard_vege(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
 
         json = sharedPreferences.getString("Item_Data_Clean", null);
         if (json != null) {
-            arrayList_temp = gson.fromJson(json, type);
-            for (int i = 0; i < arrayList_temp.size(); i++) {
-                addCard(arrayList_temp.get(i).itemName, arrayList_temp.get(i).itemNumber, 4);
+            arrayList = gson.fromJson(json, type);
+            for (int i = 0; i < arrayList.size(); i++) {
+                addCard_clean(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
-
 
         json = sharedPreferences.getString("Item_Data_Dry", null);
         if (json != null) {
             arrayList = gson.fromJson(json, type);
             for (int i = 0; i < arrayList.size(); i++) {
-                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber, 5);
+                addCard_dry(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
     }
 
-    private void addCard(String name, String number, int type) {
+    /** add card vegetavles and delete from the memory **/
+    private void addCard_vege(String name, String number) {
+        View view = getLayoutInflater().inflate(R.layout.vege_card, null);
+        TextView nameView = view.findViewById(R.id.vege_name);
+        TextView countView = view.findViewById(R.id.vege_number);
+        Button delete = view.findViewById(R.id.vege_delete);
 
-        View view = getLayoutInflater().inflate(R.layout.dry_card, null);
+        nameView.setText(name);
+        countView.setText(number);
 
-        if(type == 1){
-            view = getLayoutInflater().inflate(R.layout.meat_card, null);
-        }
-        if(type == 2){
-            view = getLayoutInflater().inflate(R.layout.milky_card, null);
-        }
-        if(type == 3){
-            view = getLayoutInflater().inflate(R.layout.vege_card, null);
-        }
-        if(type == 4){
-            view = getLayoutInflater().inflate(R.layout.clean_card, null);
-        }
-        if(type == 5){
-            view = getLayoutInflater().inflate(R.layout.dry_card, null);
-        }
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeArray_vege(nameView.getText().toString(), countView.getText().toString());
+                layout.removeView(view);
+            }
+        });
+        layout.addView(view);
+    }
 
+    /** add card meat and delete from the memory **/
+    private void addCard_meat(String name, String number) {
+        View view = getLayoutInflater().inflate(R.layout.meat_card, null);
 
         TextView nameView = view.findViewById(R.id.name);
         TextView countView = view.findViewById(R.id.number);
@@ -153,17 +150,186 @@ public class full_view extends AppCompatActivity {
         nameView.setText(name);
         countView.setText(number);
 
-        View finalView = view;
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeArray(nameView.getText().toString(), countView.getText().toString());
-                layout.removeView(finalView);
+                removeArray_meat(nameView.getText().toString(), countView.getText().toString());
+                layout.removeView(view);
             }
         });
         layout.addView(view);
     }
 
-    private void removeArray(String toString, String toString1) {
+    /** add card milky and delete from the memory **/
+    private void addCard_milky(String name, String number) {
+        View view = getLayoutInflater().inflate(R.layout.milky_card, null);
+        TextView nameView = view.findViewById(R.id.name);
+        TextView countView = view.findViewById(R.id.number);
+        Button delete = view.findViewById(R.id.delete);
+
+        nameView.setText(name);
+        countView.setText(number);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeArray_milky(nameView.getText().toString(), countView.getText().toString());
+                layout.removeView(view);
+            }
+        });
+        layout.addView(view);
+    }
+
+    /** add card cleaning and materials and delete from the memory **/
+    private void addCard_clean(String name, String number) {
+        View view = getLayoutInflater().inflate(R.layout.clean_card, null);
+
+        TextView nameView = view.findViewById(R.id.clean_name);
+        TextView countView = view.findViewById(R.id.clean_number);
+        Button delete = view.findViewById(R.id.clean_delete);
+
+        nameView.setText(name);
+        countView.setText(number);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeArray_clean(nameView.getText().toString(), countView.getText().toString());
+                layout.removeView(view);
+            }
+        });
+        layout.addView(view);
+    }
+
+    /** add card dry food and delete from the memory **/
+    private void addCard_dry(String name, String number) {
+        View view = getLayoutInflater().inflate(R.layout.dry_card, null);
+        TextView nameView = view.findViewById(R.id.name);
+        TextView countView = view.findViewById(R.id.number);
+        Button delete = view.findViewById(R.id.delete);
+
+        nameView.setText(name);
+        countView.setText(number);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeArray_dry(nameView.getText().toString(), countView.getText().toString());
+                layout.removeView(view);
+            }
+        });
+        layout.addView(view);
+    }
+
+    /**
+     * @param name => item name that customer select to delete
+     * @param count => count item that customer select to delete
+     *  1. remove item from the screen
+     *  2. remove item from sharedPreferences
+     */
+    private void removeArray_vege(String name, String count) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        for (int i = 0; i < arrayList.size();i++) {
+            if (arrayList.get(i).getItemName().equals(name) &&
+                    arrayList.get(i).itemNumber.equals(count)) {
+                arrayList.remove(i);
+            }
+        }
+        String json = gson.toJson(arrayList);
+        editor.putString("Item_Data_vege", json);
+        editor.apply();
+    }
+
+
+    /**
+     * @param name => item name that customer select to delete
+     * @param count => count item that customer select to delete
+     *  1. remove item from the screen
+     *  2. remove item from sharedPreferences
+     */
+    private void removeArray_meat(String name, String count) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        for (int i = 0; i < arrayList.size();i++) {
+            if (arrayList.get(i).getItemName().equals(name) &&
+                    arrayList.get(i).itemNumber.equals(count)) {
+                arrayList.remove(i);
+            }
+        }
+        String json = gson.toJson(arrayList);
+        editor.putString("Item_Data_meat", json);
+        editor.apply();
+    }
+
+    /**
+     * @param name => item name that customer select to delete
+     * @param count => count item that customer select to delete
+     *  1. remove item from the screen
+     *  2. remove item from sharedPreferences
+     */
+    private void removeArray_milky(String name, String count) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        for (int i = 0; i < arrayList.size();i++) {
+            if (arrayList.get(i).getItemName().equals(name) &&
+                    arrayList.get(i).itemNumber.equals(count)) {
+                arrayList.remove(i);
+            }
+        }
+        String json = gson.toJson(arrayList);
+        editor.putString("Item_Data_milky", json);
+        editor.apply();
+    }
+
+    /**
+     * @param name => item name that customer select to delete
+     * @param count => count item that customer select to delete
+     *  1. remove item from the screen
+     *  2. remove item from sharedPreferences
+     */
+    private void removeArray_clean(String name, String count) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        for (int i = 0; i < arrayList.size();i++) {
+            if (arrayList.get(i).getItemName().equals(name) &&
+                    arrayList.get(i).itemNumber.equals(count)) {
+                arrayList.remove(i);
+            }
+        }
+        String json = gson.toJson(arrayList);
+        editor.putString("Item_Data_Clean", json);
+        editor.apply();
+    }
+
+    /**
+     * @param name => item name that customer select to delete
+     * @param count => count item that customer select to delete
+     *  1. remove item from the screen
+     *  2. remove item from sharedPreferences
+     */
+    private void removeArray_dry(String name, String count) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        for (int i = 0; i < arrayList.size();i++) {
+            if (arrayList.get(i).getItemName().equals(name) &&
+                    arrayList.get(i).itemNumber.equals(count)) {
+                arrayList.remove(i);
+            }
+        }
+        String json = gson.toJson(arrayList);
+        editor.putString("Item_Data_Dry", json);
+        editor.apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        startActivity(intent);
     }
 }
