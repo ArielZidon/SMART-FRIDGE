@@ -247,8 +247,8 @@
             android:layout_weight="3">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="250dp"
-                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 app:cardBackgroundColor="#2D2D2D"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="10dp">
@@ -268,6 +268,20 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/my_category"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="20dp"
+                android:fontFamily="cursive"
+                app:cornerRadius="10dp"
+                android:textSize="22dp"
+                android:backgroundTint="@color/new_color"
+                android:text="My category"
+                />
+
 
         </LinearLayout>
 

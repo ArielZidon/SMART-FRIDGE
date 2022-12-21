@@ -1,12 +1,11 @@
 package com.example.smartfridge.costumer;
 
-import static android.content.ContentValues.TAG;
 import static com.example.smartfridge.SortProducts.mixCombination;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -15,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
 import com.example.smartfridge.SortProducts;
-import com.example.smartfridge.createAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,6 +29,7 @@ public class ShoppingTables extends AppCompatActivity {
     private ImageButton bt_vegetables;
     private ImageButton bt_recipes;
     private ImageButton bt_fullView;
+    private Button bt_category;
 
 
     @Override
@@ -45,6 +44,7 @@ public class ShoppingTables extends AppCompatActivity {
         bt_vegetables = (ImageButton) findViewById(R.id.bt_vegetables);
         bt_recipes = (ImageButton) findViewById(R.id.bt_recipes);
         bt_fullView = (ImageButton) findViewById(R.id.bt_full_view);
+        bt_category = (Button) findViewById(R.id.my_category);
 
         bt_meat.setOnClickListener(v -> openPage_meat());
         bt_milky.setOnClickListener(v -> openPage_milky());
@@ -53,6 +53,8 @@ public class ShoppingTables extends AppCompatActivity {
         bt_vegetables.setOnClickListener(v -> openPage_bt_vegetables());
         bt_recipes.setOnClickListener(v -> createRecipes());
         bt_fullView.setOnClickListener(v -> openPage_full());
+        bt_category.setOnClickListener(v -> openPage_bt_my_category());
+
 
     }
 
@@ -78,6 +80,10 @@ public class ShoppingTables extends AppCompatActivity {
     }
     public void openPage_bt_vegetables() {
         Intent intent = new Intent(this, page_vegetables.class);
+        startActivity(intent);
+    }
+    public void openPage_bt_my_category() {
+        Intent intent = new Intent(this, my_category.class);
         startActivity(intent);
     }
 
