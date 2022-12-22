@@ -1,6 +1,6 @@
 package com.example.smartfridge.costumer;
 
-public class paga_open_recepe {
+public class Page_Open_Recipes {
 
     /**
      * בקלאס הזה אנחנו נרצה לפתוח מתכון אחד מבין כולם ולבציג אותו ללקוח

@@ -65,7 +65,7 @@ public class page_cleaning_materials extends AppCompatActivity {
         beckView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                beckPage();
+                backPage();
             }
         });
 
@@ -92,7 +92,7 @@ public class page_cleaning_materials extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void beckPage() {
+    private void backPage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_vegetables.class);
         startActivity(intent);
     }
