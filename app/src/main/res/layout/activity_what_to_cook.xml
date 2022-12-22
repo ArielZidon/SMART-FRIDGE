@@ -40,8 +40,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
+        android:inputType="text"
+
         android:id="@+id/editText2"
         android:layout_below="@+id/editText"
         android:layout_alignParentLeft="true"
@@ -50,8 +50,6 @@
         android:layout_alignEnd="@+id/editText"
         android:textColorHint="#000000"
         android:hint="Preparing Time" />
-
-
 
 
     <EditText
@@ -63,21 +61,22 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="237dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
         android:focusable="true"
         android:hint="Preparing Orders"
         android:textColorHighlight="#ff7eff15"
         android:textColorHint="#000000" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="337dp"
+        android:layout_marginBottom="40dp"
 
         android:text="enter" />
 
@@ -89,11 +88,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="192dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
         android:focusable="true"
         android:text="Ingredients" />
 
