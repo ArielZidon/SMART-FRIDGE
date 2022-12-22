@@ -117,6 +117,14 @@ public class full_view extends AppCompatActivity {
                 addCard_dry(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
+
+        json = sharedPreferences.getString("Item_Data_my_category", null);
+        if (json != null) {
+            arrayList = gson.fromJson(json, type);
+            for (int i = 0; i < arrayList.size(); i++) {
+                addCard_my_category(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
+            }
+        }
     }
 
     /** add card vegetavles and delete from the memory **/
@@ -204,6 +212,26 @@ public class full_view extends AppCompatActivity {
     /** add card dry food and delete from the memory **/
     private void addCard_dry(String name, String number) {
         View view = getLayoutInflater().inflate(R.layout.dry_card, null);
+        TextView nameView = view.findViewById(R.id.name);
+        TextView countView = view.findViewById(R.id.number);
+        Button delete = view.findViewById(R.id.delete);
+
+        nameView.setText(name);
+        countView.setText(number);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeArray_dry(nameView.getText().toString(), countView.getText().toString());
+                layout.removeView(view);
+            }
+        });
+        layout.addView(view);
+    }
+
+    /** add card dry food and delete from the memory **/
+    private void addCard_my_category(String name, String number) {
+        View view = getLayoutInflater().inflate(R.layout.selected_card, null);
         TextView nameView = view.findViewById(R.id.name);
         TextView countView = view.findViewById(R.id.number);
         Button delete = view.findViewById(R.id.delete);
