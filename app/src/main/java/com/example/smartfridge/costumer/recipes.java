@@ -63,48 +63,56 @@ public class recipes extends AppCompatActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**
-                * clear the array from previous data
-                * get the data from the algorithm
-                * have enough products or not
-                */
-                keys.clear();
-                giveMeKeys(keys);
-                Log.d(TAG, "SIZE DATA: " + keys.size());//for test only
-                for (int i = 0; i < keys.size(); i++) {
-//                    Log.d(TAG, "onClick: " + keys.get(i).toString());
-                    if(keys.get(i).contains("eggs,tomatoes,garlic,onion\n")){
-                        Log.d(TAG, "onClick: --------------------yes!! capara /n-------------------");
-                    }
-                    if(keys.get(i).contains("eggs,tomatoes,garlic,onion")){
-                        Log.d(TAG, "onClick: --------------------yes!! capara-------------------");
-                    }
-                }
-                if (keys.size() == 0) //if we dont have enough products, dont make the search
-                {
-                    Toast.makeText(recipes.this, "There is not enough products to \ncreate a recipe!\nAdd some products and try again!!", Toast.LENGTH_LONG).show();
-                }else {
-                    for (int i = 0; i < keys.size(); i++) {
-                        DocumentReference docRef = db.collection("recipes").document(keys.get(i));
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                    } else {
-                                        Log.d(TAG, "No such document");  //for test only!
-                                    }
-                                } else {
-                                    Log.d(TAG, "get failed with ", task.getException()); //try to see if the search is failed
-                                }
-                            }
-                        });
-                    }
-                }
+                readFromDb();
             }
         });
+    }
+
+    private void readFromDb() {
+        /**
+         * clear the array from previous data
+         * get the data from the algorithm
+         * have enough products or not
+         */
+        keys.clear();
+        giveMeKeys(keys);
+//        Log.d(TAG, "SIZE DATA: " + keys.size());//for test only
+        for (int i = 0; i < keys.size(); i++) {
+                    Log.d(TAG, "onClick: " + keys.get(i).toString());
+//            if(keys.get(i).contains("eggs,tomatoes,garlic,onion\n")){
+//                Log.d(TAG, "onClick: --------------------yes!! capara /n-------------------");
+//            }
+//            if(keys.get(i).contains("eggs,tomatoes,garlic,onion")){
+//                Log.d(TAG, "onClick: --------------------yes!! capara-------------------");
+//            }
+        }
+        if (keys.size() == 0) //if we dont have enough products, dont make the search
+        {
+            Toast.makeText(recipes.this, "There is not enough products to \ncreate a recipe!\nAdd some products and try again!!", Toast.LENGTH_LONG).show();
+        }else {
+            for (int i = 0; i < keys.size(); i++) {
+                DocumentReference docRef = db.collection("recipes").document(keys.get(i));
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                addCard(document);
+                            } else {
+                                Log.d(TAG, "No such document");  //for test only!
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException()); //try to see if the search is failed
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    private void addCard(DocumentSnapshot document) {
     }
 
     private void CreateRecipes() {
