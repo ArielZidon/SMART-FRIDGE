@@ -33,6 +33,7 @@ public class whatToCook extends AppCompatActivity {
     FirebaseFirestore firestore;
     Ingredient ingredient = new Ingredient();
     ArrayList<String> namesArrayList;
+    ArrayList<Ingredient> ingArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class whatToCook extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String collection = "recipes";
+                namesArrayList=ingredient.getNamesArrayList();
+                ingArrayList=ingredient.getIngArray();
                 Log.d(TAG,namesArrayList.toString());
                 DocumentReference docRef = firestore.collection(collection).document(namesArrayList.toString());
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -66,9 +69,12 @@ public class whatToCook extends AppCompatActivity {
                             info_c.put("name", recipeName.getText().toString());
                             info_c.put("Preparing Time", pTime.getText().toString());
                             info_c.put("Preparing Order", pOrder.getText().toString());
+
+                                info_c.put("Ingredients", ingArrayList.toString());
+
 //                                    authentication.createUserWithEmailAndPassword(String.valueOf(email), String.valueOf(password));
 //                                    firestore.collection("costumer_accounts").document(String.valueOf(email)).set(info_c);
-                            Recipes_Db.document(recipeName.getText().toString()).set(info_c);
+                            Recipes_Db.document(namesArrayList.toString()).set(info_c);
                             Toast.makeText(whatToCook.this, "recipe in", Toast.LENGTH_LONG).show();
                             Log.d(TAG, "success");
                             ingredient.clearIngredients();

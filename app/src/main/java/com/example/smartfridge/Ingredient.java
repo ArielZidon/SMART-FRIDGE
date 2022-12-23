@@ -43,7 +43,7 @@ public class Ingredient {
         namesArrayList.clear();
     }
 
-    public ArrayList<String> getNamesArray() {
-        return namesArrayList;
+    public ArrayList<Ingredient> getIngArray() {
+        return inArrayList;
     }
 }

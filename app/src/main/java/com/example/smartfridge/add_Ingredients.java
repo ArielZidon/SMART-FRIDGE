@@ -33,6 +33,8 @@ public class add_Ingredients extends AppCompatActivity {
     FirebaseFirestore firestore;
     static int counter = 0;
     Ingredient ingredient = new Ingredient();
+    ArrayList<String> recipeKey;
+    ArrayList<Ingredient> ingArray;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +45,21 @@ public class add_Ingredients extends AppCompatActivity {
         b2 = (Button) findViewById(R.id.button2);
         inName = (EditText) findViewById(R.id.editText);
         amount = (EditText) findViewById(R.id.editText2);
+        if(counter == 0) {
 
-        ArrayList<Ingredient> ingArray = ingredient.newInArray();
+            this.ingArray = ingredient.newInArray();
+            this.recipeKey = ingredient.newNamesArray();
+        }else{
+            this.ingArray = ingredient.getIngArray();
+            this.recipeKey = ingredient.getNamesArrayList();
+        }
 
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Ingredient ingredient = new Ingredient(inName.getText().toString(), amount.getText().toString());
                 ingArray.add(ingredient);
+                counter++;
+                Log.d(TAG,ingArray.toString());
                 openAddIngredients();
             }
         });
@@ -59,23 +69,27 @@ public class add_Ingredients extends AppCompatActivity {
         CollectionReference Recipes_Db = firestore.collection("recipes");
         b2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                Ingredient ingredient = new Ingredient(inName.getText().toString(), amount.getText().toString());
+                ingArray.add(ingredient);
                 String collection = "recipes";
-                ArrayList<String> recipeKey = ingredient.newNamesArray();
+                recipeKey = ingredient.getNamesArrayList();
                 for (Ingredient i : ingArray) {
                     recipeKey.add(i.InName);
                 }
-                DocumentReference docRef = firestore.collection(collection).document(ingArray.toString());
+                Log.d(TAG,recipeKey.toString());
+                DocumentReference docRef = firestore.collection(collection).document(recipeKey.toString());
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            Map<String, Object> info_c = new HashMap<>();
-                            for(Ingredient i:ingArray) {
-                                info_c.put("Ingredients", i.toString());
-                            }
+
+//                            Map<String, Object> info_c = new HashMap<>();
+//                            for(Ingredient i:ingArray) {
+//                                info_c.put("Ingredients", i.toString());
+//                            }
+                            Log.d(TAG, ingArray.toString());
 //                                    authentication.createUserWithEmailAndPassword(String.valueOf(email), String.valueOf(password));
 //                                    firestore.collection("costumer_accounts").document(String.valueOf(email)).set(info_c);
-                            Recipes_Db.document(ingArray.toString()).set(info_c);
+//                            Recipes_Db.document(recipeKey.toString()).set(info_c);
                             Log.d(TAG, "success!!");
 
                             openWhatToCook();
