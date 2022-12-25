@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,11 +36,11 @@ public class whatToCook extends AppCompatActivity {
     ArrayList<String> namesArrayList;
     ArrayList<Ingredient> ingArrayList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_what_to_cook);
-
         b1 = (Button) findViewById(R.id.button);
         b2 = (Button) findViewById(R.id.button2);
         recipeName = (EditText) findViewById(R.id.editText);
@@ -48,10 +49,12 @@ public class whatToCook extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
         CollectionReference Recipes_Db = firestore.collection("recipes");
+
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openAddIngredients();
+
             }
         });
         b1.setOnClickListener(new View.OnClickListener() {
@@ -66,11 +69,12 @@ public class whatToCook extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             Map<String, Object> info_c = new HashMap<>();
-                            info_c.put("name", recipeName.getText().toString());
-                            info_c.put("Preparing Time", pTime.getText().toString());
-                            info_c.put("Preparing Order", pOrder.getText().toString());
 
-                                info_c.put("Ingredients", ingArrayList.toString());
+
+                            info_c.put("Instructions", pOrder.getText().toString());
+                            info_c.put("Ingredients", ingArrayList.toString());
+                            info_c.put("Preparing Time", pTime.getText().toString());
+                            info_c.put("Recipe Name", recipeName.getText().toString());
 
 //                                    authentication.createUserWithEmailAndPassword(String.valueOf(email), String.valueOf(password));
 //                                    firestore.collection("costumer_accounts").document(String.valueOf(email)).set(info_c);
@@ -97,7 +101,10 @@ public class whatToCook extends AppCompatActivity {
 
     public void openAddIngredients() {
         Intent intent = new Intent(this, add_Ingredients.class);
-        startActivity(intent);
+        intent.putExtra("et1", recipeName.getText().toString());
+        intent.putExtra("et2", pTime.getText().toString());
+        intent.putExtra("et3", pOrder.getText().toString());
+        startActivityForResult(intent,1);
     }
 }
 
