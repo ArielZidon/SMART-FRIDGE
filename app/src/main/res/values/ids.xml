@@ -3,4 +3,5 @@
     <item name="button" type="id" />
     <item name="mamagebtn" type="id" />
     <item name="createbtn" type="id" />
+    <item name="send" type="id" />
 </resources>
