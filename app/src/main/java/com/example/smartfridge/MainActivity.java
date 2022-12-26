@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.smartfridge.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseFirestore firestore;
+    private FirebaseFirestore firestore;
     private ActivityMainBinding binding;
 
     @Override
@@ -34,54 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
 
-//        CollectionReference account = firestore.collection("account");
-        CollectionReference costumers_DB = firestore.collection("costumer_accounts");
-        CollectionReference managers_DB = firestore.collection("manager_accounts");
-
-
-
-        //tast - insert eran as a costumer and as a manager
-        //DONT FORGET TO DELETE THIS!!!!!!
-        Map<String, Object> info_c = new HashMap<>();
-        info_c.put("name","erantzarum");
-        info_c.put("user_type","user");
-        info_c.put("password","password");
-        costumers_DB.document("tzarum77@gmail.com").set(info_c);
-
-        Map<String, Object> info_m = new HashMap<>();
-        info_m.put("name","erantzarum");
-        info_m.put("user_type","user");
-        info_m.put("password","password");
-        managers_DB.document("eran.davidtz@gmail.com").set(info_m);
-        //DONT FORGET TO DELETE THIS!!!!!!
-
-//        //tast - insert eran as a costumer and as a manager
-//        //DONT FORGET TO DELETE THIS!!!!!!
-//        Map<String, Object> accounts2 = new HashMap<>();
-//
-//        firestore.collection("accounts2").add(accounts2).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
-//
-//            }
-//        }).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                Toast.makeText(getApplicationContext(),"Failue",Toast.LENGTH_LONG).show();
-//            }
-//        });
-
-//        Map<String, Object> INFO_t = new HashMap<>();
-//        INFO_t.put("name","Ariel");
-//        INFO_t.put("user_type","user");
-//        INFO_t.put("password","password");
-////        accounts2.put("tzarum77@email.com",INFO_t);
-//
-//        account.document("Ariel@email.com").set(INFO_t);
-        //DONT FORGET TO DELETE THIS!!!!!!
-
-//        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("USERS");
 
         TextView tital = (TextView) findViewById(R.id.title);
 
