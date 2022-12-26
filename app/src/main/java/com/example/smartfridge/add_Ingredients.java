@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.smartfridge.costumer.costumers;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -116,6 +117,12 @@ public class add_Ingredients extends AppCompatActivity {
 //        startActivity(intent);
     }
 
-
+    /**take us back to the customers menu*/
+    @Override
+    public void onBackPressed() {
+        Log.d(TAG, ingArray.toString()); //for test only
+        Intent intent = new Intent(this, whatToCook.class);
+        startActivity(intent);
     }
+}
 

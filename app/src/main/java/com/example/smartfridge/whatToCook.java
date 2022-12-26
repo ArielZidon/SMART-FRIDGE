@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartfridge.costumer.costumers;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -105,6 +106,13 @@ public class whatToCook extends AppCompatActivity {
         intent.putExtra("et2", pTime.getText().toString());
         intent.putExtra("et3", pOrder.getText().toString());
         startActivityForResult(intent,1);
+    }
+
+    /**take us back to the rest of the recipe*/
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, costumers.class);
+        startActivity(intent);
     }
 }
 

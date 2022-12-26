@@ -78,9 +78,9 @@ public class SortProducts {
             }
         }
 
-    /**
-     * CREATE THE KEY
-     * */
+        /**
+         * CREATE THE KEY
+         * */
         StringBuilder key = new StringBuilder();
 
         for (int i = 0; i < groupOfProducts.size(); i++) {
@@ -92,7 +92,7 @@ public class SortProducts {
         return key.toString();
     }
     /**
-    calling from recipes activity to get the keys the algorithm provide
+     calling from recipes activity to get the keys the algorithm provide
      */
     public static void giveMeKeys(ArrayList<String> recipes)
     {
