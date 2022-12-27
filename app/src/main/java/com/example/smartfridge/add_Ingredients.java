@@ -103,10 +103,9 @@ public class add_Ingredients extends AppCompatActivity {
     }
     public void openWhatToCook() {
 //        Intent intent = new Intent(this, whatToCook.class);
-        Intent result = new Intent(this,whatToCook.class);
+        Intent result = new Intent();
         setResult(RESULT_OK,result);
         finish();
-        startActivity(result);
     }
 
     /**take us back to the customers menu*/
