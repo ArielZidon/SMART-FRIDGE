@@ -82,15 +82,7 @@ public class add_Ingredients extends AppCompatActivity {
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-
-//                            Map<String, Object> info_c = new HashMap<>();
-//                            for(Ingredient i:ingArray) {
-//                                info_c.put("Ingredients", i.toString());
-//                            }
                             Log.d(TAG, ingArray.toString());
-//                                    authentication.createUserWithEmailAndPassword(String.valueOf(email), String.valueOf(password));
-//                                    firestore.collection("costumer_accounts").document(String.valueOf(email)).set(info_c);
-//                            Recipes_Db.document(recipeKey.toString()).set(info_c);
                             Log.d(TAG, "success!!");
 
                             openWhatToCook();
@@ -111,10 +103,10 @@ public class add_Ingredients extends AppCompatActivity {
     }
     public void openWhatToCook() {
 //        Intent intent = new Intent(this, whatToCook.class);
-        Intent result = new Intent();
+        Intent result = new Intent(this,whatToCook.class);
         setResult(RESULT_OK,result);
         finish();
-//        startActivity(intent);
+        startActivity(result);
     }
 
     /**take us back to the customers menu*/
