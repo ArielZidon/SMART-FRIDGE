@@ -18,7 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.smartfridge.costumer.costumers;
-import com.example.smartfridge.manager.manager;
 
 public class createAccount extends AppCompatActivity {
 
