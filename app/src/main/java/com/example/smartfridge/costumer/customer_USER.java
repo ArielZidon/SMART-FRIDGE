@@ -127,10 +127,10 @@ public class customer_USER extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void  openManager(){
-        Intent intent = new Intent(this, manager.class);
-        startActivity(intent);
-    }
+//    public void  openManager(){
+//        Intent intent = new Intent(this, manager.class);
+//        startActivity(intent);
+//    }
 
     public void  openForgotpass(){
         Intent intent = new Intent(this, forgot_password.class);

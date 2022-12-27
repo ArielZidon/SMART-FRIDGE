@@ -50,7 +50,10 @@ public class whatToCook extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
         CollectionReference Recipes_Db = firestore.collection("recipes");
+        if(ingArrayList != null){
+            Log.d(TAG,ingArrayList.toString());
 
+        }
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +76,7 @@ public class whatToCook extends AppCompatActivity {
 
 
                             info_c.put("Instructions", pOrder.getText().toString());
-                            info_c.put("Ingredients", ingArrayList.toString());
+//                            info_c.put("Ingredients", ingArrayList.toString());
                             info_c.put("Preparing Time", pTime.getText().toString());
                             info_c.put("Recipe Name", recipeName.getText().toString());
 

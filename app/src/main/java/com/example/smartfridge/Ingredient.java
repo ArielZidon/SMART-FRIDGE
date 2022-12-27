@@ -26,10 +26,9 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return "Ingredient{" +
-                "InName='" + InName + '\'' +
-                ", amount='" + amount + '\'' +
-                '}';
+        return
+                "name='" + InName + '\'' +
+                ", amount='" + amount ;
     }
 
     ArrayList <String> newNamesArray(){

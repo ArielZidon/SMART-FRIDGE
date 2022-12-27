@@ -133,7 +133,6 @@ public class createAccount extends AppCompatActivity {
                                         info.put("Uid",auth.getCurrentUser().getUid());
                                         managers_DB.document(email.getText().toString()).set(info);
                                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_LONG).show();
-                                        openManagers();
                                     }
                                 }
                                 else {
@@ -174,10 +173,7 @@ public class createAccount extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void  openManagers(){
-        Intent intent = new Intent(this, manager.class);
-        startActivity(intent);
-    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, com.example.smartfridge.MainActivity.class);
