@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartfridge.admin.adminView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
@@ -49,46 +50,46 @@ public class management_USER extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DocumentReference docRef = firestore.collection("manager_accounts").document(username.getText().toString());
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Map<String, Object> info = document.getData();
-                                if(info.containsValue(password.getText().toString())){
-                                    Toast.makeText(management_USER.this,"SINGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
-                                    openManagers();
-                                }
-                                else {
-                                    Toast.makeText(management_USER.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
-                                }
-                            }
-                            else {
-                                Toast.makeText(management_USER.this,"The email: "+ username.getText().toString() +" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, "No such document");
-                            }
-                        }
-                        else {
-                            Log.d(TAG, "get failed with ", task.getException());
-                        }
+//                DocumentReference docRef = firestore.collection("manager_accounts").document(username.getText().toString());
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                Map<String, Object> info = document.getData();
+//                                if(info.containsValue(password.getText().toString())){
+//                                    Toast.makeText(management_USER.this,"SINGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
+//                                    openManagers();
+//                                }
+//                                else {
+//                                    Toast.makeText(management_USER.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
+//                                }
+//                            }
+//                            else {
+//                                Toast.makeText(management_USER.this,"The email: "+ username.getText().toString() +" is NOT registered in the system",Toast.LENGTH_SHORT).show();
+//                                Log.d(TAG, "No such document");
+//                            }
+//                        }
+//                        else {
+//                            Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+
+                        if (username.getText().toString().equals("") && password.getText().toString().equals("")) {
+                            //correct
+                            Toast.makeText(management_USER.this, "LOGIN SUCCESSFUL.\nHELLO MANAGER!", Toast.LENGTH_SHORT).show();
+                            openManagers();
+                        } else
+                            //incorrect
+                            Toast.makeText(management_USER.this, "LOGIN FAILED !!!", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-//                if(username.getText().toString().equals("") && password.getText().toString().equals("")){
-//                    //correct
-//                    Toast.makeText(management_USER.this,"LOGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
-//                    openManagers();
-//                }else
-//                    //incorrect
-//                    Toast.makeText(management_USER.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
             }
-        });
-    }
 
-    public void  openManagers(){
-        Intent intent = new Intent(this, manager.class);
-        startActivity(intent);
-    }
-}
+            public void openManagers() {
+                Intent intent = new Intent(this, adminView.class);
+                startActivity(intent);
+            }
+        }
