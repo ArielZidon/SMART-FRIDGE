@@ -16,4 +16,7 @@ public class ModelClass {
     public String getItemNumber(){
         return itemNumber;
     }
+    public String toString(){
+        return "name: " + itemName + ",amount: "+ itemNumber;
+    }
 }

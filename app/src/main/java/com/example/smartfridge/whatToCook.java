@@ -2,24 +2,20 @@ package com.example.smartfridge;
 
 import static android.content.ContentValues.TAG;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.costumer.costumers;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,15 +27,15 @@ import java.util.Map;
 
 public class whatToCook extends AppCompatActivity {
     Button b1, b2;
-    EditText recipeName, pTime, Ingredients, pOrder;
+    EditText recipeName, pTime, pOrder;
     FirebaseFirestore firestore;
-    Ingredient ingredient = new Ingredient();
     ArrayList<String> namesArrayList;
-    ArrayList<Ingredient> ingArrayList;
-
+    ArrayList<ModelClass> ingArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        namesArrayList = IngredientsLists.getNamesArrayList();
+        ingArrayList = IngredientsLists.getIngArray();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_what_to_cook);
         b1 = (Button) findViewById(R.id.button);
@@ -47,13 +43,14 @@ public class whatToCook extends AppCompatActivity {
         recipeName = (EditText) findViewById(R.id.editText);
         pTime = (EditText) findViewById(R.id.editText2);
         pOrder = (EditText) findViewById(R.id.editText4);
-
         firestore = FirebaseFirestore.getInstance();
-        CollectionReference Recipes_Db = firestore.collection("recipes");
+        CollectionReference Recipes_Db = firestore.collection("recipes"); //reference to the recipe collection
+        //check to myself
         if(ingArrayList != null){
             Log.d(TAG,ingArrayList.toString());
 
         }
+        //Ingredients button
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,33 +58,25 @@ public class whatToCook extends AppCompatActivity {
 
             }
         });
+        //enter button
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String collection = "recipes";
-                namesArrayList=ingredient.getNamesArrayList();
-                ingArrayList=ingredient.getIngArray();
-                Log.d(TAG,namesArrayList.toString());
                 DocumentReference docRef = firestore.collection(collection).document(namesArrayList.toString());
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            Map<String, Object> info_c = new HashMap<>();
-
-
-                            info_c.put("Instructions", pOrder.getText().toString());
+                            Map<String, Object> info_c = new HashMap<>();//creating hashmap for the document
+                            info_c.put("Instructions", pOrder.getText().toString());//insert the data from the user to the hashmap
 //                            info_c.put("Ingredients", ingArrayList.toString());
                             info_c.put("Preparing Time", pTime.getText().toString());
                             info_c.put("Recipe Name", recipeName.getText().toString());
-
-//                                    authentication.createUserWithEmailAndPassword(String.valueOf(email), String.valueOf(password));
-//                                    firestore.collection("costumer_accounts").document(String.valueOf(email)).set(info_c);
-                            Recipes_Db.document(namesArrayList.toString()).set(info_c);
-                            Toast.makeText(whatToCook.this, "recipe in", Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "success");
-                            ingredient.clearIngredients();
-                            ingredient.clearNames();
-                            openWhatToCook();
+                            Recipes_Db.document(namesArrayList.toString()).set(info_c);//enter the hashmap to the document with the keys of the ingredients
+                            Toast.makeText(whatToCook.this, "recipe in", Toast.LENGTH_LONG).show();//message to the user
+                            Log.d(TAG, "success to enter the recipe");
+                            IngredientsLists.clearIngredients();//functions to clear the arrays in the IngredientsLists object
+                            IngredientsLists.clearNames();
+                            openWhatToCook();//open this page again
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
                         }
@@ -102,7 +91,7 @@ public class whatToCook extends AppCompatActivity {
         Intent intent = new Intent(this, whatToCook.class);
         startActivity(intent);
     }
-
+    //open the "addIngredients" class and save the data that already entered to the intent
     public void openAddIngredients() {
         Intent intent = new Intent(this, add_Ingredients.class);
         intent.putExtra("et1", recipeName.getText().toString());

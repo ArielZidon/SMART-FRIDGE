@@ -12,12 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.smartfridge.costumer.costumers;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,48 +21,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import java.lang.reflect.Type;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import yuku.ambilwarna.AmbilWarnaDialog;
-
-
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import static android.content.ContentValues.TAG;
-
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-
-import com.example.smartfridge.ModelClass;
-import com.example.smartfridge.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -76,112 +32,21 @@ import java.util.ArrayList;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class add_Ingredients extends AppCompatActivity {
-    Button b1, b2;
-    EditText inName, amount;
-    FirebaseFirestore firestore;
-    static int counter = 0;
-
-//    @SuppressLint("MissingInflatedId")
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_add_ingredient);
-//
-//        b1 = (Button) findViewById(R.id.button);
-//        b2 = (Button) findViewById(R.id.button2);
-//        inName = (EditText) findViewById(R.id.editText);
-//        amount = (EditText) findViewById(R.id.editText2);
-//        if(counter == 0) {
-//
-//            this.ingArray = ingredient.newInArray();
-//            this.recipeKey = ingredient.newNamesArray();
-//        }else{
-//            this.ingArray = ingredient.getIngArray();
-//            this.recipeKey = ingredient.getNamesArrayList();
-//        }
-//
-//        b1.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                Ingredient ingredient = new Ingredient(inName.getText().toString(), amount.getText().toString());
-//                ingArray.add(ingredient);
-//                counter++;
-//                Log.d(TAG,ingArray.toString());
-//                openAddIngredients();
-//            }
-//        });
-//
-//
-//        firestore = FirebaseFirestore.getInstance();
-//        CollectionReference Recipes_Db = firestore.collection("recipes");
-//        b2.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                Ingredient ingredient = new Ingredient(inName.getText().toString(), amount.getText().toString());
-//                ingArray.add(ingredient);
-//                String collection = "recipes";
-//                recipeKey = ingredient.getNamesArrayList();
-//                for (Ingredient i : ingArray) {
-//                    recipeKey.add(i.InName);
-//                }
-//                Log.d(TAG,recipeKey.toString());
-//                DocumentReference docRef = firestore.collection(collection).document(recipeKey.toString());
-//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            Log.d(TAG, ingArray.toString());
-//                            Log.d(TAG, "success!!");
-//
-//                            openWhatToCook();
-//
-//                        } else {
-//                            Log.d(TAG, "get failed with ", task.getException());
-//
-//                        }
-//                    }
-//                });
-//            }
-//        });
-//
-//    }
-//    public void openAddIngredients(){
-//        Intent intent = new Intent(this, add_Ingredients.class);
-//        startActivity(intent);
-//    }
-//    public void openWhatToCook() {
-////        Intent intent = new Intent(this, whatToCook.class);
-//        Intent result = new Intent();
-//        setResult(RESULT_OK,result);
-//        finish();
-//    }
-//
-//    /**take us back to the customers menu*/
-//    @Override
-//    public void onBackPressed() {
-//        Log.d(TAG, ingArray.toString()); //for test only
-//        Intent intent = new Intent(this, whatToCook.class);
-//        startActivity(intent);
-//    }
-//}
-
-
-
-
         AlertDialog dialog;
         EditText name;
         EditText number;
         Button btSave;
         TextView nameView;
-        ArrayList<ModelClass> arrayList;
         ImageButton home;
-
         AlertDialog rename;
         LinearLayout layout;
         ImageButton color;
         ImageButton editName;
         CardView myCard;
         int defaultColor;
-        Ingredient ingredient = new Ingredient();
-        ArrayList<String> recipeKey;
-        ArrayList<Ingredient> ingArray = ingredient.newInArray();
+        ArrayList<String> recipeKey = new ArrayList<>();
+        ArrayList<ModelClass> ingArray =new ArrayList<>();
+
         RelativeLayout test;
 
         @SuppressLint("MissingInflatedId")
@@ -198,28 +63,12 @@ public class add_Ingredients extends AppCompatActivity {
             color = findViewById(R.id.color);
             editName = findViewById(R.id.edit);
             myCard = findViewById(R.id.edit_color_card);
-//        defaultColor = ContextCompat.getColor(my_category.this, R.color.black);
-//        myCard.setCardBackgroundColor(defaultColor);
-//        myCard.setBackgroundColor(defaultColor);
-//        test.setBackgroundColor(defaultColor);
+            IngredientsLists.setInArrayList(ingArray);
+            IngredientsLists.setNamesArrayList(recipeKey);
 
             loadData();
             buildDialog();
             buildRename();
-
-            color.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    openColoePicker();
-                }
-            });
-
-            editName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    rename.show();
-                }
-            });
 
             /* Button to add new item */
             btSave.setOnClickListener(new View.OnClickListener() {
@@ -234,11 +83,15 @@ public class add_Ingredients extends AppCompatActivity {
             home.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d(TAG,ingArray.toString());
-                    recipeKey = ingredient.newNamesArray();
-                    for (Ingredient i : ingArray) {
-                        recipeKey.add(i.InName);
+
+                    recipeKey = new ArrayList<String>();
+                    for (ModelClass i : ingArray) {
+                        recipeKey.add(i.itemName);
                     }
+                    IngredientsLists.setInArrayList(ingArray);
+                    IngredientsLists.setNamesArrayList(recipeKey);
+                    Log.d(TAG, IngredientsLists.getIngArray().toString());
+                    Log.d(TAG, IngredientsLists.getNamesArrayList().toString());
                     openWhatToCook();
                 }
             });
@@ -274,15 +127,15 @@ public class add_Ingredients extends AppCompatActivity {
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
             Gson gson = new Gson();
             String json = sharedPreferences.getString("Ingredients", null);
-            Type type = new TypeToken<ArrayList<Ingredient>>() {
+            Type type = new TypeToken<ArrayList<ModelClass>>() {
             }.getType();
             ingArray = gson.fromJson(json, type);
             if (ingArray == null) {
-                ingArray = ingredient.newInArray();
+                ingArray = new ArrayList<ModelClass>();
 //            tvSize.setText(""+0);
             } else {
                 for (int i = 0; i < ingArray.size(); i++) {
-                    addCard(ingArray.get(i).InName, ingArray.get(i).amount);
+                    addCard(ingArray.get(i).itemName, ingArray.get(i).itemNumber);
                 }
             }
         }
@@ -297,11 +150,12 @@ public class add_Ingredients extends AppCompatActivity {
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             Gson gson = new Gson();
-            ingArray.add((new Ingredient(name, count)));
+            ingArray.add((new ModelClass(name, count)));
             String json = gson.toJson(ingArray);
             editor.putString("Ingredients", json);
             editor.apply();
             addCard(name, count);
+            Log.d(TAG, IngredientsLists.getIngArray().toString());
         }
 
         /**
@@ -397,8 +251,8 @@ public class add_Ingredients extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             Gson gson = new Gson();
             for (int i = 0; i < ingArray.size(); i++) {
-                if (ingArray.get(i).InName.equals(name) &&
-                       ingArray.get(i).amount.equals(count)) {
+                if (ingArray.get(i).itemName.equals(name) &&
+                       ingArray.get(i).itemNumber.equals(count)) {
                     ingArray.remove(i);
                 }
             }
@@ -409,6 +263,7 @@ public class add_Ingredients extends AppCompatActivity {
 
         public void openWhatToCook() {
 //        Intent intent = new Intent(this, whatToCook.class);
+            Log.d(TAG, IngredientsLists.getIngArray().toString());
             Intent result = new Intent();
             setResult(RESULT_OK, result);
             finish();
