@@ -104,12 +104,13 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".manager.Upload_Recipes"
+            android:name=".add_Ingredients"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".costumer.recipes"
             android:exported="false">

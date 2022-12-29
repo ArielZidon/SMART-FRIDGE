@@ -2,6 +2,7 @@ package com.example.smartfridge;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,56 +27,59 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class whatToCook extends AppCompatActivity {
-    Button b1, b2;
+    Button b1, b2,cancel;
     EditText recipeName, pTime, pOrder;
     FirebaseFirestore firestore;
-    ArrayList<String> namesArrayList;
-    ArrayList<ModelClass> ingArrayList;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        namesArrayList = IngredientsLists.getNamesArrayList();
-        ingArrayList = IngredientsLists.getIngArray();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_what_to_cook);
         b1 = (Button) findViewById(R.id.button);
         b2 = (Button) findViewById(R.id.button2);
+        cancel = (Button) findViewById(R.id.cancel_button);
         recipeName = (EditText) findViewById(R.id.editText);
         pTime = (EditText) findViewById(R.id.editText2);
         pOrder = (EditText) findViewById(R.id.editText4);
+
         firestore = FirebaseFirestore.getInstance();
         CollectionReference Recipes_Db = firestore.collection("recipes"); //reference to the recipe collection
-        //check to myself
-        if(ingArrayList != null){
-            Log.d(TAG,ingArrayList.toString());
 
-        }
-        //Ingredients button
+        //"Ingredients" button
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openAddIngredients();
-
             }
         });
-        //enter button
+        //don't enter the recipe, and start over
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWhatToCook();
+            }
+        });
+        //"enter" button
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String collection = "recipes";
-                DocumentReference docRef = firestore.collection(collection).document(namesArrayList.toString());
+                DocumentReference docRef = firestore.collection(collection).document(IngredientsLists.namesArrayList.toString());
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             Map<String, Object> info_c = new HashMap<>();//creating hashmap for the document
-                            info_c.put("Instructions", pOrder.getText().toString());//insert the data from the user to the hashmap
-//                            info_c.put("Ingredients", ingArrayList.toString());
+                            //insert the data from the user to the hashmap
+                            info_c.put("Instructions", pOrder.getText().toString());
+                            info_c.put("Ingredients", IngredientsLists.inArrayList.toString());
                             info_c.put("Preparing Time", pTime.getText().toString());
                             info_c.put("Recipe Name", recipeName.getText().toString());
-                            Recipes_Db.document(namesArrayList.toString()).set(info_c);//enter the hashmap to the document with the keys of the ingredients
+                            Recipes_Db.document(IngredientsLists.namesArrayList.toString()).set(info_c);//enter the hashmap to the document with the keys of the ingredients
                             Toast.makeText(whatToCook.this, "recipe in", Toast.LENGTH_LONG).show();//message to the user
                             Log.d(TAG, "success to enter the recipe");
                             IngredientsLists.clearIngredients();//functions to clear the arrays in the IngredientsLists object
                             IngredientsLists.clearNames();
+
                             openWhatToCook();//open this page again
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());

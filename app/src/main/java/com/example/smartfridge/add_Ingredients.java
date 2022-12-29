@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,21 +28,16 @@ import androidx.cardview.widget.CardView;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import yuku.ambilwarna.AmbilWarnaDialog;
-
 public class add_Ingredients extends AppCompatActivity {
         AlertDialog dialog;
         EditText name;
         EditText number;
         Button btSave;
+        Button back;
         TextView nameView;
-        ImageButton home;
         AlertDialog rename;
         LinearLayout layout;
-        ImageButton color;
         ImageButton editName;
-        CardView myCard;
-        int defaultColor;
         ArrayList<String> recipeKey = new ArrayList<>();
         ArrayList<ModelClass> ingArray =new ArrayList<>();
 
@@ -52,17 +46,14 @@ public class add_Ingredients extends AppCompatActivity {
         @SuppressLint("MissingInflatedId")
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_my_category);
+            setContentView(R.layout.activity_add_ingredient);
 
             btSave = findViewById(R.id.bt_sava);
             nameView = findViewById(R.id.name_view);
             layout = findViewById(R.id.container);
             name = findViewById(R.id.nameEdit);
             number = findViewById(R.id.numberEdit);
-
-            color = findViewById(R.id.color);
             editName = findViewById(R.id.edit);
-            myCard = findViewById(R.id.edit_color_card);
             IngredientsLists.setInArrayList(ingArray);
             IngredientsLists.setNamesArrayList(recipeKey);
 
@@ -79,45 +70,22 @@ public class add_Ingredients extends AppCompatActivity {
             });
 
             /* Button to return home costumer */
-            home = (ImageButton) findViewById(R.id.bt_home);
-            home.setOnClickListener(new View.OnClickListener() {
+            back = (Button) findViewById(R.id.back);
+            back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    recipeKey = new ArrayList<String>();
                     for (ModelClass i : ingArray) {
                         recipeKey.add(i.itemName);
                     }
-                    IngredientsLists.setInArrayList(ingArray);
-                    IngredientsLists.setNamesArrayList(recipeKey);
+                    IngredientsLists.inArrayList = ingArray;
+                    IngredientsLists.namesArrayList = recipeKey;
                     Log.d(TAG, IngredientsLists.getIngArray().toString());
                     Log.d(TAG, IngredientsLists.getNamesArrayList().toString());
+                    removeArray();
                     openWhatToCook();
                 }
             });
         }
-
-        private void openColoePicker() {
-            AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(this, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-                @Override
-                public void onCancel(AmbilWarnaDialog dialog) {
-                }
-
-                @Override
-                public void onOk(AmbilWarnaDialog dialog, int color) {
-                    defaultColor = color;
-                    myCard.setCardBackgroundColor(defaultColor);
-                }
-            });
-            ambilWarnaDialog.show();
-        }
-
-        private void homePage() {
-            Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
-            startActivity(intent);
-        }
-
-
         /**
          * Upload items form sharedPreferences
          * if list == null => create new empty list
@@ -233,7 +201,7 @@ public class add_Ingredients extends AppCompatActivity {
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    removeArray(nameView.getText().toString(), countView.getText().toString());
+                    removeItem(nameView.getText().toString(), countView.getText().toString());
                     layout.removeView(view);
                 }
             });
@@ -246,16 +214,24 @@ public class add_Ingredients extends AppCompatActivity {
          *              1. remove item from the screen
          *              2. remove item from sharedPreferences
          */
-        private void removeArray(String name, String count) {
+        private void removeItem(String name, String count) {
             SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             Gson gson = new Gson();
-            for (int i = 0; i < ingArray.size(); i++) {
-                if (ingArray.get(i).itemName.equals(name) &&
-                       ingArray.get(i).itemNumber.equals(count)) {
-                    ingArray.remove(i);
+            for (ModelClass m:ingArray) {
+                if (m.itemName.equals(name) && m.itemNumber.equals(count)) {
+                    ingArray.remove(m);
                 }
             }
+            String json = gson.toJson(ingArray);
+            editor.putString("Ingredients", json);
+            editor.apply();
+        }
+        public void removeArray() {
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+            ingArray.clear();
             String json = gson.toJson(ingArray);
             editor.putString("Ingredients", json);
             editor.apply();
