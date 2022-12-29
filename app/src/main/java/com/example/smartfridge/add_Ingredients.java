@@ -81,7 +81,9 @@ public class add_Ingredients extends AppCompatActivity {
                     IngredientsLists.namesArrayList = recipeKey;
                     Log.d(TAG, IngredientsLists.getIngArray().toString());
                     Log.d(TAG, IngredientsLists.getNamesArrayList().toString());
-                    removeArray();
+                    if(ingArray != null) {
+                        removeArray();
+                    }
                     openWhatToCook();
                 }
             });
