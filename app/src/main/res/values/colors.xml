@@ -14,4 +14,6 @@
     <color name="milky_color">#5479C3</color>
     <color name="clean_color">#AF9FC6</color>
     <color name="dry_color">#D1D63D</color>
+    <color name="selected_card">#D366206E</color>
+
 </resources>

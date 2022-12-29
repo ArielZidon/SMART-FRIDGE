@@ -1,10 +1,13 @@
 package com.example.smartfridge.costumer;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -14,8 +17,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import static android.content.ContentValues.TAG;
 
+import static com.example.smartfridge.R.layout.rename;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,14 +52,17 @@ public class my_category extends AppCompatActivity {
     LinearLayout layout;
     ImageButton color;
     ImageButton editName;
-    CardView myCard;
-    int defaultColor;
-    RelativeLayout test;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT = "text";
+    private String text;
+
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_category);
+
 
         btSave = findViewById(R.id.bt_sava);
         nameView = findViewById(R.id.name_view);
@@ -61,24 +70,13 @@ public class my_category extends AppCompatActivity {
         name = findViewById(R.id.nameEdit);
         number = findViewById(R.id.numberEdit);
 
-        color = findViewById(R.id.color);
         editName = findViewById(R.id.edit);
-        myCard = findViewById(R.id.edit_color_card);
-//        defaultColor = ContextCompat.getColor(my_category.this, R.color.black);
-//        myCard.setCardBackgroundColor(defaultColor);
-//        myCard.setBackgroundColor(defaultColor);
-//        test.setBackgroundColor(defaultColor);
 
         loadData();
         buildDialog();
         buildRename();
 
-        color.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openColoePicker();
-            }
-        });
+        loadName();
 
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,19 +101,6 @@ public class my_category extends AppCompatActivity {
                 homePage();
             }
         });
-    }
-
-    private void openColoePicker() {
-        AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(this, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
-            @Override
-            public void onCancel(AmbilWarnaDialog dialog) {}
-            @Override
-            public void onOk(AmbilWarnaDialog dialog, int color) {
-                defaultColor = color;
-                myCard.setCardBackgroundColor(defaultColor);
-            }
-        });
-        ambilWarnaDialog.show();
     }
 
     private void homePage() {
@@ -203,6 +188,7 @@ public class my_category extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        saveName(name.getText().toString());
                         nameView.setText(name.getText());
                     }
                 })
@@ -213,6 +199,31 @@ public class my_category extends AppCompatActivity {
                     }
                 });
         rename = builder.create();
+
+    }
+
+    /**
+     * @param str -> the name we what to view
+     *  save str in sharedPreferences
+     */
+    public void saveName(String str){
+        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("text", str);
+        editor.apply();
+
+        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * load the name from sharedPreferences
+     */
+    private void loadName() {
+        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
+        text = sharedPreferences.getString("text", "");
+        nameView.setText(text);
+
     }
 
     public boolean onCreteOptionsMenu(Menu menu) {
