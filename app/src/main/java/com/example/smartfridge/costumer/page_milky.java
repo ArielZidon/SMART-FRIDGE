@@ -24,7 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class page_milky extends AppCompatActivity {
+public class page_milky extends AppCompatActivity implements category{
     AlertDialog dialog;
     LinearLayout layout;
     EditText name;
@@ -85,19 +85,34 @@ public class page_milky extends AppCompatActivity {
         });
     }
 
-    private void homePage() {
+    public void homePage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
 
-    private void beckPage() {
+    public void beckPage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_meat.class);
         startActivity(intent);
     }
 
-    private void openVegetables() {
+    @Override
+    public void openMeat() {
+
+    }
+
+    @Override
+    public void openMilaky() {
+
+    }
+
+    public void openVegetables() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_vegetables.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void openClean() {
+
     }
 
     /**
@@ -105,7 +120,7 @@ public class page_milky extends AppCompatActivity {
      * if list == null => create new empty list
      * else => show on the screen all items from the sharedPreferences "Item_Data_milky"
      */
-    private void loadData() {
+    public void loadData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("Item_Data_milky", null);
@@ -127,7 +142,7 @@ public class page_milky extends AppCompatActivity {
      *  save on sharedPreferences item (name, count)
      *  and upload the view with the new item
      */
-    private void saveData(String name, String count) {
+    public void saveData(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -139,12 +154,17 @@ public class page_milky extends AppCompatActivity {
         addCard(name, count);
     }
 
+    @Override
+    public void openDryFood() {
+
+    }
+
     /**
      * create a view dialog between the customers on use to adds items
      * add new card with the name and number from the dialog
      * update the list with the new item
      */
-    private void buildDialog() {
+    public void buildDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog, null);
 
@@ -173,7 +193,7 @@ public class page_milky extends AppCompatActivity {
      * @param number => number of item
      * update the view screen with new card (name, cumber)
      */
-    private void addCard(String name, String number) {
+    public void addCard(String name, String number) {
         View view = getLayoutInflater().inflate(R.layout.milky_card, null);
 
         TextView nameView = view.findViewById(R.id.name);
@@ -199,7 +219,7 @@ public class page_milky extends AppCompatActivity {
      *  1. remove item from the screen
      *  2. remove item from sharedPreferences
      */
-    private void removeArray(String name, String count) {
+    public void removeArray(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
