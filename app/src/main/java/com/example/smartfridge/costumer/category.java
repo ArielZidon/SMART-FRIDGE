@@ -17,6 +17,9 @@ public interface category {
     void openMilaky();
     void openVegetables();
     void openClean();
+    void loadName();
+    void saveName(String str);
+    void buildRename();
 
 
 }
