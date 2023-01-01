@@ -1,5 +1,7 @@
 package com.example.smartfridge;
 
+import android.provider.MediaStore;
+
 public class recipe {
 
     private String RecipeName;
@@ -7,14 +9,17 @@ public class recipe {
     private String RecipeMethodTitle;
     private String Recipe;
     private String Time;
+    private int Thumbnail;
 
-    public recipe(String name, String recipeIngredients, String recipeMethodTitle,String recipe, String Time){
+
+    public recipe(String name, String Time , String recipeIngredients, String recipeMethodTitle,String recipe, int thumbnail){
 
         RecipeName = name;
+        Time = Time;
         RecipeIngredients = recipeIngredients;
         RecipeMethodTitle = recipeMethodTitle;
         Recipe = recipe;
-        Time = Time;
+        Thumbnail = thumbnail;
 
     }
 
@@ -36,6 +41,10 @@ public class recipe {
 
     public String getTime(){
         return Time;
+    }
+
+    public int getThumbnail(){
+        return Thumbnail;
     }
 
 }

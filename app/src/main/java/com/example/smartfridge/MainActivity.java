@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Go to - management_user login wind.
-                openManagement();
+                openRecipeWind();
             }
         });
 
@@ -82,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, management_USER.class);
         startActivity(intent);
     }
+
+    public void openRecipeWind() {
+        Intent intent = new Intent(this, com.example.smartfridge.recipes_wind.class);
+        startActivity(intent);
+    }
+
 /*
     public void openRecipes() {
         Intent intent = new Intent(this, recipes.class);

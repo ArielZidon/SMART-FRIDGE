@@ -50,33 +50,33 @@ public class forgot_password extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String to = email.getText().toString();
-                String subject = "verification code";
-                String message = "";
-                int max = 9;
-                int min = 0;
-                int range = max - min + 1;
-
-                // generate random numbers within 1 to 10
-                for (int i = 0; i < 6; i++) {
-                    int rand = (int) (Math.random() * range) + 1;
-                    String temp = String.valueOf(rand);
-                    message.concat(temp);
-                }
-
-                Intent email_s = new Intent(Intent.ACTION_SEND);
-                email_s.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
-                email_s.putExtra(Intent.EXTRA_SUBJECT, subject);
-                email_s.putExtra(Intent.EXTRA_TEXT, message);
-
-                //need this to prompts email client only
-                email_s.setType("message/rfc822");
-
-                startActivity(Intent.createChooser(email_s, "Your verification code is : " + message));
+//                String to = email.getText().toString();
+//                String subject = "verification code";
+//                String message = "";
+//                int max = 9;
+//                int min = 0;
+//                int range = max - min + 1;
+//
+//                // generate random numbers within 1 to 10
+//                for (int i = 0; i < 6; i++) {
+//                    int rand = (int) (Math.random() * range) + 1;
+//                    String temp = String.valueOf(rand);
+//                    message.concat(temp);
+//                }
+//
+//                Intent email_s = new Intent(Intent.ACTION_SEND);
+//                email_s.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
+//                email_s.putExtra(Intent.EXTRA_SUBJECT, subject);
+//                email_s.putExtra(Intent.EXTRA_TEXT, message);
+//
+//                //need this to prompts email client only
+//                email_s.setType("message/rfc822");
+//
+//                startActivity(Intent.createChooser(email_s, "Your verification code is : " + message));
 
                 //***need to send a code to user and verify the code***
                 //***random 6 number between 0-9 send to an email or a sms.
-                if (auth.getCurrentUser().isEmailVerified()) {
+//                if (auth.getCurrentUser().isEmailVerified()) {
                     //open wind new password
 //                    if (code.getText().toString().equals(message)) {
 //
@@ -104,7 +104,7 @@ public class forgot_password extends AppCompatActivity {
 //                    }
 
 
-                }
+//                }
 
             }
         });

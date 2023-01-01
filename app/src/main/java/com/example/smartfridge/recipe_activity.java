@@ -27,14 +27,13 @@ public class recipe_activity extends AppCompatActivity {
         String time = intent.getExtras().getString("Time");
         String method = intent.getExtras().getString("RecipeMethodTitle");
         String recipe = intent.getExtras().getString("Recipe");
+        int img = intent.getExtras().getInt("img");
 
         mRecipeName.setText(title);
         mRecipeIngredients.setText(ingredients);
         mTime.setText(time);
         mRecipeMethodTitle.setText(method);
         mRecipe.setText(recipe);
-
-
 
 
 

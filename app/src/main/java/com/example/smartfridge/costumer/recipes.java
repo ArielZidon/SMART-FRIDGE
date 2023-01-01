@@ -86,4 +86,6 @@ public class recipes extends AppCompatActivity {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
+
+
 }

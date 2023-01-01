@@ -48,76 +48,76 @@ public class customer_USER extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //basic terms for email to not be empty.
-                if(email.getText().toString().equals("")){
-                    Toast.makeText(customer_USER.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (password.getText().toString().contains("SFmanager")) {
-                        DocumentReference docRef = firestore.collection("manager_accounts").document(email.getText().toString());
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        Map<String, Object> info = document.getData();
-                                        if(info.containsValue(password.getText().toString())){
-                                            Toast.makeText(customer_USER.this,"SINGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
-                                            openManager();
-                                        }
-                                        else {
-                                            Toast.makeText(customer_USER.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                    else {
-                                        Toast.makeText(customer_USER.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG, "No such document");
-                                    }
-                                }
-                                else {
-                                    Log.d(TAG, "get failed with ", task.getException());
-                                }
-                            }
-                        });
-                    }
-                    else {
-                        DocumentReference docRef = firestore.collection("costumer_accounts").document(email.getText().toString());
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        Map<String, Object> info = document.getData();
-                                        if(info.containsValue(password.getText().toString())){
-                                            Toast.makeText(customer_USER.this,"SINGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
-                                            openCostumers();
-                                        }
-                                        else {
-                                            Toast.makeText(customer_USER.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                    else {
-                                        Toast.makeText(customer_USER.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG, "No such document");
-                                    }
-                                }
-                                else {
-                                    Log.d(TAG, "get failed with ", task.getException());
-                                }
-                            }
-                        });
-                    }
+//                if(email.getText().toString().equals("")){
+//                    Toast.makeText(customer_USER.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    if (password.getText().toString().contains("SFmanager")) {
+//                        DocumentReference docRef = firestore.collection("manager_accounts").document(email.getText().toString());
+//                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                if (task.isSuccessful()) {
+//                                    DocumentSnapshot document = task.getResult();
+//                                    if (document.exists()) {
+//                                        Map<String, Object> info = document.getData();
+//                                        if(info.containsValue(password.getText().toString())){
+//                                            Toast.makeText(customer_USER.this,"SINGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
+//                                            openManager();
+//                                        }
+//                                        else {
+//                                            Toast.makeText(customer_USER.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
+//                                        }
+//                                    }
+//                                    else {
+//                                        Toast.makeText(customer_USER.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
+//                                        Log.d(TAG, "No such document");
+//                                    }
+//                                }
+//                                else {
+//                                    Log.d(TAG, "get failed with ", task.getException());
+//                                }
+//                            }
+//                        });
+//                    }
+//                    else {
+//                        DocumentReference docRef = firestore.collection("costumer_accounts").document(email.getText().toString());
+//                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                if (task.isSuccessful()) {
+//                                    DocumentSnapshot document = task.getResult();
+//                                    if (document.exists()) {
+//                                        Map<String, Object> info = document.getData();
+//                                        if(info.containsValue(password.getText().toString())){
+//                                            Toast.makeText(customer_USER.this,"SINGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
+//                                            openCostumers();
+//                                        }
+//                                        else {
+//                                            Toast.makeText(customer_USER.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
+//                                        }
+//                                    }
+//                                    else {
+//                                        Toast.makeText(customer_USER.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
+//                                        Log.d(TAG, "No such document");
+//                                    }
+//                                }
+//                                else {
+//                                    Log.d(TAG, "get failed with ", task.getException());
+//                                }
+//                            }
+//                        });
+//                    }
+//
+//                }
 
-                }
-
-//                if(username.getText().toString().equals("") && password.getText().toString().equals("")){
-//                    //correct
-//                    Toast.makeText(customer_USER.this,"LOGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
-//                    openCostumers();
-//                }else
-//                    //incorrect
-//                    Toast.makeText(customer_USER.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
+                if(email.getText().toString().equals("") && password.getText().toString().equals("")){
+                    //correct
+                    Toast.makeText(customer_USER.this,"LOGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
+                    openCostumers();
+                }else
+                    //incorrect
+                    Toast.makeText(customer_USER.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
             }
         });
 
