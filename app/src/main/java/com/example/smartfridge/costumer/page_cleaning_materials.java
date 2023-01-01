@@ -24,7 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class page_cleaning_materials extends AppCompatActivity {
+public class page_cleaning_materials extends AppCompatActivity implements category{
     AlertDialog dialog;
     LinearLayout layout;
     EditText name;
@@ -65,7 +65,7 @@ public class page_cleaning_materials extends AppCompatActivity {
         beckView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backPage();
+                beckPage();
             }
         });
 
@@ -87,17 +87,37 @@ public class page_cleaning_materials extends AppCompatActivity {
         });
     }
 
-    private void homePage() {
+    public void homePage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
 
-    private void backPage() {
+    public void beckPage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_vegetables.class);
         startActivity(intent);
     }
 
-    private void openDryFood() {
+    @Override
+    public void openMeat() {
+
+    }
+
+    @Override
+    public void openMilaky() {
+
+    }
+
+    @Override
+    public void openVegetables() {
+
+    }
+
+    @Override
+    public void openClean() {
+
+    }
+
+    public void openDryFood() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_dryFood.class);
         startActivity(intent);
     }
@@ -107,7 +127,7 @@ public class page_cleaning_materials extends AppCompatActivity {
      * if list == null => create new empty list
      * else => show on the screen all items from the sharedPreferences "Item_Data_Clean"
      */
-    private void loadData() {
+    public void loadData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("Item_Data_Clean", null);
@@ -129,7 +149,7 @@ public class page_cleaning_materials extends AppCompatActivity {
      *  save on sharedPreferences item (name, count)
      *  and upload the view with the new item
      */
-    private void saveData(String name, String count) {
+    public void saveData(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -145,7 +165,7 @@ public class page_cleaning_materials extends AppCompatActivity {
      * add new card with the name and number from the dialog
      * update the list with the new item
      */
-    private void buildDialog() {
+    public void buildDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog, null);
 
@@ -179,7 +199,7 @@ public class page_cleaning_materials extends AppCompatActivity {
      * @param number => number of item
      * update the view screen with new card (name, cumber)
      */
-    private void addCard(String name, String number) {
+    public void addCard(String name, String number) {
         View view = getLayoutInflater().inflate(R.layout.clean_card, null);
 
         TextView nameView = view.findViewById(R.id.clean_name);
@@ -205,7 +225,7 @@ public class page_cleaning_materials extends AppCompatActivity {
      *  1. remove item from the screen
      *  2. remove item from sharedPreferences
      */
-    private void removeArray(String name, String count) {
+    public void removeArray(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();

@@ -38,7 +38,7 @@ import java.util.ArrayList;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class my_category extends AppCompatActivity {
+public class my_category extends AppCompatActivity implements category{
 
     AlertDialog dialog;
     EditText name;
@@ -103,7 +103,7 @@ public class my_category extends AppCompatActivity {
         });
     }
 
-    private void homePage() {
+    public void homePage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
@@ -114,7 +114,7 @@ public class my_category extends AppCompatActivity {
      * if list == null => create new empty list
      * else => show on the screen all items from the sharedPreferences "Item_Data_meat"
      */
-    private void loadData() {
+    public void loadData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("Item_Data_my_category", null);
@@ -137,7 +137,7 @@ public class my_category extends AppCompatActivity {
      *              save on sharedPreferences item (name, count)
      *              and upload the view with the new item
      */
-    private void saveData(String name, String count) {
+    public void saveData(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -148,12 +148,42 @@ public class my_category extends AppCompatActivity {
         addCard(name, count);
     }
 
+    @Override
+    public void openDryFood() {
+
+    }
+
+    @Override
+    public void beckPage() {
+
+    }
+
+    @Override
+    public void openMeat() {
+
+    }
+
+    @Override
+    public void openMilaky() {
+
+    }
+
+    @Override
+    public void openVegetables() {
+
+    }
+
+    @Override
+    public void openClean() {
+
+    }
+
     /**
      * create a view dialog between the customers on user to adds items
      * add new card with the name and number from the dialog
      * update the list with the new item
      */
-    private void buildDialog() {
+    public void buildDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog, null);
 
@@ -177,7 +207,7 @@ public class my_category extends AppCompatActivity {
         dialog = builder.create();
     }
 
-    private void buildRename() {
+    public void buildRename() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.rename, null);
 
@@ -219,7 +249,7 @@ public class my_category extends AppCompatActivity {
     /**
      * load the name from sharedPreferences
      */
-    private void loadName() {
+    public void loadName() {
         SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
         text = sharedPreferences.getString("text", "");
         nameView.setText(text);
@@ -236,7 +266,7 @@ public class my_category extends AppCompatActivity {
      * @param number => number of item
      *               update the view screen with new card (name, number)
      */
-    private void addCard(String name, String number) {
+    public void addCard(String name, String number) {
         View view = getLayoutInflater().inflate(R.layout.selected_card, null);
 
         TextView nameView = view.findViewById(R.id.name);
@@ -262,7 +292,7 @@ public class my_category extends AppCompatActivity {
      *              1. remove item from the screen
      *              2. remove item from sharedPreferences
      */
-    private void removeArray(String name, String count) {
+    public void removeArray(String name, String count) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
