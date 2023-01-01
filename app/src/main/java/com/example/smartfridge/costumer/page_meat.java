@@ -55,7 +55,7 @@ public class page_meat extends AppCompatActivity implements category {
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMilaky();
+                nextPage();
             }
         });
 
@@ -96,23 +96,11 @@ public class page_meat extends AppCompatActivity implements category {
         startActivity(intent);
     }
 
-    @Override
-    public void openMeat() {}
-
-    public void openMilaky() {
+    public void nextPage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_milky.class);
         startActivity(intent);
     }
 
-    @Override
-    public void openVegetables() {
-
-    }
-
-    @Override
-    public void openClean() {
-
-    }
 
     /**
      * Upload items form sharedPreferences
@@ -151,9 +139,6 @@ public class page_meat extends AppCompatActivity implements category {
         editor.apply();
         addCard(name, count);
     }
-
-    @Override
-    public void openDryFood() {}
 
     /**
      * create a view dialog between the customers on user to adds items

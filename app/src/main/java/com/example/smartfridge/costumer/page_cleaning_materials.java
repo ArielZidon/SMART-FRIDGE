@@ -56,7 +56,7 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDryFood();
+                nextPage();
             }
         });
 
@@ -97,27 +97,7 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
         startActivity(intent);
     }
 
-    @Override
-    public void openMeat() {
-
-    }
-
-    @Override
-    public void openMilaky() {
-
-    }
-
-    @Override
-    public void openVegetables() {
-
-    }
-
-    @Override
-    public void openClean() {
-
-    }
-
-    public void openDryFood() {
+    public void nextPage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_dryFood.class);
         startActivity(intent);
     }

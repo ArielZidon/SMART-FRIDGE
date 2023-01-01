@@ -56,7 +56,7 @@ public class page_vegetables extends AppCompatActivity implements category {
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openClean();
+                nextPage();
             }
         });
 
@@ -96,16 +96,7 @@ public class page_vegetables extends AppCompatActivity implements category {
         startActivity(intent);
     }
 
-    @Override
-    public void openMeat() {}
-
-    @Override
-    public void openMilaky() {}
-
-    @Override
-    public void openVegetables() {}
-
-    public void openClean() {
+    public void nextPage() {
         Intent intent = new Intent(this, com.example.smartfridge.costumer.page_cleaning_materials.class);
         startActivity(intent);
     }
@@ -149,9 +140,6 @@ public class page_vegetables extends AppCompatActivity implements category {
         tvSize.setText("My Vegetables List \n");
         addCard(name, count);
     }
-
-    @Override
-    public void openDryFood() {}
 
     /**
      * create a view dialog between the customers on use to adds items
