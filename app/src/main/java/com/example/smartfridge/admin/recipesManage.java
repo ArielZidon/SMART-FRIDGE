@@ -8,7 +8,7 @@ import com.example.smartfridge.R;
 
 import java.util.ArrayList;
 
-public class recipesMange extends AppCompatActivity {
+public class recipesManage extends AppCompatActivity {
     ArrayList<recipe> recipes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
