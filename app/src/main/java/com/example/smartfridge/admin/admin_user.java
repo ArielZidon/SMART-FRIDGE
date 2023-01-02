@@ -1,31 +1,19 @@
-package com.example.smartfridge.manager;
-
-import static android.content.ContentValues.TAG;
+package com.example.smartfridge.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.smartfridge.admin.adminView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.R;
 import com.google.android.material.button.MaterialButton;
 
-import java.util.Map;
-
-public class management_USER extends AppCompatActivity {
+public class admin_user extends AppCompatActivity {
 
     FirebaseFirestore firestore;
 
@@ -59,15 +47,15 @@ public class management_USER extends AppCompatActivity {
 //                            if (document.exists()) {
 //                                Map<String, Object> info = document.getData();
 //                                if(info.containsValue(password.getText().toString())){
-//                                    Toast.makeText(management_USER.this,"SINGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(admin_user.this,"SINGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
 //                                    openManagers();
 //                                }
 //                                else {
-//                                    Toast.makeText(management_USER.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(admin_user.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
 //                                }
 //                            }
 //                            else {
-//                                Toast.makeText(management_USER.this,"The email: "+ username.getText().toString() +" is NOT registered in the system",Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(admin_user.this,"The email: "+ username.getText().toString() +" is NOT registered in the system",Toast.LENGTH_SHORT).show();
 //                                Log.d(TAG, "No such document");
 //                            }
 //                        }
@@ -79,11 +67,11 @@ public class management_USER extends AppCompatActivity {
 
                         if (username.getText().toString().equals("") && password.getText().toString().equals("")) {
                             //correct
-                            Toast.makeText(management_USER.this, "LOGIN SUCCESSFUL.\nHELLO MANAGER!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(admin_user.this, "LOGIN SUCCESSFUL.\nHELLO MANAGER!", Toast.LENGTH_SHORT).show();
                             openManagers();
                         } else
                             //incorrect
-                            Toast.makeText(management_USER.this, "LOGIN FAILED !!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(admin_user.this, "LOGIN FAILED !!!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

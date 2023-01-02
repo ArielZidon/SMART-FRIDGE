@@ -1,11 +1,10 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.local_customer_memory;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,16 +15,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.ui.main.MainMenu;
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class page_meat extends AppCompatActivity implements category {
-
+public class page_milky extends AppCompatActivity implements category {
     AlertDialog dialog;
     LinearLayout layout;
     EditText name;
@@ -40,7 +39,7 @@ public class page_meat extends AppCompatActivity implements category {
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_page_meat);
+        setContentView(R.layout.activity_page_milky);
 
         btSave = findViewById(R.id.bt_sava);
         tvSize = findViewById(R.id.tv_size);
@@ -51,11 +50,11 @@ public class page_meat extends AppCompatActivity implements category {
         buildDialog();
 
         /* Button to go next milky page */
-        nextView = (ImageButton) findViewById(R.id.next_to_milky);
+        nextView = (ImageButton) findViewById(R.id.next_to_vege);
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMilaky();
+                openVegetables();
             }
         });
 
@@ -76,7 +75,7 @@ public class page_meat extends AppCompatActivity implements category {
             }
         });
 
-        /* Button to return home costumer */
+        /* Button to return home customer */
         home = (ImageButton) findViewById(R.id.bt_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,26 +86,28 @@ public class page_meat extends AppCompatActivity implements category {
     }
 
     public void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
     public void beckPage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_dryFood.class);
+        Intent intent = new Intent(this, page_meat.class);
         startActivity(intent);
     }
 
     @Override
-    public void openMeat() {}
+    public void openMeat() {
 
+    }
+
+    @Override
     public void openMilaky() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_milky.class);
-        startActivity(intent);
+
     }
 
-    @Override
     public void openVegetables() {
-
+        Intent intent = new Intent(this, page_vegetables.class);
+        startActivity(intent);
     }
 
     @Override
@@ -114,15 +115,30 @@ public class page_meat extends AppCompatActivity implements category {
 
     }
 
+    @Override
+    public void loadName() {
+
+    }
+
+    @Override
+    public void saveName(String str) {
+
+    }
+
+    @Override
+    public void buildRename() {
+
+    }
+
     /**
      * Upload items form sharedPreferences
      * if list == null => create new empty list
-     * else => show on the screen all items from the sharedPreferences "Item_Data_meat"
+     * else => show on the screen all items from the sharedPreferences "Item_Data_milky"
      */
     public void loadData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("Item_Data_meat", null);
+        String json = sharedPreferences.getString("Item_Data_milky", null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
         arrayList = gson.fromJson(json, type);
         if(arrayList == null){
@@ -147,16 +163,19 @@ public class page_meat extends AppCompatActivity implements category {
         Gson gson = new Gson();
         arrayList.add((new ModelClass(name, count)));
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_meat", json);
+        editor.putString("Item_Data_milky", json);
         editor.apply();
+        tvSize.setText("My Milky List \n");
         addCard(name, count);
     }
 
     @Override
-    public void openDryFood() {}
+    public void openDryFood() {
+
+    }
 
     /**
-     * create a view dialog between the customers on user to adds items
+     * create a view dialog between the customers on use to adds items
      * add new card with the name and number from the dialog
      * update the list with the new item
      */
@@ -184,18 +203,13 @@ public class page_meat extends AppCompatActivity implements category {
         dialog = builder.create();
     }
 
-    public boolean onCreteOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
     /**
      * @param name => item name
      * @param number => number of item
-     * update the view screen with new card (name, number)
+     * update the view screen with new card (name, cumber)
      */
     public void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.meat_card, null);
+        View view = getLayoutInflater().inflate(R.layout.milky_card, null);
 
         TextView nameView = view.findViewById(R.id.name);
         TextView countView = view.findViewById(R.id.number);
@@ -226,18 +240,18 @@ public class page_meat extends AppCompatActivity implements category {
         Gson gson = new Gson();
         for (int i = 0; i < arrayList.size();i++) {
             if (arrayList.get(i).getItemName().equals(name) &&
-                    arrayList.get(i).itemNumber.equals(count)) {
+                arrayList.get(i).itemNumber.equals(count)) {
                 arrayList.remove(i);
             }
         }
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_meat", json);
+        editor.putString("Item_Data_milky", json);
         editor.apply();
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
 }

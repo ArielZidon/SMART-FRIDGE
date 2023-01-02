@@ -1,4 +1,4 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.recipesDB;
 
 import static android.content.ContentValues.TAG;
 import static com.example.smartfridge.SortProducts.giveMeKeys;
@@ -16,10 +16,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
 import com.example.smartfridge.SortProducts;
-import com.example.smartfridge.createAccount;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -32,7 +32,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class recipes extends AppCompatActivity {
+public class get_recipes extends AppCompatActivity {
 
     MaterialButton createRecipes;
     LinearLayout layout;
@@ -88,10 +88,10 @@ public class recipes extends AppCompatActivity {
         }
         if (keys.size() == 0) //if we dont have enough products, dont make the search
         {
-            Toast.makeText(recipes.this, "There is not enough products to \ncreate a recipe!\nAdd some products and try again!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(get_recipes.this, "There is not enough products to \ncreate a recipeObject!\nAdd some products and try again!!", Toast.LENGTH_LONG).show();
         }else {
             for (int i = 0; i < keys.size(); i++) {
-                DocumentReference docRef = db.collection("recipes").document(keys.get(i));
+                DocumentReference docRef = db.collection("get_recipes").document(keys.get(i));
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -124,7 +124,7 @@ public class recipes extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
         ArrayList<ModelClass> arrayList_all = gson.fromJson(json, type);
 
-        ArrayList<ModelClass> arrayList_temp = new ArrayList<>();
+       ArrayList<ModelClass> arrayList_temp = new ArrayList<>();
         json = sharedPreferences.getString("Item_Data_milky", null);
         if (json != null){
             arrayList_temp = gson.fromJson(json, type);
@@ -152,7 +152,7 @@ public class recipes extends AppCompatActivity {
         }
 
         boolean algo_has_been_activated = false;
-        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipe.
+        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipeObject.
             if (products.length >= i)
             {
                 mixCombination(products, products.length, i);
@@ -160,13 +160,13 @@ public class recipes extends AppCompatActivity {
             }
         }
         if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
-            Toast.makeText(recipes.this,"There is not enough products to create a recipe!",Toast.LENGTH_LONG).show();
+            Toast.makeText(get_recipes.this,"There is not enough products to create a recipeObject!",Toast.LENGTH_LONG).show();
 
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 }

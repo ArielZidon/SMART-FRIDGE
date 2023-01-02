@@ -1,14 +1,11 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.business_logic;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-
-import com.example.smartfridge.MainActivity;
 
 public class getOut  extends AppCompatDialogFragment {
     private static int temp = 0;

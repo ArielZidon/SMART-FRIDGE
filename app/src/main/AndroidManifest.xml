@@ -20,91 +20,79 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".getOut"
+            android:name=".business_logic.getOut"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumer.page_vegetables"
+            android:name=".local_customer_memory.page_vegetables"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumer.page_dryFood"
+            android:name=".local_customer_memory.page_dryFood"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumer.page_milky"
+            android:name=".local_customer_memory.page_milky"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumer.page_meat"
+            android:name=".local_customer_memory.page_meat"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumer.page_cleaning_materials"
+            android:name=".local_customer_memory.page_cleaning_materials"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumer.ShoppingTables"
+            android:name=".local_customer_memory.ShoppingTables"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".accountDB.customer_user"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".manager.manager"
+            android:name=".admin.admin_user"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".costumer.customer_USER"
+            android:name=".ui.main.MainMenu"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".manager.management_USER"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".costumer.costumers"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".manager.Upload_Recipes"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".costumer.recipes"
+            android:name=".recipesDB.get_recipes"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
@@ -118,21 +106,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".createAccount"
+            android:name=".accountDB.createAccount"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".whatToCook"
+            android:name=".recipesDB.insertRecipe"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.SmartFRIDGE.NoActionBar" >

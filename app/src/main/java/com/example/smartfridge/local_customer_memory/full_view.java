@@ -1,23 +1,19 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.local_customer_memory;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -49,7 +45,7 @@ public class full_view extends AppCompatActivity {
             }
         });
 
-        /* Button to return home costumer */
+        /* Button to return home customer */
         home = (ImageButton) findViewById(R.id.bt_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +57,12 @@ public class full_view extends AppCompatActivity {
     }
 
     private void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
     private void beckPage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
 
@@ -357,7 +353,7 @@ public class full_view extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
 }

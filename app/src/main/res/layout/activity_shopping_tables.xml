@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background2"
-    tools:context=".costumer.ShoppingTables">
+    tools:context=".local_customer_memory.ShoppingTables">
 
     <LinearLayout
         android:id="@+id/welcom"

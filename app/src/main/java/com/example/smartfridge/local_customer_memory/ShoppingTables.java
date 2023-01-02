@@ -1,24 +1,14 @@
-package com.example.smartfridge.costumer;
-
-import static com.example.smartfridge.SortProducts.mixCombination;
+package com.example.smartfridge.local_customer_memory;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
-import com.example.smartfridge.SortProducts;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import com.example.smartfridge.ui.main.MainMenu;
 
 public class ShoppingTables extends AppCompatActivity {
 
@@ -124,7 +114,7 @@ public class ShoppingTables extends AppCompatActivity {
 //        }
 //
 //        boolean algo_has_been_activated = false;
-//        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipe.
+//        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipeObject.
 //            if (products.length >= i)
 //            {
 //                mixCombination(products, products.length, i);
@@ -132,13 +122,13 @@ public class ShoppingTables extends AppCompatActivity {
 //            }
 //        }
 //        if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
-//            Toast.makeText(ShoppingTables.this,"There is not enough products to create a recipe!",Toast.LENGTH_LONG).show();
+//            Toast.makeText(ShoppingTables.this,"There is not enough products to create a recipeObject!",Toast.LENGTH_LONG).show();
 //
 //    }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 }

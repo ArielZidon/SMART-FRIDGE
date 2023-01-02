@@ -1,5 +1,4 @@
-package com.example.smartfridge.costumer;
-
+package com.example.smartfridge.local_customer_memory;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -17,15 +16,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class page_vegetables extends AppCompatActivity implements category {
+public class page_meat extends AppCompatActivity implements category {
 
     AlertDialog dialog;
     LinearLayout layout;
@@ -41,7 +41,7 @@ public class page_vegetables extends AppCompatActivity implements category {
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_page_vegetables);
+        setContentView(R.layout.activity_page_meat);
 
         btSave = findViewById(R.id.bt_sava);
         tvSize = findViewById(R.id.tv_size);
@@ -51,12 +51,12 @@ public class page_vegetables extends AppCompatActivity implements category {
         loadData();
         buildDialog();
 
-        /* Button to go next cleaning materials page */
-        nextView = (ImageButton) findViewById(R.id.next_to_clean);
+        /* Button to go next milky page */
+        nextView = (ImageButton) findViewById(R.id.next_to_milky);
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openClean();
+                openMilaky();
             }
         });
 
@@ -77,7 +77,7 @@ public class page_vegetables extends AppCompatActivity implements category {
             }
         });
 
-        /* Button to return home costumer */
+        /* Button to return home customer */
         home = (ImageButton) findViewById(R.id.bt_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,47 +86,51 @@ public class page_vegetables extends AppCompatActivity implements category {
             }
         });
     }
+
     public void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
     public void beckPage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_milky.class);
+        Intent intent = new Intent(this, page_dryFood.class);
         startActivity(intent);
     }
 
     @Override
     public void openMeat() {}
 
-    @Override
-    public void openMilaky() {}
-
-    @Override
-    public void openVegetables() {}
-
-    public void openClean() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_cleaning_materials.class);
+    public void openMilaky() {
+        Intent intent = new Intent(this, page_milky.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void openVegetables() {
+
+    }
+
+    @Override
+    public void openClean() {
+
     }
 
     /**
      * Upload items form sharedPreferences
      * if list == null => create new empty list
-     * else => show on the screen all items from the sharedPreferences "Item_Data_vege"
+     * else => show on the screen all items from the sharedPreferences "Item_Data_meat"
      */
     public void loadData() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("Item_Data_vege", null);
-        Type type = new TypeToken<ArrayList<ModelClass>>() {
-        }.getType();
+        String json = sharedPreferences.getString("Item_Data_meat", null);
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
         arrayList = gson.fromJson(json, type);
-        if (arrayList == null) {
+        if(arrayList == null){
             arrayList = new ArrayList<>();
-//            tvSize.setText("" + 0);
-        } else {
-            for (int i = 0; i < arrayList.size(); i++) {
+//            tvSize.setText(""+0);
+        }else {
+            for (int i = 0; i < arrayList.size(); i++){
                 addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
@@ -139,14 +143,13 @@ public class page_vegetables extends AppCompatActivity implements category {
      *  and upload the view with the new item
      */
     public void saveData(String name, String count) {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         arrayList.add((new ModelClass(name, count)));
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_vege", json);
+        editor.putString("Item_Data_meat", json);
         editor.apply();
-        tvSize.setText("My Vegetables List \n");
         addCard(name, count);
     }
 
@@ -154,7 +157,7 @@ public class page_vegetables extends AppCompatActivity implements category {
     public void openDryFood() {}
 
     /**
-     * create a view dialog between the customers on use to adds items
+     * create a view dialog between the customers on user to adds items
      * add new card with the name and number from the dialog
      * update the list with the new item
      */
@@ -182,7 +185,7 @@ public class page_vegetables extends AppCompatActivity implements category {
         dialog = builder.create();
     }
 
-    public boolean onCreteOptionsMenu(Menu menu) {
+    public boolean onCreteOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
@@ -190,14 +193,14 @@ public class page_vegetables extends AppCompatActivity implements category {
     /**
      * @param name => item name
      * @param number => number of item
-     * update the view screen with new card (name, cumber)
+     * update the view screen with new card (name, number)
      */
     public void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.vege_card, null);
+        View view = getLayoutInflater().inflate(R.layout.meat_card, null);
 
-        TextView nameView = view.findViewById(R.id.vege_name);
-        TextView countView = view.findViewById(R.id.vege_number);
-        Button delete = view.findViewById(R.id.vege_delete);
+        TextView nameView = view.findViewById(R.id.name);
+        TextView countView = view.findViewById(R.id.number);
+        Button delete = view.findViewById(R.id.delete);
 
         nameView.setText(name);
         countView.setText(number);
@@ -229,13 +232,13 @@ public class page_vegetables extends AppCompatActivity implements category {
             }
         }
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_vege", json);
+        editor.putString("Item_Data_meat", json);
         editor.apply();
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
 }

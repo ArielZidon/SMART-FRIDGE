@@ -1,4 +1,4 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.local_customer_memory;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -16,15 +16,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class page_cleaning_materials extends AppCompatActivity implements category{
+public class page_dryFood extends AppCompatActivity implements category {
+
     AlertDialog dialog;
     LinearLayout layout;
     EditText name;
@@ -37,11 +39,10 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
     ImageButton home;
 
 
-
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_page_cleaning_materials);
+        setContentView(R.layout.activity_page_dry_food);
 
         btSave = findViewById(R.id.bt_sava);
         tvSize = findViewById(R.id.tv_size);
@@ -51,12 +52,12 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
         loadData();
         buildDialog();
 
-        /* Button to go next dry food page */
-        nextView = (ImageButton) findViewById(R.id.next_to_dry);
+        /* Button to go next meat page */
+        nextView = (ImageButton) findViewById(R.id.next_to_meat);
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDryFood();
+                openMeat();
             }
         });
 
@@ -77,7 +78,7 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
             }
         });
 
-        /* Button to return home costumer */
+        /* Button to return home customer */
         home = (ImageButton) findViewById(R.id.bt_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,18 +89,18 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
     }
 
     public void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
     public void beckPage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_vegetables.class);
+        Intent intent = new Intent(this, page_cleaning_materials.class);
         startActivity(intent);
     }
 
-    @Override
     public void openMeat() {
-
+        Intent intent = new Intent(this, page_meat.class);
+        startActivity(intent);
     }
 
     @Override
@@ -117,20 +118,15 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
 
     }
 
-    public void openDryFood() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_dryFood.class);
-        startActivity(intent);
-    }
-
     /**
      * Upload items form sharedPreferences
      * if list == null => create new empty list
-     * else => show on the screen all items from the sharedPreferences "Item_Data_Clean"
+     * else => show on the screen all items from the sharedPreferences "Item_Data_Dry"
      */
     public void loadData() {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("Item_Data_Clean", null);
+        String json = sharedPreferences.getString("Item_Data_Dry", null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
         arrayList = gson.fromJson(json, type);
         if(arrayList == null){
@@ -155,9 +151,14 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
         Gson gson = new Gson();
         arrayList.add((new ModelClass(name, count)));
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_Clean", json);
+        editor.putString("Item_Data_Dry", json);
         editor.apply();
         addCard(name, count);
+    }
+
+    @Override
+    public void openDryFood() {
+
     }
 
     /**
@@ -200,11 +201,11 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
      * update the view screen with new card (name, cumber)
      */
     public void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.clean_card, null);
+        View view = getLayoutInflater().inflate(R.layout.dry_card, null);
 
-        TextView nameView = view.findViewById(R.id.clean_name);
-        TextView countView = view.findViewById(R.id.clean_number);
-        Button delete = view.findViewById(R.id.clean_delete);
+        TextView nameView = view.findViewById(R.id.name);
+        TextView countView = view.findViewById(R.id.number);
+        Button delete = view.findViewById(R.id.delete);
 
         nameView.setText(name);
         countView.setText(number);
@@ -236,12 +237,13 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
             }
         }
         String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_Clean", json);
+        editor.putString("Item_Data_Dry", json);
         editor.apply();
     }
+
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
 }

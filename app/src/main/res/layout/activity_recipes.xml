@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:background="@drawable/background2"
-    tools:context=".costumer.recipes">
+    tools:context=".recipesDB.get_recipes">
 
     <TextView
         android:id="@+id/recipes_name"
@@ -47,7 +47,7 @@
         android:backgroundTint="@color/new_color"
         android:layout_alignParentLeft="true"
         android:paddingBottom="10dp"
-        android:text="GET   RESIPES"
+        android:text="GET RECIPES"
         android:textSize="20dp"
         app:cornerRadius="10dp" />
 

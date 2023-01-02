@@ -1,4 +1,4 @@
-package com.example.smartfridge;
+package com.example.smartfridge.accountDB;
 
 
 import static android.content.ContentValues.TAG;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.smartfridge.R;
+import com.example.smartfridge.ui.main.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -26,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.smartfridge.costumer.costumers;
+import com.example.smartfridge.ui.main.MainMenu;
 
 public class createAccount extends AppCompatActivity {
 
@@ -68,7 +70,7 @@ public class createAccount extends AppCompatActivity {
                     Toast.makeText(createAccount.this, "filled", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if(user.getText().toString().equals("costumer")){
+                    if(user.getText().toString().equals("customer")){
                         String collection = "costumer_accounts";
                         //this commend open a Document from our firestore cloud collection by a string collection path and document path.
                         //if the Document does not exist it will create the document as the path name.
@@ -169,14 +171,14 @@ public class createAccount extends AppCompatActivity {
     }
 
     public void  openCostumers(){
-        Intent intent = new Intent(this, costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

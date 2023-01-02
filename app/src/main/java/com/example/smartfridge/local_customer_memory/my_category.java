@@ -1,42 +1,30 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.local_customer_memory;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static android.content.ContentValues.TAG;
-
-import static com.example.smartfridge.R.layout.rename;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 
-import com.example.smartfridge.ModelClass;
+import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class my_category extends AppCompatActivity implements category{
 
@@ -104,7 +92,7 @@ public class my_category extends AppCompatActivity implements category{
     }
 
     public void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
@@ -309,7 +297,7 @@ public class my_category extends AppCompatActivity implements category{
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.local_customer_memory.ShoppingTables.class);
         startActivity(intent);
     }
 }

@@ -1,23 +1,24 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.MainActivity;
 import com.example.smartfridge.R;
-import com.example.smartfridge.whatToCook;
+import com.example.smartfridge.business_logic.getOut;
+import com.example.smartfridge.recipesDB.get_recipes;
+import com.example.smartfridge.local_customer_memory.ShoppingTables;
+import com.example.smartfridge.recipesDB.insertRecipe;
 
-public class costumers extends AppCompatActivity {
+public class MainMenu extends AppCompatActivity {
     private Button button;
 
-    ImageButton Cooking;        //ImageButton that represent the Button "whatToCook"
+    ImageButton Cooking;        //ImageButton that represent the Button "insertRecipe"
     ImageButton My_shoping;     //ImageButton that represent the Button "myShoppingList"
-    ImageButton Recipes;        //ImageButton that represent the Button "recipes"
+    ImageButton Recipes;        //ImageButton that represent the Button "get_recipes"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class costumers extends AppCompatActivity {
     buttons to the activity intended for them
      */
     public void openWhatToCook() {
-        Intent intent = new Intent(this, whatToCook.class);
+        Intent intent = new Intent(this, insertRecipe.class);
         startActivity(intent);
     }
 
@@ -55,7 +56,7 @@ public class costumers extends AppCompatActivity {
     }
 
     public void openRecipes() {
-        Intent intent = new Intent(this, recipes.class);
+        Intent intent = new Intent(this, get_recipes.class);
         startActivity(intent);
     }
     @Override
