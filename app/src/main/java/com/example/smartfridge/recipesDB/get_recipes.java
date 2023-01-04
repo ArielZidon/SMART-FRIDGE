@@ -78,15 +78,9 @@ public class get_recipes extends AppCompatActivity {
          */
         keys.clear();
         giveMeKeys(keys);
-//        Log.d(TAG, "SIZE DATA: " + keys.size());//for test only
+
         for (int i = 0; i < keys.size(); i++) {
                     Log.d(TAG, "onClick: " + keys.get(i).toString());
-//            if(keys.get(i).contains("eggs,tomatoes,garlic,onion\n")){
-//                Log.d(TAG, "onClick: --------------------yes!! capara /n-------------------");
-//            }
-//            if(keys.get(i).contains("eggs,tomatoes,garlic,onion")){
-//                Log.d(TAG, "onClick: --------------------yes!! capara-------------------");
-//            }
         }
         if (keys.size() == 0) //if we dont have enough products, dont make the search
         {
@@ -112,6 +106,8 @@ public class get_recipes extends AppCompatActivity {
                 });
             }
         }
+        Intent intent = new Intent(this, recipes_wind.class);
+        startActivity(intent);
     }
 
     private void addCard(DocumentSnapshot document) {
