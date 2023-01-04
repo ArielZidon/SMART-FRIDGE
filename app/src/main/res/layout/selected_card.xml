@@ -9,11 +9,10 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/edit_color_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/meat_color"
-            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/selected_card"
+            app:cardCornerRadius="15dp"
             android:layout_marginTop="2dp"
             app:cardElevation="10dp">
             <RelativeLayout

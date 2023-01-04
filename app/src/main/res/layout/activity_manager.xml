@@ -8,7 +8,7 @@
     android:foregroundTint="#EC3A3A"
     android:orientation="vertical"
     android:background="@drawable/background2"
-    tools:context=".costumer.costumers">
+    tools:context=".ui.main.MainMenu">
 
     <LinearLayout
         android:id="@+id/category"
