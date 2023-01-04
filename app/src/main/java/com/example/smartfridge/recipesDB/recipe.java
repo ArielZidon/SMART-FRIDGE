@@ -1,6 +1,4 @@
-package com.example.smartfridge;
-
-import android.provider.MediaStore;
+package com.example.smartfridge.recipesDB;
 
 public class recipe {
 

@@ -9,7 +9,7 @@ import com.example.smartfridge.R;
 import java.util.ArrayList;
 
 public class recipesManage extends AppCompatActivity {
-    ArrayList<recipe> recipes = new ArrayList<>();
+    ArrayList<admin_recipe> recipes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

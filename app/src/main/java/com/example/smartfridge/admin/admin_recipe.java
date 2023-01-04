@@ -2,14 +2,14 @@ package com.example.smartfridge.admin;
 
 import java.util.ArrayList;
 
-public class recipe {
+public class admin_recipe {
     String name;
     ArrayList<String>listOfItem;
     String ingredients;
     String order;
     String preparingTime;
 
-    public recipe(String name, String ingredients, String order, String preparingTime) {
+    public admin_recipe(String name, String ingredients, String order, String preparingTime) {
         this.name = name;
         this.listOfItem = new ArrayList<>();
         this.ingredients = ingredients;
