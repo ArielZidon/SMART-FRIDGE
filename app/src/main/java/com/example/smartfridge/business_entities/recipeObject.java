@@ -1,20 +1,27 @@
-package com.example.smartfridge.business_entities;
+package com.example.smartfridge;
 
-public class recipeObject {
+import android.provider.MediaStore;
+
+public class recipe {
 
     private String RecipeName;
+    private String RecipeIngredientsTitle;
     private String RecipeIngredients;
     private String RecipeMethodTitle;
     private String Recipe;
-    private String Time;
+    private String RecipeTime;
+    private int Thumbnail;
 
-    public recipeObject(String name, String recipeIngredients, String recipeMethodTitle, String recipe, String Time){
 
-        RecipeName = name;
+    public recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe, int thumbnail){
+
+        RecipeName = recipeName;
+        RecipeTime = recipeTime;
+        RecipeIngredientsTitle = "Ingredients:";
         RecipeIngredients = recipeIngredients;
-        RecipeMethodTitle = recipeMethodTitle;
+        RecipeMethodTitle = "Method:";
         Recipe = recipe;
-        Time = Time;
+        Thumbnail = thumbnail;
 
     }
 
@@ -22,6 +29,11 @@ public class recipeObject {
 
         return RecipeName;
     }
+
+    public String getRecipeIngredientsTitle(){
+        return RecipeIngredientsTitle;
+    }
+
     public String getRecipeIngredients(){
         return RecipeIngredients;
     }
@@ -35,7 +47,11 @@ public class recipeObject {
     }
 
     public String getTime(){
-        return Time;
+        return RecipeTime;
+    }
+
+    public int getThumbnail(){
+        return Thumbnail;
     }
 
 }

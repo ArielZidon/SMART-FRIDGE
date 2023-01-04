@@ -54,6 +54,10 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
+    public void openRecipeWind() {
+        Intent intent = new Intent(this, com.example.smartfridge.recipes_wind.class);
+        startActivity(intent);
+    }
 
     public void openRecipes() {
         Intent intent = new Intent(this, get_recipes.class);
