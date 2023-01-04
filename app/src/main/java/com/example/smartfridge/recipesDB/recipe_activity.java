@@ -35,9 +35,5 @@ public class recipe_activity extends AppCompatActivity {
         mRecipeMethodTitle.setText(method);
         mRecipe.setText(recipe);
 
-
-
-
-
     }
 }

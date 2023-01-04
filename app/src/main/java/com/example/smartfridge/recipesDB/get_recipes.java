@@ -1,8 +1,10 @@
 package com.example.smartfridge.recipesDB;
 
 import static android.content.ContentValues.TAG;
-import static com.example.smartfridge.SortProducts.giveMeKeys;
-import static com.example.smartfridge.SortProducts.mixCombination;
+
+
+import static com.example.smartfridge.business_logic.SortProducts.giveMeKeys;
+import static com.example.smartfridge.business_logic.SortProducts.mixCombination;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
-import com.example.smartfridge.SortProducts;
+import com.example.smartfridge.business_logic.SortProducts;
 import com.example.smartfridge.ui.main.MainMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -116,7 +118,10 @@ public class get_recipes extends AppCompatActivity {
     }
 
     private void CreateRecipes() {
-        SortProducts.getKeys().clear();
+        if (!SortProducts.getKeys().isEmpty())
+            SortProducts.getKeys().clear();
+
+        boolean notEmpty = false;
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
 
@@ -124,44 +129,53 @@ public class get_recipes extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
         ArrayList<ModelClass> arrayList_all = gson.fromJson(json, type);
 
-       ArrayList<ModelClass> arrayList_temp = new ArrayList<>();
+        if (gson.fromJson(json, type) != null)
+            notEmpty = true;
+
+        ArrayList<ModelClass> arrayList_temp = new ArrayList<>();
         json = sharedPreferences.getString("Item_Data_milky", null);
         if (json != null){
             arrayList_temp = gson.fromJson(json, type);
             arrayList_all.addAll(arrayList_temp);
+            notEmpty = true;
         }
 
         json = sharedPreferences.getString("Item_Data_vege", null);
         if (json != null) {
             arrayList_temp = gson.fromJson(json, type);
             arrayList_all.addAll(arrayList_temp);
+            notEmpty = true;
         }
 
         json = sharedPreferences.getString("Item_Data_Dry", null);
         if (json != null) {
             arrayList_temp = gson.fromJson(json, type);
             arrayList_all.addAll(arrayList_temp);
+            notEmpty = true;
         }
 
-        String[] products = new String[arrayList_all.size()];
-        if (products.length!=0) {
-            for (int i = 0; i < products.length; i++) {
-                products[i] = arrayList_all.get(i).getItemName();
+        if (notEmpty)
+        {
+            String[] products = new String[arrayList_all.size()];
+            if (products.length > 3) {
+                for (int i = 0; i < products.length; i++) {
+                    products[i] = arrayList_all.get(i).getItemName();
 //                Log.d(TAG, "createRecipes: " + products[i]);
+                }
             }
-        }
 
-        boolean algo_has_been_activated = false;
-        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipeObject.
-            if (products.length >= i)
-            {
-                mixCombination(products, products.length, i);
-                algo_has_been_activated = true;
+            boolean algo_has_been_activated = false;
+            for (int i = 3; i < 5; i++) { //try to find out if we got enough products to get a recipe.
+                if (products.length >= i) {
+                    mixCombination(products, products.length, i);
+                    algo_has_been_activated = true;
+                }
             }
+            if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
+                Toast.makeText(get_recipes.this, "There is not enough products to create a recipe!", Toast.LENGTH_LONG).show();
         }
-        if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
-            Toast.makeText(get_recipes.this,"There is not enough products to create a recipeObject!",Toast.LENGTH_LONG).show();
-
+        else
+            Toast.makeText(get_recipes.this, "There is not products at all to create a recipe!", Toast.LENGTH_LONG).show();
     }
 
     @Override

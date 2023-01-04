@@ -112,5 +112,3 @@ public class insertRecipe extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
-

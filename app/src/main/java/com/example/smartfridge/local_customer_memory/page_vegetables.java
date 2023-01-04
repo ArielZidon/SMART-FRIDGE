@@ -1,4 +1,4 @@
-package com.example.smartfridge.costumer;
+package com.example.smartfridge.local_customer_memory;
 
 
 import android.annotation.SuppressLint;
@@ -17,8 +17,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
+import com.example.smartfridge.business_entities.ModelClass;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -87,17 +88,17 @@ public class page_vegetables extends AppCompatActivity implements category {
         });
     }
     public void homePage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
     public void beckPage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_milky.class);
+        Intent intent = new Intent(this, page_milky.class);
         startActivity(intent);
     }
 
     public void nextPage() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_cleaning_materials.class);
+        Intent intent = new Intent(this, page_cleaning_materials.class);
         startActivity(intent);
     }
 
@@ -223,7 +224,7 @@ public class page_vegetables extends AppCompatActivity implements category {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
+        Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);
     }
 }

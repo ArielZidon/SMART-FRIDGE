@@ -41,10 +41,10 @@ public class IngredientsLists {
     }
 
     //clear arraylists
-    static void clearIngredients(){
+    public static void clearIngredients(){
         inArrayList.clear();
     }
-    static void clearNames(){
+    public static void clearNames(){
         namesArrayList.clear();
     }
 }

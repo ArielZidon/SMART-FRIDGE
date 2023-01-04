@@ -1,4 +1,4 @@
-package com.example.smartfridge;
+package com.example.smartfridge.business_logic;
 
 import java.util.ArrayList;
 import java.util.Arrays;

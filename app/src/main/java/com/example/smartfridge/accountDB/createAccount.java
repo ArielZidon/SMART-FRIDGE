@@ -1,6 +1,4 @@
 package com.example.smartfridge.accountDB;
-
-
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
@@ -14,12 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartfridge.R;
+import com.example.smartfridge.admin.adminView;
 import com.example.smartfridge.ui.main.MainActivity;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.smartfridge.ui.main.MainMenu;
+
 
 public class createAccount extends AppCompatActivity {
 
@@ -66,11 +67,11 @@ public class createAccount extends AppCompatActivity {
             public void onClick(View view) {
                 //base terms to create a new account.
                 if (email.getText().toString().equals("") || password.getText().toString().length() < 5
-                || user.getText().toString().equals("") || name.getText().toString().equals("")) {
+                        || user.getText().toString().equals("") || name.getText().toString().equals("")) {
                     Toast.makeText(createAccount.this, "filled", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if(user.getText().toString().equals("customer")){
+                    if(user.getText().toString().equals("costumer")){
                         String collection = "costumer_accounts";
                         //this commend open a Document from our firestore cloud collection by a string collection path and document path.
                         //if the Document does not exist it will create the document as the path name.
@@ -135,6 +136,7 @@ public class createAccount extends AppCompatActivity {
                                         info.put("Uid",auth.getCurrentUser().getUid());
                                         managers_DB.document(email.getText().toString()).set(info);
                                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_LONG).show();
+                                        openManagers();
                                     }
                                 }
                                 else {
@@ -165,9 +167,9 @@ public class createAccount extends AppCompatActivity {
                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
 //                    Toast.makeText(createAccount.this, "Authentication failed.",
 //                            Toast.LENGTH_SHORT).show();
-                    }
                 }
-            });
+            }
+        });
     }
 
     public void  openCostumers(){
@@ -175,11 +177,13 @@ public class createAccount extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void  openManagers(){
+        Intent intent = new Intent(this, adminView.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
 }
-
+}

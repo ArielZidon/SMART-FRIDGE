@@ -2,8 +2,8 @@ package com.example.smartfridge.local_customer_memory;
 
 import android.view.Menu;
 
-public interface category {
-
+public interface category
+{
     void loadData();
     void homePage();
     void onBackPressed();
@@ -12,6 +12,4 @@ public interface category {
     void buildDialog();
     void saveData(String name, String count);
     void nextPage();
-
-
 }

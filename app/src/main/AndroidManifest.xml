@@ -13,7 +13,21 @@
         android:theme="@style/Theme.SmartFRIDGE"
         tools:targetApi="31" >
         <activity
-            android:name=".forgot_password"
+            android:name=".local_customer_memory.my_category"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".local_customer_memory.full_view"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".accountDB.forgot_password"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
@@ -99,13 +113,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".myShoppingList"
-            android:exported="false" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".accountDB.createAccount"
             android:exported="false" >
             <meta-data
@@ -114,6 +121,13 @@
         </activity>
         <activity
             android:name=".recipesDB.insertRecipe"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".recipesDB.add_Ingredients"
             android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"

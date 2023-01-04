@@ -1,18 +1,30 @@
 package com.example.smartfridge.accountDB;
 
+import static android.content.ContentValues.TAG;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.smartfridge.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
+import java.util.Random;
 
 public class forgot_password extends AppCompatActivity {
 
@@ -38,34 +50,34 @@ public class forgot_password extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String to = email.getText().toString();
-                String subject = "verification code";
-                String message = "";
-                int max = 9;
-                int min = 0;
-                int range = max - min + 1;
+//                String to = email.getText().toString();
+//                String subject = "verification code";
+//                String message = "";
+//                int max = 9;
+//                int min = 0;
+//                int range = max - min + 1;
+//
+//                // generate random numbers within 1 to 10
+//                for (int i = 0; i < 6; i++) {
+//                    int rand = (int) (Math.random() * range) + 1;
+//                    String temp = String.valueOf(rand);
+//                    message.concat(temp);
+//                }
+//
+//                Intent email_s = new Intent(Intent.ACTION_SEND);
+//                email_s.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
+//                email_s.putExtra(Intent.EXTRA_SUBJECT, subject);
+//                email_s.putExtra(Intent.EXTRA_TEXT, message);
+//
+//                //need this to prompts email client only
+//                email_s.setType("message/rfc822");
+//
+//                startActivity(Intent.createChooser(email_s, "Your verification code is : " + message));
 
-                // generate random numbers within 1 to 10
-                for (int i = 0; i < 6; i++) {
-                    int rand = (int) (Math.random() * range) + 1;
-                    String temp = String.valueOf(rand);
-                    message.concat(temp);
-                }
-
-                Intent email_s = new Intent(Intent.ACTION_SEND);
-                email_s.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
-                email_s.putExtra(Intent.EXTRA_SUBJECT, subject);
-                email_s.putExtra(Intent.EXTRA_TEXT, message);
-
-                //need this to prompts email client only
-                email_s.setType("message/rfc822");
-
-                startActivity(Intent.createChooser(email_s, "Your verification code is : " + message));
-
-                //***need to send a code to user and verify the code***
+                //**need to send a code to user and verify the code**
                 //***random 6 number between 0-9 send to an email or a sms.
-                if (auth.getCurrentUser().isEmailVerified()) {
-                    //open wind new password
+//                if (auth.getCurrentUser().isEmailVerified()) {
+                //open wind new password
 //                    if (code.getText().toString().equals(message)) {
 //
 //                        //                    auth.getCurrentUser().updatePassword(password.getText().toString());
@@ -92,14 +104,13 @@ public class forgot_password extends AppCompatActivity {
 //                    }
 
 
-                }
+//                }
 
             }
-        });
+     });
 
 
 
 
-    }
 }
-
+}
