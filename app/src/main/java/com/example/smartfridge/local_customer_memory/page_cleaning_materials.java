@@ -1,4 +1,4 @@
-package com.example.smartfridge.local_customer_memory;
+package com.example.smartfridge.costumer;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -16,16 +16,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.business_entities.ModelClass;
+import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
-import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class page_cleaning_materials extends AppCompatActivity implements category {
+public class page_cleaning_materials extends AppCompatActivity implements category{
     AlertDialog dialog;
     LinearLayout layout;
     EditText name;
@@ -57,7 +56,7 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDryFood();
+                nextPage();
             }
         });
 
@@ -78,7 +77,7 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
             }
         });
 
-        /* Button to return home customer */
+        /* Button to return home costumer */
         home = (ImageButton) findViewById(R.id.bt_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,52 +88,17 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
     }
 
     public void homePage() {
-        Intent intent = new Intent(this, MainMenu.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
 
     public void beckPage() {
-        Intent intent = new Intent(this, page_vegetables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_vegetables.class);
         startActivity(intent);
     }
 
-    @Override
-    public void openMeat() {
-
-    }
-
-    @Override
-    public void openMilaky() {
-
-    }
-
-    @Override
-    public void openVegetables() {
-
-    }
-
-    @Override
-    public void openClean() {
-
-    }
-
-    @Override
-    public void loadName() {
-
-    }
-
-    @Override
-    public void saveName(String str) {
-
-    }
-
-    @Override
-    public void buildRename() {
-
-    }
-
-    public void openDryFood() {
-        Intent intent = new Intent(this, page_dryFood.class);
+    public void nextPage() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_dryFood.class);
         startActivity(intent);
     }
 
@@ -257,7 +221,7 @@ public class page_cleaning_materials extends AppCompatActivity implements catego
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShoppingTables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
         startActivity(intent);
     }
 }

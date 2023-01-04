@@ -1,4 +1,4 @@
-package com.example.smartfridge.local_customer_memory;
+package com.example.smartfridge.costumer;
 
 
 import android.annotation.SuppressLint;
@@ -17,9 +17,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.business_entities.ModelClass;
+import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
-import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -57,7 +56,7 @@ public class page_vegetables extends AppCompatActivity implements category {
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openClean();
+                nextPage();
             }
         });
 
@@ -78,7 +77,7 @@ public class page_vegetables extends AppCompatActivity implements category {
             }
         });
 
-        /* Button to return home customer */
+        /* Button to return home costumer */
         home = (ImageButton) findViewById(R.id.bt_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,42 +87,18 @@ public class page_vegetables extends AppCompatActivity implements category {
         });
     }
     public void homePage() {
-        Intent intent = new Intent(this, MainMenu.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
 
     public void beckPage() {
-        Intent intent = new Intent(this, page_milky.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_milky.class);
         startActivity(intent);
     }
 
-    @Override
-    public void openMeat() {}
-
-    @Override
-    public void openMilaky() {}
-
-    @Override
-    public void openVegetables() {}
-
-    public void openClean() {
-        Intent intent = new Intent(this, page_cleaning_materials.class);
+    public void nextPage() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_cleaning_materials.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void loadName() {
-
-    }
-
-    @Override
-    public void saveName(String str) {
-
-    }
-
-    @Override
-    public void buildRename() {
-
     }
 
     /**
@@ -165,9 +140,6 @@ public class page_vegetables extends AppCompatActivity implements category {
         tvSize.setText("My Vegetables List \n");
         addCard(name, count);
     }
-
-    @Override
-    public void openDryFood() {}
 
     /**
      * create a view dialog between the customers on use to adds items
@@ -251,7 +223,7 @@ public class page_vegetables extends AppCompatActivity implements category {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShoppingTables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
         startActivity(intent);
     }
 }
