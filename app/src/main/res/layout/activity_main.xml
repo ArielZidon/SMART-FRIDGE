@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/imagelogo"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:background="@drawable/my_sh_list" />
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="0dp"
+        android:layout_margin="100dp"
+        android:gravity="center"/>
 
-    <Button
-        android:id="@+id/WhatToCook"
-        android:layout_width="286dp"
-        android:layout_height="142dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@id/signupbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/textView"
-        android:layout_marginTop="-706dp"
-        android:text="UPLOAD RECIPES"
-        android:textSize="35sp" />
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="250dp"
+        android:backgroundTint="@color/black"
+        android:text="                    SIGN UP                   " />
 
-    <Button
-        android:id="@+id/MyShoppingList"
-        android:layout_width="277dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@id/signinbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signupbtn"
         android:layout_centerHorizontal="true"
-        android:layout_height="107dp"
-        android:layout_below="@id/textView"
-        android:layout_marginTop="-480dp"
-        android:text="MY SHOPPING LIST"
-        android:textSize="35sp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/black"
+        android:text="                     LOGIN                      " />
 
-    <Button
-        android:id="@+id/Recipes"
-        android:layout_width="274dp"
-        android:layout_height="132dp"
-        android:layout_below="@id/textView"
+    <com.google.android.material.button.MaterialButton
+        android:id="@id/mamagebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signinbtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-287dp"
-        android:text="RECIPES"
-        android:textSize="35sp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/black"
+        android:text="               MANAGEMENT               " />
+
 
 </RelativeLayout>
