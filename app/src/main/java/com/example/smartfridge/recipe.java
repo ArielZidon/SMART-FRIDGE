@@ -5,19 +5,21 @@ import android.provider.MediaStore;
 public class recipe {
 
     private String RecipeName;
+    private String RecipeIngredientsTitle;
     private String RecipeIngredients;
     private String RecipeMethodTitle;
     private String Recipe;
-    private String Time;
+    private String RecipeTime;
     private int Thumbnail;
 
 
-    public recipe(String name, String Time , String recipeIngredients, String recipeMethodTitle,String recipe, int thumbnail){
+    public recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe, int thumbnail){
 
-        RecipeName = name;
-        Time = Time;
+        RecipeName = recipeName;
+        RecipeTime = recipeTime;
+        RecipeIngredientsTitle = "Ingredients:";
         RecipeIngredients = recipeIngredients;
-        RecipeMethodTitle = recipeMethodTitle;
+        RecipeMethodTitle = "Method:";
         Recipe = recipe;
         Thumbnail = thumbnail;
 
@@ -27,6 +29,11 @@ public class recipe {
 
         return RecipeName;
     }
+
+    public String getRecipeIngredientsTitle(){
+        return RecipeIngredientsTitle;
+    }
+
     public String getRecipeIngredients(){
         return RecipeIngredients;
     }
@@ -40,7 +47,7 @@ public class recipe {
     }
 
     public String getTime(){
-        return Time;
+        return RecipeTime;
     }
 
     public int getThumbnail(){

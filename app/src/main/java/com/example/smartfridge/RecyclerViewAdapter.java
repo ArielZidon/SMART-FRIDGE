@@ -1,8 +1,11 @@
 package com.example.smartfridge;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Intent intent = new Intent(mContext,recipe_activity.class);
 
                 intent.putExtra("RecipeName",lisrecipe.get(i).getRecipeName());
-                intent.putExtra("Time",lisrecipe.get(i).getTime());
+                intent.putExtra("Time","Time: " + lisrecipe.get(i).getTime());
+                intent.putExtra("RecipeIngredientsTitle",lisrecipe.get(i).getRecipeIngredientsTitle());
                 intent.putExtra("RecipeIngredients",lisrecipe.get(i).getRecipeIngredients());
                 intent.putExtra("RecipeMethodTitle",lisrecipe.get(i).getRecipeMethodTitle());
                 intent.putExtra("Recipe",lisrecipe.get(i).getRecipe());
@@ -69,8 +73,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            recipeTitle = (TextView) itemView.findViewById(R.id.text_recipe);
+            recipeTitle = (TextView) itemView.findViewById(R.id.recipe_text);
+            img = (ImageView)itemView.findViewById(R.id.recipe_img_id);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
+
         }
     }
 }

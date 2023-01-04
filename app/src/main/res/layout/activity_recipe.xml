@@ -24,7 +24,25 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/text_recipe"
                 android:layout_marginTop="10dp"
-                android:text="@string/recipeName"
+                android:text="recipeName"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/time"
+                android:layout_marginTop="10dp"
+                android:text="Time"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ingredients_title"
+                android:layout_marginTop="10dp"
+                android:text="Ingredients"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 />
@@ -35,24 +53,15 @@
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:text="@string/ingredients"
+                android:text="ingredients"
 
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/time"
-                android:layout_marginTop="10dp"
-                android:text="@string/Time"
-                android:textSize="21sp"
-                android:textStyle="bold"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/method"
                 android:layout_marginTop="10dp"
-                android:text="@string/recipeName"
+                android:text="method"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 />
@@ -63,7 +72,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:text="@string/recipe"
+                android:text="recipe"
 
                 />
 
