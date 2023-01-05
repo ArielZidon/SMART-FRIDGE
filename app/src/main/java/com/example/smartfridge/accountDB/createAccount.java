@@ -103,6 +103,7 @@ public class createAccount extends AppCompatActivity {
                                         //insert map into database by a document path.
                                         costumers_DB.document(email.getText().toString()).set(info);
                                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_LONG).show();
+                                        Auto_login(email,password);
                                         openCostumers();
                                     }
                                 }
@@ -136,6 +137,7 @@ public class createAccount extends AppCompatActivity {
                                         info.put("Uid",auth.getCurrentUser().getUid());
                                         managers_DB.document(email.getText().toString()).set(info);
                                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_LONG).show();
+                                        Auto_login(email,password);
                                         openManagers();
                                     }
                                 }
@@ -171,6 +173,27 @@ public class createAccount extends AppCompatActivity {
             }
         });
     }
+
+    public void Auto_login (TextView email,TextView password) {
+        if (auth.getCurrentUser() == null) {
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(createAccount.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmailAndPassword:success");
+                                auth.getCurrentUser().sendEmailVerification();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
+                            }
+                        }
+                    });
+        }
+    }
+
+
 
     public void  openCostumers(){
         Intent intent = new Intent(this, MainMenu.class);
