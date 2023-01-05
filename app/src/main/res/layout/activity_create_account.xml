@@ -91,13 +91,51 @@
         android:textColorHint="@color/white" />
 
 
+    <FrameLayout
+        android:id="@+id/usertest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#30ffffff"
+        android:drawableLeft="@drawable/ic_baseline_key_24"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_team"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:outlineAmbientShadowColor="@color/white"
+            android:outlineSpotShadowColor="@color/white"
+            android:textColor="@color/white">
+        </androidx.appcompat.widget.AppCompatSpinner>
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/ic_baseline_key_24"
+            >
+
+        </ImageView>
+
+    </FrameLayout>
+
+
 
 
         <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@id/createbtn"
-        android:layout_below="@+id/user"
+        android:layout_below="@+id/usertest"
         android:text="CREATE ACCOUNT"
         android:backgroundTint="#EC8B1A"
         android:layout_centerHorizontal="true"

@@ -3,11 +3,13 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -35,6 +39,7 @@ public class createAccount extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
+    private List<String> teamList = new ArrayList<>();
 
 
     @Override
@@ -60,11 +65,20 @@ public class createAccount extends AppCompatActivity {
         TextView user = (TextView) findViewById(R.id.user);
 
 
+        teamList.add("Customer");
+        teamList.add("Manager");
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamList);
+        AppCompatSpinner spinnerTeam = (AppCompatSpinner) findViewById(R.id.spinner_team);
+        spinnerTeam.setAdapter(arrayAdapter);
+
+
+
         MaterialButton createbtn = (MaterialButton) findViewById(R.id.createbtn);
 
         createbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: -----------------------"+ spinnerTeam.getSelectedItem().toString()+"---------------------");
                 //base terms to create a new account.
                 if (email.getText().toString().equals("") || password.getText().toString().length() < 5
                         || user.getText().toString().equals("") || name.getText().toString().equals("")) {
