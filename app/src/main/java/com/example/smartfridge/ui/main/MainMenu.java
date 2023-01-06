@@ -12,6 +12,7 @@ import com.example.smartfridge.business_logic.getOut;
 import com.example.smartfridge.recipesDB.get_recipes;
 import com.example.smartfridge.local_customer_memory.ShoppingTables;
 import com.example.smartfridge.recipesDB.insertRecipe;
+import com.example.smartfridge.recipesDB.insert_recipe;
 import com.example.smartfridge.recipesDB.recipes_wind;
 
 public class MainMenu extends AppCompatActivity {
@@ -47,7 +48,7 @@ public class MainMenu extends AppCompatActivity {
     buttons to the activity intended for them
      */
     public void openWhatToCook() {
-        Intent intent = new Intent(this, insertRecipe.class);
+        Intent intent = new Intent(this, insert_recipe.class);
         startActivity(intent);
     }
 

@@ -87,7 +87,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/img_gallery"
         android:text=" Ingredients :"
         android:textColor="@color/white"
@@ -97,19 +97,31 @@
 
     </TextView>
 
-    <LinearLayout
-        android:id="@+id/layout_list"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_height="190dp"
+        android:scrollbars="none"
+        android:layout_below="@+id/ingredients"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:id="@+id/layout_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/ingredients"
+            android:layout_margin="10dp"
+            ></LinearLayout>
+
+    </ScrollView>
+
 
     <Button
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/ingredients"
+        android:layout_below="@+id/scrollView"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="-281dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="Add"
@@ -118,9 +130,9 @@
 
     <Button
         android:id="@+id/button_submit_list"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:text="Submit List"
+        android:text="Submit"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -129,6 +141,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_below="@+id/button_add"
+        android:layout_margin="10dp"
         ></Button>
 
 </RelativeLayout>

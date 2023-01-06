@@ -78,7 +78,7 @@ public class createAccount extends AppCompatActivity {
         createbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: -----------------------"+ spinnerTeam.getSelectedItem().toString()+"---------------------");
+//                Log.d(TAG, "onClick: -----------------------"+ spinnerTeam.getSelectedItem().toString()+"---------------------");
                 //base terms to create a new account.
                 if (email.getText().toString().equals("") || password.getText().toString().length() < 5
                         || user.getText().toString().equals("") || name.getText().toString().equals("")) {
