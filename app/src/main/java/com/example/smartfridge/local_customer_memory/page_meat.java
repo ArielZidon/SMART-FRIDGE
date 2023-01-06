@@ -1,4 +1,4 @@
-package com.example.smartfridge.local_customer_memory;
+package com.example.smartfridge.costumer;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -16,9 +16,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.business_entities.ModelClass;
+import com.example.smartfridge.ModelClass;
 import com.example.smartfridge.R;
-import com.example.smartfridge.ui.main.MainMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -56,7 +55,7 @@ public class page_meat extends AppCompatActivity implements category {
         nextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMilaky();
+                nextPage();
             }
         });
 
@@ -77,7 +76,7 @@ public class page_meat extends AppCompatActivity implements category {
             }
         });
 
-        /* Button to return home customer */
+        /* Button to return home costumer */
         home = (ImageButton) findViewById(R.id.bt_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,32 +87,20 @@ public class page_meat extends AppCompatActivity implements category {
     }
 
     public void homePage() {
-        Intent intent = new Intent(this, MainMenu.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.costumers.class);
         startActivity(intent);
     }
 
     public void beckPage() {
-        Intent intent = new Intent(this, page_dryFood.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_dryFood.class);
         startActivity(intent);
     }
 
-    @Override
-    public void openMeat() {}
-
-    public void openMilaky() {
-        Intent intent = new Intent(this, page_milky.class);
+    public void nextPage() {
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.page_milky.class);
         startActivity(intent);
     }
 
-    @Override
-    public void openVegetables() {
-
-    }
-
-    @Override
-    public void openClean() {
-
-    }
 
     /**
      * Upload items form sharedPreferences
@@ -152,9 +139,6 @@ public class page_meat extends AppCompatActivity implements category {
         editor.apply();
         addCard(name, count);
     }
-
-    @Override
-    public void openDryFood() {}
 
     /**
      * create a view dialog between the customers on user to adds items
@@ -238,7 +222,7 @@ public class page_meat extends AppCompatActivity implements category {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, ShoppingTables.class);
+        Intent intent = new Intent(this, com.example.smartfridge.costumer.ShoppingTables.class);
         startActivity(intent);
     }
 }
