@@ -78,7 +78,7 @@ public class insert_recipe extends AppCompatActivity {
         });
 
         layoutList.addView(cricketerView);
-        insert_ingredient(ingredient,quantity);
+//        insert_ingredient(ingredient,quantity);
 
     }
 
