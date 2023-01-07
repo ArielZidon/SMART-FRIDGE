@@ -1,10 +1,14 @@
 package com.example.smartfridge.recipesDB;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,13 +18,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartfridge.R;
+
 import com.example.smartfridge.ui.main.MainMenu;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class insert_recipe extends AppCompatActivity {
+
+    private FirebaseFirestore firestore;
 
     private int IMAGE;
     ImageView imgGallery;
@@ -34,6 +53,11 @@ public class insert_recipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_recipe);
+
+        firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
+
+        //CollectionReference object - open a database collection (if exist - open, else - create & open )
+        CollectionReference recipe_DB = firestore.collection("recipe_DB");
 
         TextView recipe_name = (TextView) findViewById(R.id.recipe_name);
         TextView recipe_time = (TextView) findViewById(R.id.recipe_time);
@@ -58,26 +82,45 @@ public class insert_recipe extends AppCompatActivity {
         submit_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkIfValidAndRead();
-//                if(checkIfValidAndRead()){
-////                    Intent intent = new Intent(insert_recipe.this,ingredient_recycler.class);
-////                    Bundle bundle = new Bundle();
-////                    bundle.putSerializable("list",ingredients_List);
-////                    intent.putExtras(bundle);
-////                    startActivity(intent);
-//                }
-                for (int i = 0; i < ingredients_List.size(); i++) {
-                    insert_ingredients(ingredients_List.get(i).getIngredientName(),ingredients_List.get(i).getQuantity());
+
+                if(checkIfValidAndRead()){
+                    for (int i = 0; i < ingredients_List.size(); i++) {
+                        insert_ingredients(ingredients_List.get(i).getIngredientName(),ingredients_List.get(i).getQuantity());
+                    }
+                    if (ingredients != null) {
+
+
+                        DocumentReference docRef = firestore.collection("recipe_DB").document(ingredients);
+                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "onComplete: --------------------open--------------------- ");
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        //if document exists we wont create it again to prevent duplicate.
+                                        Toast.makeText(insert_recipe.this, "This This recipe exists - add of change ingredient", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Map<String, Object> new_recipe = new HashMap<>();
+                                        new_recipe.put("recipeName",recipe_name.getText().toString());
+                                        new_recipe.put("recipeTime",recipe_time.getText().toString());
+                                        new_recipe.put("recipeIngredients",ingredients);
+                                        new_recipe.put("recipe",recipe_instructions.getText().toString());
+                                        new_recipe.put("status","Unapproved recipe");
+
+                                        Toast.makeText(insert_recipe.this,"Your RECIPE sent to admin!",Toast.LENGTH_LONG).show();
+                                        recipe_DB.document(ingredients).set(new_recipe);
+                                        openMainMenu();
+                                    }
+                                }
+                            }
+                        });
+
+                    }
+
                 }
-                ArrayList<String> new_recipe = new ArrayList<>();
-                new_recipe.add(recipe_name.getText().toString());
-                new_recipe.add(recipe_time.getText().toString());
-                new_recipe.add(recipe_instructions.getText().toString());
-                new_recipe.add(ingredients);
-
-                Toast.makeText(insert_recipe.this,"Your RECIPE sent to admin!",Toast.LENGTH_LONG).show();
-
-                openMainMenu();
+                else {Toast.makeText(insert_recipe.this,"Unsuccessful!",Toast.LENGTH_LONG).show();}
 
                 //****need to send to database;
             }
@@ -93,6 +136,12 @@ public class insert_recipe extends AppCompatActivity {
                 Intent gallery = new Intent(Intent.ACTION_PICK);
                 gallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(gallery,IMAGE);
+
+                Toast.makeText(insert_recipe.this,"Your IMAGE is upload!",Toast.LENGTH_LONG).show();
+
+                ArrayList<Integer> recipe_image = new ArrayList<>();
+                recipe_image.add(IMAGE);
+
                 //***NEED INSERT IMAGE TO DATABASE
             }
         });
