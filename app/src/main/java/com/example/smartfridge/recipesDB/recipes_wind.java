@@ -34,7 +34,7 @@ public class recipes_wind extends AppCompatActivity {
     RecyclerView myrecyclerView;
     RecyclerViewAdapter myAdapter;
 
-    List<recipe> recipes1 = new ArrayList<recipe>();
+    static List<recipe> recipes1 = new ArrayList<recipe>();
     static List<recipe> recipes2 = new ArrayList<recipe>();
 
     Map<String, Object> recipe_map;
@@ -60,8 +60,10 @@ public class recipes_wind extends AppCompatActivity {
         keys.clear();
         giveMeKeys(keys);
         Log.d(TAG, "onCreate: &&&&&&&&&&&&&&&&&"+keys.size()+"&&&&&&&&&&&&&&&&&&&&&&&&&");
+
+
         for (int i = 0; i < keys.size(); i++) {
-            DocumentReference docRef = firestore.collection("recipe_DB").document("oil,onion,red chilli,tomato");
+            DocumentReference docRef = firestore.collection("recipe_DB").document(keys.get(i));
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -74,6 +76,19 @@ public class recipes_wind extends AppCompatActivity {
                                 , recipe_map.get("recipeIngredients").toString()
                                 , recipe_map.get("recipe").toString()
                                 , R.drawable.chicken_roll));
+
+                            myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
+
+                            myAdapter = new RecyclerViewAdapter(recipes_wind.this,recipes1);
+
+
+                            myrecyclerView.setLayoutManager(new GridLayoutManager(recipes_wind.this,1));
+
+
+                            myrecyclerView.setAdapter(myAdapter);
+
+
+
                             Log.d(TAG, "MAP: ************"+recipe_map.get("recipeName").toString()+"*************************************");
                             }
                             else {
@@ -83,18 +98,12 @@ public class recipes_wind extends AppCompatActivity {
                         else {
                             Log.d(TAG, "No such document");
                         }
-                        throwAll(recipes1);
-                    Log.d(TAG, "RECIPRE: ************"+recipes2.get(0).getRecipeIngredients()+"*************************************");
+
                     }
 
             });
-//        Log.d(TAG, "RECIPRE: ************"+recipes1.get(0).getRecipeIngredients()+"*************************************");
+            recipes1.clear();
        }
-
-
-
-
-
 
 
 
@@ -171,16 +180,16 @@ public class recipes_wind extends AppCompatActivity {
 //
 
 
-        myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
+//        myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
 
 
-        myAdapter = new RecyclerViewAdapter(this,recipes1);
-
-
-        myrecyclerView.setLayoutManager(new GridLayoutManager(this,1));
-
-
-        myrecyclerView.setAdapter(myAdapter);
+//        myAdapter = new RecyclerViewAdapter(this,recipes1);
+//
+//
+//        myrecyclerView.setLayoutManager(new GridLayoutManager(this,1));
+//
+//
+//        myrecyclerView.setAdapter(myAdapter);
 
 
     }
@@ -192,8 +201,8 @@ public class recipes_wind extends AppCompatActivity {
                 , recipe_map.get("recipe").toString()
                 , R.drawable.chicken_roll));
     }
-    public static void throwAll(List<recipe> recipes1) {
-        recipes2.add(recipes1.get(0));
-    }
+//    public static void throwAll(List<recipe> recipes1) {
+//        recipes2.add(recipes1.get(0));
+//    }
 
 }
