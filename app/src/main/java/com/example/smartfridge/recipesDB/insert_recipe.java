@@ -34,6 +34,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,9 +47,11 @@ public class insert_recipe extends AppCompatActivity {
     ImageView imgGallery;
     LinearLayout layoutList;
     Button add;
-    String ingredients = null;
     Button submit_list;
+    String recipe_ingredients = "";
+    String DocumentName = "";
     ArrayList<Ingredient> ingredients_List = new ArrayList<>();
+    Map<String, Object> new_recipe = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,42 +86,43 @@ public class insert_recipe extends AppCompatActivity {
         submit_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(checkIfValidAndRead()){
-                    for (int i = 0; i < ingredients_List.size(); i++) {
+                    recipe_ingredients = "";
+                    for (int i = 0; i <ingredients_List.size() ; i++) {
                         insert_ingredients(ingredients_List.get(i).getIngredientName(),ingredients_List.get(i).getQuantity());
                     }
-                    if (ingredients != null) {
 
+                    sort_ingredients();
+                    DocumentName = "";
+                    for (int i = 0; i < ingredients_List.size(); i++) {
+                        documentName(ingredients_List.get(i).getIngredientName());
+                    }
+                    Log.d(TAG, "onClick: ********************"+DocumentName+"******************");
+                    DocumentReference docRef = firestore.collection("recipe_DB").document(DocumentName);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    //if document exists we wont create it again to prevent duplicate.
+                                    Toast.makeText(insert_recipe.this, "This This recipe exists - add of change ingredient", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
 
-                        DocumentReference docRef = firestore.collection("recipe_DB").document(ingredients);
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "onComplete: --------------------open--------------------- ");
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        //if document exists we wont create it again to prevent duplicate.
-                                        Toast.makeText(insert_recipe.this, "This This recipe exists - add of change ingredient", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
-                                        Map<String, Object> new_recipe = new HashMap<>();
-                                        new_recipe.put("recipeName",recipe_name.getText().toString());
-                                        new_recipe.put("recipeTime",recipe_time.getText().toString());
-                                        new_recipe.put("recipeIngredients",ingredients);
-                                        new_recipe.put("recipe",recipe_instructions.getText().toString());
-                                        new_recipe.put("status","Unapproved recipe");
+                                    new_recipe.put("recipeName",recipe_name.getText().toString());
+                                    new_recipe.put("recipeTime",recipe_time.getText().toString());
+                                    new_recipe.put("recipeIngredients",recipe_ingredients);
+                                    new_recipe.put("recipe",recipe_instructions.getText().toString());
+                                    new_recipe.put("status","Unapproved recipe");
 
-                                        Toast.makeText(insert_recipe.this,"Your RECIPE sent to admin!",Toast.LENGTH_LONG).show();
-                                        recipe_DB.document(ingredients).set(new_recipe);
-                                        openMainMenu();
-                                    }
+                                    Toast.makeText(insert_recipe.this,"Your RECIPE sent to admin!",Toast.LENGTH_LONG).show();
+                                    recipe_DB.document(DocumentName).set(new_recipe);
+                                    openMainMenu();
                                 }
                             }
-                        });
-
-                    }
+                        }
+                    });
 
                 }
                 else {Toast.makeText(insert_recipe.this,"Unsuccessful!",Toast.LENGTH_LONG).show();}
@@ -139,8 +144,10 @@ public class insert_recipe extends AppCompatActivity {
 
                 Toast.makeText(insert_recipe.this,"Your IMAGE is upload!",Toast.LENGTH_LONG).show();
 
-                ArrayList<Integer> recipe_image = new ArrayList<>();
-                recipe_image.add(IMAGE);
+                new_recipe.put("image",IMAGE);
+
+//                ArrayList<Integer> recipe_image = new ArrayList<>();
+//                recipe_image.add(IMAGE);
 
                 //***NEED INSERT IMAGE TO DATABASE
             }
@@ -170,24 +177,23 @@ public class insert_recipe extends AppCompatActivity {
 
             if (!quantity.getText().toString().equals("")) {
                 Ingredient.setQuantity(quantity.getText().toString());
-
-                ingredients_List.add(Ingredient);
             }
             else {
                 result = false;
                 break;
             }
 
+            ingredients_List.add(Ingredient);
 
-            if (ingredients_List.size() == 0) {
-                result = false;
-                Toast.makeText(this, "Add Cricketers First!", Toast.LENGTH_SHORT).show();
-            }
+        }
 
-            else if(!result){
-                Toast.makeText(this, "Enter All Details Correctly!", Toast.LENGTH_SHORT).show();
-            }
+        if (ingredients_List.size() == 0) {
+            result = false;
+            Toast.makeText(this, "Add Cricketers First!", Toast.LENGTH_SHORT).show();
+        }
 
+        else if(!result){
+            Toast.makeText(this, "Enter All Details Correctly!", Toast.LENGTH_SHORT).show();
         }
         return result;
     }
@@ -213,16 +219,32 @@ public class insert_recipe extends AppCompatActivity {
 
     }
 
+    private void sort_ingredients(){
+        Collections.sort(ingredients_List, new Comparator<Ingredient>() {
+            @Override
+            public int compare(Ingredient s1, Ingredient s2) {
+                return s1.getIngredientName().compareToIgnoreCase(s2.getIngredientName());
+            }
+        });
+    }
+
     private void insert_ingredients(String ingredient,String quantity){
-        if (ingredients == null) {
-            ingredients = ingredient;
-            ingredients.concat(" " + quantity);
-            ingredients.concat("\n");
+        if (recipe_ingredients == "") {
+            recipe_ingredients = ingredient;
+            recipe_ingredients += (" " + quantity + "," + "\n");
         }
         else {
-            ingredients.concat(ingredient);
-            ingredients.concat(" " + quantity);
-            ingredients.concat("\n");
+            recipe_ingredients += ingredient;
+            recipe_ingredients += (" " + quantity + "," + "\n");
+        }
+    }
+
+    private void documentName (String ingredient){
+        if (DocumentName.equals("")) {
+            DocumentName = ingredient;
+        }
+        else {
+            DocumentName+=("," + ingredient);
         }
     }
 
