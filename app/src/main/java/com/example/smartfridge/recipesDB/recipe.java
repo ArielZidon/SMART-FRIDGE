@@ -1,5 +1,7 @@
 package com.example.smartfridge.recipesDB;
 
+import com.example.smartfridge.R;
+
 public class recipe {
 
     private String RecipeName;
@@ -22,6 +24,7 @@ public class recipe {
         Thumbnail = thumbnail;
 
     }
+
 
     public  String getRecipeName(){
 
