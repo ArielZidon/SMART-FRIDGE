@@ -1,29 +1,94 @@
 package com.example.smartfridge.recipesDB;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.smartfridge.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class recipes_wind extends AppCompatActivity {
+
+    private FirebaseFirestore firestore;
+
 
     RecyclerView myrecyclerView;
     RecyclerViewAdapter myAdapter;
 
     List<recipe> recipes1;
+    Map<String, Object> recipe_map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_wind);
 
+
+        firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
+
+        //CollectionReference object - open a database collection (if exist - open, else - create & open )
+        CollectionReference recipe_DB = firestore.collection("recipe_DB");
+
+//        recipe_map = new HashMap<>();
+//        recipe_map.put("recipeName",null);
+//        recipe_map.put("recipeTime",null);
+//        recipe_map.put("recipeIngredients",null);
+//        recipe_map.put("recipe",null);
+//        recipe_map.put("status",null);
+
         recipes1 = new ArrayList<recipe>();
+
+//        for (int i = 0; i < key in keys; i++) {
+//            DocumentReference docRef = firestore.collection("recipe_DB").document(key);
+//            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//                        if (document.exists()) {
+//                            recipe_map = document.getData();
+//                            if (recipe_map.get("image") == null) {
+//
+//                            }
+//                            recipes1.add(new recipe(recipe_map.get("recipeName").toString()
+//                                    ,recipe_map.get("recipeTime").toString()
+//                                    ,recipe_map.get("recipeIngredients").toString()
+//                                    ,recipe_map.get("recipe").toString()
+//                                    , (Integer) recipe_map.get("image")));
+//                            }
+//                            else {
+//                                Log.d(TAG, "document doesn't exist: no Result for  ");
+//                            }
+//                        }
+//                        else {
+//                            Log.d(TAG, "No such document");
+//                        }
+//                    }
+//            });
+//        }
+
+
+
+
+
+
         recipes1.add(new recipe("Chicken Roll","20 min","200 gm chopped into cubes chicken" +
                 "1 medium chopped tomato" +
                 "1/2 pinch red chilli powder" +
