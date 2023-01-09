@@ -2,9 +2,6 @@ package com.example.smartfridge.recipesDB;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,15 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.smartfridge.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartfridge.R;
 import com.example.smartfridge.ui.main.MainMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -121,6 +116,7 @@ public class insert_recipe extends AppCompatActivity {
                                     openMainMenu();
                                 }
                             }
+                            else Toast.makeText(insert_recipe.this,"sent to admin has failed!",Toast.LENGTH_LONG).show();
                         }
                     });
 

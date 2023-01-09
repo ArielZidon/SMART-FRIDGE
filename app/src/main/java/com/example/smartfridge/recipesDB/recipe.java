@@ -1,7 +1,5 @@
 package com.example.smartfridge.recipesDB;
 
-import com.example.smartfridge.R;
-
 public class recipe {
 
     private String RecipeName;
@@ -11,6 +9,7 @@ public class recipe {
     private String Recipe;
     private String RecipeTime;
     private int Thumbnail;
+    int flag;
 
 
     public recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe, int thumbnail){
@@ -22,7 +21,15 @@ public class recipe {
         RecipeMethodTitle = "Method:";
         Recipe = recipe;
         Thumbnail = thumbnail;
+    }
+    public recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe){
 
+        RecipeName = recipeName;
+        RecipeTime = recipeTime;
+        RecipeIngredientsTitle = "Ingredients:";
+        RecipeIngredients = recipeIngredients;
+        RecipeMethodTitle = "Method:";
+        Recipe = recipe;
     }
 
 

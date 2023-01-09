@@ -1,32 +1,19 @@
 package com.example.smartfridge.ui.main;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.smartfridge.R;
-import com.example.smartfridge.accountDB.createAccount;
-import com.example.smartfridge.admin.admin_user;
-import com.example.smartfridge.databinding.ActivityMainBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.button.MaterialButton;
-
+import com.example.smartfridge.R;
+import com.example.smartfridge.accountDB.createAccount;
 import com.example.smartfridge.accountDB.customer_user;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.example.smartfridge.admin.adminView;
+import com.example.smartfridge.databinding.ActivityMainBinding;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -105,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openManagement() {
-        Intent intent = new Intent(this, admin_user.class);
+        Intent intent = new Intent(this, adminView.class);
         startActivity(intent);
     }
 /*
