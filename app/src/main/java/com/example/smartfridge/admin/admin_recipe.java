@@ -9,27 +9,27 @@ public class admin_recipe {
     private String RecipeTime;
     private int Thumbnail;
     private Object key;
+    private String user;
 
-    public admin_recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe, int thumbnail,Object key){
+    public admin_recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe, int thumbnail,Object key,String user){
 
-        RecipeName = recipeName;
-        RecipeTime = recipeTime;
-        RecipeIngredientsTitle = "Ingredients:";
-        RecipeIngredients = recipeIngredients;
-        RecipeMethodTitle = "Method:";
-        Recipe = recipe;
-        Thumbnail = thumbnail;
+        this.RecipeName = recipeName;
+        this.RecipeTime = recipeTime;
+        this.RecipeIngredientsTitle = "Ingredients:";
+        this.RecipeIngredients = recipeIngredients;
+        this.RecipeMethodTitle = "Method:";
+        this.Recipe = recipe;
+        this.Thumbnail = thumbnail;
         this.key = key;
+        this.user = user;
     }
-    public admin_recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe,Object key){
 
-        RecipeName = recipeName;
-        RecipeTime = recipeTime;
-        RecipeIngredientsTitle = "Ingredients:";
-        RecipeIngredients = recipeIngredients;
-        RecipeMethodTitle = "Method:";
-        Recipe = recipe;
-        this.key = key;
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public Object getKey() {

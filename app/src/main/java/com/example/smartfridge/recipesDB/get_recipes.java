@@ -23,7 +23,6 @@ public class get_recipes extends AppCompatActivity {
     MaterialButton read;
     FirebaseFirestore db;
 
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +55,12 @@ public class get_recipes extends AppCompatActivity {
     }
 
     private void CreateRecipes() {
-        boolean notEmpty = false;
-        boolean algo_has_been_activated = false;
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-        createKeys.Create_keys_for_Recipes(notEmpty,algo_has_been_activated,sharedPreferences);
-        if (!notEmpty)
-            Toast.makeText(get_recipes.this, "There is not products at all to create a recipe!", Toast.LENGTH_LONG).show();
-        else if (notEmpty && !algo_has_been_activated) //if w dont have the algorithm not gonna be active.
+        boolean algo_has_been_activated = createKeys.Create_keys_for_Recipes(sharedPreferences);
+        if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
             Toast.makeText(get_recipes.this, "There is not enough products to create a recipe!", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(get_recipes.this, "Just a moment, recipes are being prepared for you!\uD83D\uDE01", Toast.LENGTH_LONG).show();
     }
 
     @Override

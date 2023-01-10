@@ -58,6 +58,7 @@ public class adminAdapter extends RecyclerView.Adapter<adminAdapter.MyHolder> {
                 intent.putExtra("RecipeMethodTitle",lisrecipe.get(i).getRecipeMethodTitle());
                 intent.putExtra("Recipe",lisrecipe.get(i).getRecipe());
                 intent.putExtra("Thumbnail",lisrecipe.get(i).getThumbnail());
+                intent.putExtra("user",lisrecipe.get(i).getUser());
 
                 mContext.startActivity(intent);
 
@@ -68,6 +69,7 @@ public class adminAdapter extends RecyclerView.Adapter<adminAdapter.MyHolder> {
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, recipesManage.class);
                 loadRecipes(lisrecipe.get(i));
+                deleteRecipes(lisrecipe.get(i));
                 mContext.startActivity(intent);
             }
         });

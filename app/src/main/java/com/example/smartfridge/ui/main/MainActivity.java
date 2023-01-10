@@ -25,23 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
-//        Map<String, Object> test_recipe = new HashMap<>();
-//        test_recipe.put("recipeName","test");
-//        firestore.collection("recipe_DB").add(test_recipe)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Log.d(TAG, "DocumentSnapshot added with ID: ________________________*************_____________" + documentReference.getId());
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w(TAG, "Error adding document!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", e);
-//                    }
-//                });
-        
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -95,10 +78,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, adminView.class);
         startActivity(intent);
     }
-/*
-    public void openRecipes() {
-        Intent intent = new Intent(this, get_recipes.class);
-        startActivity(intent);
-    }
- */
 }

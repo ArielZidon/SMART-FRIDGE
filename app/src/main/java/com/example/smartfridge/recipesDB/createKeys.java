@@ -15,7 +15,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class createKeys {
-    protected static void Create_keys_for_Recipes(boolean notEmpty, boolean algo_has_been_activated, SharedPreferences sharedPreferences) {
+    public static boolean Create_keys_for_Recipes(SharedPreferences sharedPreferences) {
+        boolean notEmpty = false;
+        boolean algo_has_been_activated = false;
         if (!SortProducts.getKeys().isEmpty())
             SortProducts.getKeys().clear();
         Gson gson = new Gson();
@@ -67,5 +69,6 @@ public class createKeys {
                 }
             }
         }
+        return algo_has_been_activated && notEmpty;
     }
 }

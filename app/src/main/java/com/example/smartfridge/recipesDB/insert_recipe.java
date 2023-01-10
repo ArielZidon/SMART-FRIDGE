@@ -2,6 +2,8 @@ package com.example.smartfridge.recipesDB;
 
 import static android.content.ContentValues.TAG;
 
+import static com.example.smartfridge.accountDB.customer_user.userName;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -110,6 +112,7 @@ public class insert_recipe extends AppCompatActivity {
                                     new_recipe.put("recipeIngredients",recipe_ingredients);
                                     new_recipe.put("recipe",recipe_instructions.getText().toString());
                                     new_recipe.put("status","Unapproved recipe");
+                                    new_recipe.put("user",userName);
 
                                     Toast.makeText(insert_recipe.this,"Your RECIPE sent to admin!",Toast.LENGTH_LONG).show();
                                     recipe_DB.document(DocumentName).set(new_recipe);

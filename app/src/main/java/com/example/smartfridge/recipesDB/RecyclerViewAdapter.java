@@ -53,6 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("RecipeMethodTitle",lisrecipe.get(i).getRecipeMethodTitle());
                 intent.putExtra("Recipe",lisrecipe.get(i).getRecipe());
                 intent.putExtra("Thumbnail",lisrecipe.get(i).getThumbnail());
+                intent.putExtra("user",lisrecipe.get(i).getUser());
 
                 mContext.startActivity(intent);
 

@@ -10,9 +10,10 @@ public class recipe {
     private String RecipeTime;
     private int Thumbnail;
     int flag;
+    private String user;
 
 
-    public recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe, int thumbnail){
+    public recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe, int thumbnail,String user){
 
         RecipeName = recipeName;
         RecipeTime = recipeTime;
@@ -21,6 +22,7 @@ public class recipe {
         RecipeMethodTitle = "Method:";
         Recipe = recipe;
         Thumbnail = thumbnail;
+        this.user = user;
     }
     public recipe(String recipeName, String recipeTime , String recipeIngredients,String recipe){
 
@@ -30,12 +32,21 @@ public class recipe {
         RecipeIngredients = recipeIngredients;
         RecipeMethodTitle = "Method:";
         Recipe = recipe;
+        this.user = user;
     }
 
 
     public  String getRecipeName(){
 
         return RecipeName;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getRecipeIngredientsTitle(){

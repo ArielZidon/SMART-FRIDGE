@@ -42,13 +42,13 @@ public class recipes_wind extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
 
         //CollectionReference object - open a database collection (if exist - open, else - create & open )
-        CollectionReference recipe_DB = firestore.collection("recipe_DB");
+        CollectionReference recipe_DB = firestore.collection("users_recipes");
 
         keys.clear();
         giveMeKeys(keys);
 
         for (int i = 0; i < keys.size(); i++) {
-            DocumentReference docRef = firestore.collection("recipe_DB").document(keys.get(i));
+            DocumentReference docRef = firestore.collection("users_recipes").document(keys.get(i));
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -61,7 +61,8 @@ public class recipes_wind extends AppCompatActivity {
                                 , recipe_map.get("recipeTime").toString()
                                 , recipe_map.get("recipeIngredients").toString()
                                 , recipe_map.get("recipe").toString()
-                                , R.drawable.chicken_roll));
+                                , R.drawable.chicken_roll
+                                ,recipe_map.get("user").toString()));
 
                             myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
 
