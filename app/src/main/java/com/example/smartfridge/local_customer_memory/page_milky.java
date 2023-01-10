@@ -200,6 +200,21 @@ public class page_milky extends AppCompatActivity implements category{
         layout.addView(view);
     }
 
+    @Override
+    public void loadName() {
+
+    }
+
+    @Override
+    public void saveName(String str) {
+
+    }
+
+    @Override
+    public void buildRename() {
+
+    }
+
     /**
      * @param name => item name that customer select to delete
      * @param count => count item that customer select to delete

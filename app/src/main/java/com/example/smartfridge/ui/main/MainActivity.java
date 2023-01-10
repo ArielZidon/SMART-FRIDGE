@@ -11,14 +11,14 @@ import com.example.smartfridge.R;
 import com.example.smartfridge.accountDB.createAccount;
 import com.example.smartfridge.accountDB.customer_user;
 import com.example.smartfridge.admin.adminView;
-import com.example.smartfridge.databinding.ActivityMainBinding;
+//import com.example.smartfridge.databinding.ActivityMainBinding;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
-    private ActivityMainBinding binding;
+    //rivate ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
 
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
 
 
-        TextView tital = (TextView) findViewById(R.id.title);
+        TextView title = (TextView) findViewById(R.id.title);
 
-        MaterialButton signupbtn = (MaterialButton) findViewById(R.id.signupbtn);
-        MaterialButton signinbtn = (MaterialButton) findViewById(R.id.signinbtn);
-        MaterialButton mamagebtn = (MaterialButton) findViewById(R.id.mamagebtn);
+        MaterialButton signUpBtn = (MaterialButton) findViewById(R.id.signupbtn);
+        MaterialButton signInBtn = (MaterialButton) findViewById(R.id.signinbtn);
+        MaterialButton managerBtn = (MaterialButton) findViewById(R.id.mamagebtn);
 
-        signupbtn.setOnClickListener(new View.OnClickListener() {
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Go to - create_account wind..
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        signinbtn.setOnClickListener(new View.OnClickListener() {
+        signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Go to - customer_user login wind.
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mamagebtn.setOnClickListener(new View.OnClickListener() {
+        managerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Go to - admin_user login wind.

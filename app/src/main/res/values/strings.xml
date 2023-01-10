@@ -24,4 +24,5 @@
     <string name="recipe" />
     <string name="recipeTitle" />
     <string name="recipetime" />
+    <string name="users">Users</string>
 </resources>

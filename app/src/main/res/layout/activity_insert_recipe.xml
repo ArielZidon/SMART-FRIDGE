@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="cursive"
-        android:text="Enter YUOR Recipe"
+        android:text="Enter YOUR Recipe"
         android:textColor="@color/white"
         android:textSize="35dp" />
 
@@ -32,7 +32,7 @@
         android:layout_alignParentStart = "true"
         android:layout_alignParentEnd = "true"
         android:textColor="@color/white"
-        android:hint = " Recipe Name"/>
+        android:hint = "Recipe Name"/>
 
     <EditText
         android:id = "@+id/recipe_time"
@@ -46,7 +46,8 @@
         android:layout_alignParentStart = "true"
         android:layout_alignParentEnd = "true"
         android:textColor="@color/white"
-        android:hint = " Recipe Time"/>
+
+        android:hint = "Recipe Time"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -63,6 +64,7 @@
             android:layout_marginTop = "1dp"
             android:layout_alignParentStart = "true"
             android:layout_alignParentEnd = "true"
+
             android:textColor="@color/white"
             android:hint = " Instructions"/>
     </ScrollView>
@@ -108,7 +110,11 @@
         android:layout_height="150dp"
         android:scrollbars="none"
         android:layout_below="@+id/ingredients"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:textColorHint = "@color/white"
         android:id="@+id/scrollView">
+
 
         <LinearLayout
             android:id="@+id/layout_list"
@@ -116,6 +122,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@+id/ingredients"
+            android:textColor="@color/white"
+            android:textColorHint = "@color/white"
             android:layout_margin="10dp"
             ></LinearLayout>
 

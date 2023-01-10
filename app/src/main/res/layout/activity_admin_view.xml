@@ -60,9 +60,9 @@
         <ImageButton
             android:id="@+id/EnterRecipes"
             android:layout_width="340dp"
-            android:layout_marginLeft="37dp"
             android:layout_height="160dp"
+            android:layout_marginLeft="37dp"
             android:background="@color/teal_200"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal" />
     </LinearLayout>
 </RelativeLayout>

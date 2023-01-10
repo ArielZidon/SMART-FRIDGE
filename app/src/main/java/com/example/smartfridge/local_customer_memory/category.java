@@ -9,6 +9,15 @@ public interface category
     void onBackPressed();
     void removeArray(String name, String count);
     void addCard(String name, String number);
+
+    void loadName();
+
+    void saveName(String str);
+
+    void buildRename();
+
+
+
     void buildDialog();
     void saveData(String name, String count);
     void nextPage();

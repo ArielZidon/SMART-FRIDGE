@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import com.example.smartfridge.business_entities.IngredientsLists;
 
 public class insertRecipe extends AppCompatActivity {
     Button b1, b2,cancel;
