@@ -1,39 +1,46 @@
 package com.example.smartfridge.accountDB;
-
-
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartfridge.R;
+import com.example.smartfridge.admin.adminView;
 import com.example.smartfridge.ui.main.MainActivity;
+import com.example.smartfridge.ui.main.MainMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import com.example.smartfridge.ui.main.MainMenu;
+
 
 public class createAccount extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
+    private List<String> teamList = new ArrayList<>();
 
 
     @Override
@@ -59,18 +66,27 @@ public class createAccount extends AppCompatActivity {
         TextView user = (TextView) findViewById(R.id.user);
 
 
+        teamList.add("Customer");
+        teamList.add("Manager");
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamList);
+        AppCompatSpinner spinnerTeam = (AppCompatSpinner) findViewById(R.id.spinner_team);
+        spinnerTeam.setAdapter(arrayAdapter);
+
+
+
         MaterialButton createbtn = (MaterialButton) findViewById(R.id.createbtn);
 
         createbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Log.d(TAG, "onClick: -----------------------"+ spinnerTeam.getSelectedItem().toString()+"---------------------");
                 //base terms to create a new account.
                 if (email.getText().toString().equals("") || password.getText().toString().length() < 5
-                || user.getText().toString().equals("") || name.getText().toString().equals("")) {
+                        || user.getText().toString().equals("") || name.getText().toString().equals("")) {
                     Toast.makeText(createAccount.this, "filled", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if(user.getText().toString().equals("customer")){
+                    if(user.getText().toString().equals("costumer")){
                         String collection = "costumer_accounts";
                         //this commend open a Document from our firestore cloud collection by a string collection path and document path.
                         //if the Document does not exist it will create the document as the path name.
@@ -102,6 +118,7 @@ public class createAccount extends AppCompatActivity {
                                         //insert map into database by a document path.
                                         costumers_DB.document(email.getText().toString()).set(info);
                                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_LONG).show();
+                                        Auto_login(email,password);
                                         openCostumers();
                                     }
                                 }
@@ -135,6 +152,8 @@ public class createAccount extends AppCompatActivity {
                                         info.put("Uid",auth.getCurrentUser().getUid());
                                         managers_DB.document(email.getText().toString()).set(info);
                                         Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_LONG).show();
+                                        Auto_login(email,password);
+                                        openManagers();
                                     }
                                 }
                                 else {
@@ -165,21 +184,44 @@ public class createAccount extends AppCompatActivity {
                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
 //                    Toast.makeText(createAccount.this, "Authentication failed.",
 //                            Toast.LENGTH_SHORT).show();
-                    }
                 }
-            });
+            }
+        });
     }
+
+    public void Auto_login (TextView email,TextView password) {
+        if (auth.getCurrentUser() == null) {
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(createAccount.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmailAndPassword:success");
+                                auth.getCurrentUser().sendEmailVerification();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
+                            }
+                        }
+                    });
+        }
+    }
+
+
 
     public void  openCostumers(){
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
-
+    public void  openManagers(){
+        Intent intent = new Intent(this, adminView.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
 }
-
+}

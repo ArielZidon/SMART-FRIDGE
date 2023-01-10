@@ -137,34 +137,8 @@ public class my_category extends AppCompatActivity implements category{
     }
 
     @Override
-    public void openDryFood() {
+    public void nextPage() {}
 
-    }
-
-    @Override
-    public void beckPage() {
-
-    }
-
-    @Override
-    public void openMeat() {
-
-    }
-
-    @Override
-    public void openMilaky() {
-
-    }
-
-    @Override
-    public void openVegetables() {
-
-    }
-
-    @Override
-    public void openClean() {
-
-    }
 
     /**
      * create a view dialog between the customers on user to adds items

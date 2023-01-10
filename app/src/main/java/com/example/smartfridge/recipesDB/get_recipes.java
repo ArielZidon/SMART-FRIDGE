@@ -1,46 +1,27 @@
 package com.example.smartfridge.recipesDB;
 
-import static android.content.ContentValues.TAG;
-import static com.example.smartfridge.SortProducts.giveMeKeys;
-import static com.example.smartfridge.SortProducts.mixCombination;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
-import com.example.smartfridge.SortProducts;
 import com.example.smartfridge.ui.main.MainMenu;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 public class get_recipes extends AppCompatActivity {
 
     MaterialButton createRecipes;
     LinearLayout layout;
 
-
     MaterialButton read;
     FirebaseFirestore db;
-    static ArrayList<String> keys = new ArrayList<>();  /* will hold the data and send the keys to FireBase */
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -69,99 +50,17 @@ public class get_recipes extends AppCompatActivity {
     }
 
     private void readFromDb() {
-        /**
-         * clear the array from previous data
-         * get the data from the algorithm
-         * have enough products or not
-         */
-        keys.clear();
-        giveMeKeys(keys);
-//        Log.d(TAG, "SIZE DATA: " + keys.size());//for test only
-        for (int i = 0; i < keys.size(); i++) {
-                    Log.d(TAG, "onClick: " + keys.get(i).toString());
-//            if(keys.get(i).contains("eggs,tomatoes,garlic,onion\n")){
-//                Log.d(TAG, "onClick: --------------------yes!! capara /n-------------------");
-//            }
-//            if(keys.get(i).contains("eggs,tomatoes,garlic,onion")){
-//                Log.d(TAG, "onClick: --------------------yes!! capara-------------------");
-//            }
-        }
-        if (keys.size() == 0) //if we dont have enough products, dont make the search
-        {
-            Toast.makeText(get_recipes.this, "There is not enough products to \ncreate a recipeObject!\nAdd some products and try again!!", Toast.LENGTH_LONG).show();
-        }else {
-            for (int i = 0; i < keys.size(); i++) {
-                DocumentReference docRef = db.collection("get_recipes").document(keys.get(i));
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                addCard(document);
-                            } else {
-                                Log.d(TAG, "No such document");  //for test only!
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException()); //try to see if the search is failed
-                        }
-                    }
-                });
-            }
-        }
-    }
-
-    private void addCard(DocumentSnapshot document) {
+        Intent intent = new Intent(this, recipes_wind.class);
+        startActivity(intent);
     }
 
     private void CreateRecipes() {
-        SortProducts.getKeys().clear();
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-        Gson gson = new Gson();
-
-        String json = sharedPreferences.getString("Item_Data_meat", null);
-        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-        ArrayList<ModelClass> arrayList_all = gson.fromJson(json, type);
-
-       ArrayList<ModelClass> arrayList_temp = new ArrayList<>();
-        json = sharedPreferences.getString("Item_Data_milky", null);
-        if (json != null){
-            arrayList_temp = gson.fromJson(json, type);
-            arrayList_all.addAll(arrayList_temp);
-        }
-
-        json = sharedPreferences.getString("Item_Data_vege", null);
-        if (json != null) {
-            arrayList_temp = gson.fromJson(json, type);
-            arrayList_all.addAll(arrayList_temp);
-        }
-
-        json = sharedPreferences.getString("Item_Data_Dry", null);
-        if (json != null) {
-            arrayList_temp = gson.fromJson(json, type);
-            arrayList_all.addAll(arrayList_temp);
-        }
-
-        String[] products = new String[arrayList_all.size()];
-        if (products.length!=0) {
-            for (int i = 0; i < products.length; i++) {
-                products[i] = arrayList_all.get(i).getItemName();
-//                Log.d(TAG, "createRecipes: " + products[i]);
-            }
-        }
-
-        boolean algo_has_been_activated = false;
-        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipeObject.
-            if (products.length >= i)
-            {
-                mixCombination(products, products.length, i);
-                algo_has_been_activated = true;
-            }
-        }
+        boolean algo_has_been_activated = createKeys.Create_keys_for_Recipes(sharedPreferences);
         if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
-            Toast.makeText(get_recipes.this,"There is not enough products to create a recipeObject!",Toast.LENGTH_LONG).show();
-
+            Toast.makeText(get_recipes.this, "There is not enough products to create a recipe!", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(get_recipes.this, "Just a moment, recipes are being prepared for you!\uD83D\uDE01", Toast.LENGTH_LONG).show();
     }
 
     @Override

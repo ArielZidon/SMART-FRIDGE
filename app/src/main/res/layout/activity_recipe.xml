@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".recipesDB.recipe_activity">
 
     <androidx.core.widget.NestedScrollView
@@ -24,35 +25,49 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/text_recipe"
                 android:layout_marginTop="10dp"
-                android:text="@string/recipeName"
-                android:textSize="21sp"
+                android:text="recipeName"
+                android:textSize="34sp"
                 android:textStyle="bold"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ingredients"
-                android:layout_marginTop="20dp"
-                android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:text="@string/ingredients"
-
+                android:textColor="@color/white"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/time"
                 android:layout_marginTop="10dp"
-                android:text="@string/Time"
+                android:text="Time"
                 android:textSize="21sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/method"
+                android:id="@+id/ingredients_title"
                 android:layout_marginTop="10dp"
-                android:text="@string/recipeName"
+                android:text="Ingredients"
+                android:textSize="21sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ingredients"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:text="ingredients"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/method"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:text="method"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 />
@@ -60,11 +75,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/recipe"
+                android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:text="@string/recipe"
-
+                android:text="recipe"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UploadBy"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:text="Upload By"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/user"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:text="user"
                 />
 
 

@@ -22,4 +22,6 @@
     <string name="ingredients" />
     <string name="Time" />
     <string name="recipe" />
+    <string name="recipeTitle" />
+    <string name="recipetime" />
 </resources>
