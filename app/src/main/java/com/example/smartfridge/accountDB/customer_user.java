@@ -32,6 +32,7 @@ public class customer_user extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     public static String userName;
+    public static String yourName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +96,8 @@ public class customer_user extends AppCompatActivity {
                                     if (document.exists()) {
                                         Map<String, Object> info = document.getData();
                                         if(info.containsValue(password.getText().toString())){
-                                            Toast.makeText(customer_user.this,"SINGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
+                                            yourName = (String) info.get("name");
+                                            Toast.makeText(customer_user.this,"SINGIN SUCCESSFUL.\nHELLO " + yourName + "! \uD83D\uDE03",Toast.LENGTH_SHORT).show();
                                             Auto_login(email,password);
                                             userName = email.getText().toString();
                                             openCostumers();
