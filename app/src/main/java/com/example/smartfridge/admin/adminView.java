@@ -13,15 +13,15 @@ import com.example.smartfridge.ui.main.MainActivity;
 
 public class adminView extends AppCompatActivity {
     private Button button;
-    ImageButton Users;        //ImageButton that represent the Button "insertRecipe"
-    ImageButton Recipes;     //ImageButton that represent the Button "myShoppingList"
+    Button Users;        //ImageButton that represent the Button "insertRecipe"
+    Button Recipes;     //ImageButton that represent the Button "myShoppingList"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_view);
-        Users = (ImageButton) findViewById(R.id.bt_EditUsers);
-        Recipes = (ImageButton) findViewById(R.id.EnterRecipes);
+        Users = (Button) findViewById(R.id.bt_EditUsers);
+        Recipes = (Button) findViewById(R.id.EnterRecipes);
 
         Users.setOnClickListener(v -> openAdminUsers());
         Recipes.setOnClickListener(v -> openAdminRecipes());
