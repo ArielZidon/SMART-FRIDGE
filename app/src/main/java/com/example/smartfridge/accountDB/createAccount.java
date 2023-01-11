@@ -22,7 +22,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -33,7 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Objects;
 
 
 public class createAccount extends AppCompatActivity {
@@ -57,19 +56,19 @@ public class createAccount extends AppCompatActivity {
 
 
         //tital
-        TextView createaccount = (TextView) findViewById(R.id.createaccount);
+        TextView createaccount = findViewById(R.id.createaccount);
 
 
-        TextView name = (TextView) findViewById(R.id.name);
-        TextView email = (TextView) findViewById(R.id.email);
-        TextView password = (TextView) findViewById(R.id.password);
-        TextView user = (TextView) findViewById(R.id.user);
+        TextView name = findViewById(R.id.name);
+        TextView email =  findViewById(R.id.email);
+        TextView password = findViewById(R.id.password);
+        TextView user =  findViewById(R.id.user);
 
 
         teamList.add("Customer");
         teamList.add("Manager");
-        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamList);
-        AppCompatSpinner spinnerTeam = (AppCompatSpinner) findViewById(R.id.spinner_team);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamList);
+        AppCompatSpinner spinnerTeam = findViewById(R.id.spinner_team);
         spinnerTeam.setAdapter(arrayAdapter);
 
 
@@ -149,9 +148,9 @@ public class createAccount extends AppCompatActivity {
                                         info.put("name", name.getText().toString());
                                         info.put("user_type", user.getText().toString());
                                         info.put("password", password.getText().toString());
-                                        info.put("Uid",auth.getCurrentUser().getUid());
+                                        info.put("Uid", Objects.requireNonNull(auth.getCurrentUser()).getUid());
                                         managers_DB.document(email.getText().toString()).set(info);
-                                        Toast.makeText(createAccount.this,"SINGUP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(createAccount.this,"SING-UP SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_LONG).show();
                                         Auto_login(email,password);
                                         openManagers();
                                     }

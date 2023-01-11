@@ -9,7 +9,7 @@
     app:cardCornerRadius="4dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:id="@+id/cardview_id"
-    >
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,23 +20,25 @@
         <ImageView
             android:id="@+id/recipe_img_id"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="155dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:scaleType="centerCrop"
             />
 
+
         <TextView
             android:id="@+id/recipe_text"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="47dp"
             android:fontFamily="sans-serif-medium"
-            android:gravity="center"
+            android:gravity="center|center_vertical"
             android:text="@string/recipeName"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#2d2d2d"
-            android:textSize="30sp" />
+            android:layout_marginTop = "0dp"
+            android:textSize="20sp" />
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>
