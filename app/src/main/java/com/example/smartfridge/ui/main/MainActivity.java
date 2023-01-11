@@ -25,18 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
-
 
         TextView title = (TextView) findViewById(R.id.title);
 
         MaterialButton signUpBtn = (MaterialButton) findViewById(R.id.signupbtn);
         MaterialButton signInBtn = (MaterialButton) findViewById(R.id.signinbtn);
-        MaterialButton managerBtn = (MaterialButton) findViewById(R.id.mamagebtn);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,15 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 openLogin();
             }
         });
-
-        managerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Go to - admin_user login wind.
-                openManagement();
-            }
-        });
-
     }
 
     public void  openCreateAccount(){

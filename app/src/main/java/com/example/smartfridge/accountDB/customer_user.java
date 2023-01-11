@@ -30,8 +30,6 @@ public class customer_user extends AppCompatActivity {
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     public static String userName;
-    public static String yourName;
-    private final customerLog logTrying = null;
 
 
     @Override
@@ -54,51 +52,57 @@ public class customer_user extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public synchronized void onClick(View view) {
-                if(email.getText().toString().equals(""))
-                    Toast.makeText(customer_user.this,"TSDhe email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                else {
-//                    logTrying.logIn(email.getText().toString(),password.getText().toString());
-                    JSONTask a = (JSONTask) new JSONTask().execute("http://10.0.2.2:8000/users/"+email.getText().toString()+"/"+password.getText().toString());
-                    while (Objects.equals(a.res, "")){}
-                    Log.d(TAG, "onClick: " + a.res);
+                char state;
+                if (password.getText().toString().contains("SFmanager"))
+                {
+                    if (email.getText().toString().equals(""))
+                        Toast.makeText(customer_user.this, "TSDhe email: " + email.getText().toString() + " is NOT registered in the system", Toast.LENGTH_SHORT).show();
+                    else {
+                        JSONTask connect = (JSONTask) new JSONTask().execute("http://10.0.2.2:8000/admin/" + email.getText().toString() + "/" + password.getText().toString());
+                        while (Objects.equals(connect.res, "")) {}
+                        customerLog logTrying = new customerLog(connect.res);
+                        state = logTrying.logIn();
+                        switch (state) {
+                            case '0':
+                                userName = email.getText().toString();
+                                Toast.makeText(customer_user.this, "LOGIN ADMIN SUCCESSFUL.\nHELLO " + userName + "! \uD83D\uDE03", Toast.LENGTH_SHORT).show();
+                                openManager();
+                                break;
+                            case '1':
+                                Toast.makeText(customer_user.this, "LOGIN ADMIN FAILED.\n" + "Incorrect Password! \uD83D\uDE1F", Toast.LENGTH_SHORT).show();
+                                break;
+                            case '2':
+                                Toast.makeText(customer_user.this, "LOGIN ADMIN FAILED.\n" + userName + "Does Not Exist! \uD83E\uDD37\u200D♂️", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+
                     }
 
-//                    else {
-//                        if (task.isSuccessful()) {
-//                            if (document.exists()) {
-//                                Map<String, Object> info = document.getData();
-//                                if(info.containsValue(password.getText().toString())){
-//                                    yourName = (String) info.get("name");
-//                                    Toast.makeText(customer_user.this,"SINGIN SUCCESSFUL.\nHELLO " + yourName + "! \uD83D\uDE03",Toast.LENGTH_SHORT).show();
-//                                    Auto_login(email,password);
-//                                    userName = email.getText().toString();
-//                                    openCostumers();
-//                                }
-//                                else {
-//                                    Toast.makeText(customer_user.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
-//                                }
-//                            }
-//                            else {
-//                                Toast.makeText(customer_user.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-//                                Log.d(TAG, "No such document");
-//                            }
-//                        }
-//                        else {
-//                            Log.d(TAG, "get failed with ", task.getException());
-//                        }
-//                    }
-//
-//                }
-/**  */
-//                if(email.getText().toString().equals("") && password.getText().toString().equals("")){
-//                    //correct
-//                    Toast.makeText(customer_user.this,"LOGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
-//                    openCostumers();
-//                }else
-//                    //incorrect
-//                    Toast.makeText(customer_user.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (email.getText().toString().equals("") || password.getText().toString().equals(""))
+                        Toast.makeText(customer_user.this, "TSDhe email: " + email.getText().toString() + " is NOT registered in the system", Toast.LENGTH_SHORT).show();
+                    else {
+                        JSONTask connect = (JSONTask) new JSONTask().execute("http://10.0.2.2:8000/users/" + email.getText().toString() + "/" + password.getText().toString());
+                        while (Objects.equals(connect.res, "")) {}
+                        customerLog logTrying = new customerLog(connect.res);
+                        state = logTrying.logIn();
+                        switch (state) {
+                            case '0':
+                                userName = email.getText().toString();
+                                Toast.makeText(customer_user.this, "LOGIN SUCCESSFUL.\nHELLO " + userName + "! \uD83D\uDE03", Toast.LENGTH_SHORT).show();
+                                openCostumers();
+                                break;
+                            case '1':
+                                Toast.makeText(customer_user.this, "LOGIN FAILED.\n" + "Incorrect Password! \uD83D\uDE1F", Toast.LENGTH_SHORT).show();
+                                break;
+                            case '2':
+                                Toast.makeText(customer_user.this, "LOGIN FAILED.\n" + userName + "Does Not Exist! \uD83E\uDD37\u200D♂️", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
 
-
+                    }
+                }
 
             }
         });
