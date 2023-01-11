@@ -49,12 +49,7 @@ public class insertRecipe extends AppCompatActivity {
         CollectionReference Recipes_Db = firestore.collection("get_recipes"); //reference to the recipeObject collection
 
         //"Ingredients" button
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAddIngredients();
-            }
-        });
+
         //don't enter the recipeObject, and start over
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,13 +93,13 @@ public class insertRecipe extends AppCompatActivity {
         startActivity(intent);
     }
     //open the "addIngredients" class and save the data that already entered to the intent
-    public void openAddIngredients() {
-        Intent intent = new Intent(this, add_Ingredients.class);
-        intent.putExtra("et1", recipeName.getText().toString());
-        intent.putExtra("et2", pTime.getText().toString());
-        intent.putExtra("et3", pOrder.getText().toString());
-        startActivityForResult(intent,1);
-    }
+//    public void openAddIngredients() {
+//        Intent intent = new Intent(this, add_Ingredients.class);
+//        intent.putExtra("et1", recipeName.getText().toString());
+//        intent.putExtra("et2", pTime.getText().toString());
+//        intent.putExtra("et3", pOrder.getText().toString());
+//        startActivityForResult(intent,1);
+//    }
 
     /**take us back to the rest of the recipeObject*/
     @Override

@@ -20,19 +20,10 @@
         <ImageView
             android:id="@+id/recipe_img_admin_id"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="155dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:scaleType="centerCrop"
-            />
-        <TextView
-            android:id="@+id/recipe_admin_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/recipeName"
-            android:textSize="14sp"
-            android:textColor="#2d2d2d"
             />
 
         <Button
@@ -50,6 +41,19 @@
             android:layout_marginLeft="338dp"
             android:backgroundTint="@color/purple_500"
             android:text="ADD" />
+
+        <TextView
+            android:id="@+id/recipe_admin_text"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center|center_vertical"
+            android:text="@string/recipeName"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#2d2d2d"
+            android:layout_marginTop = "133dp"
+            android:textSize="20sp" />
     </LinearLayout>
 
 

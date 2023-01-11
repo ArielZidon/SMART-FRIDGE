@@ -26,4 +26,6 @@
     <string name="recipetime" />
     <string name="users">Users</string>
     <string name="edit_users">Edit Users</string>
+    <string name="todo">TODO</string>
+    <string name="ingredients2">Ingredients :</string>
 </resources>
