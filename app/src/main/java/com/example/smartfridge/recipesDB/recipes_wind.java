@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class recipes_wind extends AppCompatActivity {
 
@@ -57,12 +58,12 @@ public class recipes_wind extends AppCompatActivity {
                         if (document.exists())
                         {
                             recipe_map = document.getData();
-                            recipes1.add(new recipe(recipe_map.get("recipeName").toString()
-                                , recipe_map.get("recipeTime").toString()
-                                , recipe_map.get("recipeIngredients").toString()
-                                , recipe_map.get("recipe").toString()
+                            recipes1.add(new recipe(Objects.requireNonNull(recipe_map.get("recipeName")).toString()
+                                , Objects.requireNonNull(recipe_map.get("recipeTime")).toString()
+                                , Objects.requireNonNull(recipe_map.get("recipeIngredients")).toString()
+                                , Objects.requireNonNull(recipe_map.get("recipe")).toString()
                                 , R.drawable.chicken_roll
-                                ,recipe_map.get("user").toString()));
+                                , Objects.requireNonNull(recipe_map.get("user")).toString()));
 
                             myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
 

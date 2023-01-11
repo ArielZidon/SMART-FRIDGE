@@ -22,13 +22,14 @@
         android:id="@+id/users"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="20dp"
         android:fontFamily="cursive"
         android:text="@string/users"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_id"
         android:layout_width="match_parent"

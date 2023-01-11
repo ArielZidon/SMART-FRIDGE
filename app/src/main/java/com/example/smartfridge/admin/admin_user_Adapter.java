@@ -41,7 +41,8 @@ public class admin_user_Adapter extends RecyclerView.Adapter<admin_user_Adapter.
 
     @Override
     public void onBindViewHolder(@NonNull admin_user_Adapter.MyHolder holder, @SuppressLint("RecyclerView") int i) {
-        holder.userTitle.setText(usersList.get(i).getName());
+
+        holder.userTitle.setText(usersList.get(i).getEmail());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +69,7 @@ public class admin_user_Adapter extends RecyclerView.Adapter<admin_user_Adapter.
         return usersList.size();
     }
 
-    public class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         TextView userTitle;
         CardView cardView;
         ImageView img;
@@ -77,8 +78,8 @@ public class admin_user_Adapter extends RecyclerView.Adapter<admin_user_Adapter.
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            userTitle = (TextView) itemView.findViewById(R.id.user_admin_text);
-            img = (ImageView)itemView.findViewById(R.id.user_img_admin_id);
+            userTitle = (TextView) itemView.findViewById(R.id.User_name);
+            img = (ImageView)itemView.findViewById(R.id.imageView2);
             cardView = (CardView) itemView.findViewById(R.id.user_card_admin_id);
             delete = itemView.findViewById(R.id.delete);
         }

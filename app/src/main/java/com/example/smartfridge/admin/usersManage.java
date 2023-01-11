@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class usersManage extends AppCompatActivity {
 
@@ -44,13 +45,14 @@ public class usersManage extends AppCompatActivity {
                     users_list.clear();
                     List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot document : documents) {
-                        Log.d(TAG, "onSuccess: "+document.getData().get("password"));
+                        Log.d(TAG, "onSuccess: "+ Objects.requireNonNull(document.getData()).get("password"));
                         users_map = document.getData();
-                        users_list.add(new user(users_map.get("name").toString(),
+                        users_list.add(new user(Objects.requireNonNull(users_map.get("name")).toString(),
                                 document.getId()
-                                , users_map.get("password").toString()));
+                                , Objects.requireNonNull(users_map.get("password")).toString()));
 
                         cardView = (RecyclerView) findViewById(R.id.recyclerView_id);
+
 
                         Adapter = new admin_user_Adapter(usersManage.this, users_list);
 
