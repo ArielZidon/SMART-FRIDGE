@@ -46,10 +46,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="37dp"
 
-            android:background="@color/cardview_dark_background"
+            android:backgroundTint="@color/cardview_dark_background"
+            android:fontFamily="sans-serif-light"
             android:gravity="center_horizontal"
-            android:text="@string/edit_users"
 
+            android:text="@string/edit_users"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="35sp" />
     </LinearLayout>
     <LinearLayout
@@ -62,13 +64,15 @@
 
         <Button
             android:id="@+id/EnterRecipes"
-            android:background="@color/cardview_dark_background"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="37dp"
+            android:backgroundTint="@color/cardview_dark_background"
 
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
             android:text="Enter Recipes"
-            android:textSize="35dp"
-            android:gravity="center_horizontal" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="35dp" />
     </LinearLayout>
 </RelativeLayout>

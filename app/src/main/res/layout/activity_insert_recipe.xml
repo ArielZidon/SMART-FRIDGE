@@ -28,10 +28,11 @@
         android:focusable = "true"
         android:textColorHighlight = "#000000"
         android:textColorHint = "@color/white"
-        android:layout_marginTop = "50dp"
+        android:layout_marginTop = "30dp"
         android:layout_alignParentStart = "true"
         android:layout_alignParentEnd = "true"
         android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
         android:hint = "Recipe Name"/>
 
     <EditText
@@ -46,7 +47,7 @@
         android:layout_alignParentStart = "true"
         android:layout_alignParentEnd = "true"
         android:textColor="@color/white"
-
+        android:fontFamily="sans-serif-medium"
         android:hint = "Recipe Time"/>
     <ScrollView
         android:layout_width="match_parent"
@@ -64,20 +65,30 @@
             android:layout_marginTop = "1dp"
             android:layout_alignParentStart = "true"
             android:layout_alignParentEnd = "true"
-
+            android:textSize="18dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:fontFamily="sans-serif-medium"
             android:textColor="@color/white"
             android:hint = " Instructions"/>
     </ScrollView>
 
 
     <Button
+        android:id="@+id/upload_image_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/scroll"
-        android:layout_margin="40dp"
         android:layout_centerInParent="true"
-        android:text="upload_image"
-        android:id="@+id/upload_image_bt">
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:text="Upload Image"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black"
+        android:textStyle="">
 
     </Button>
 
@@ -86,7 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/upload_image_bt"
         android:id="@+id/img_gallery"
-        android:scaleType="fitXY">
+        android:scaleType="fitXY"
+        android:contentDescription="@string/todo">
 
     </ImageView>
 
@@ -97,10 +109,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_gallery"
-        android:text=" Ingredients :"
+        android:layout_marginTop="-25dp"
+        android:text="@string/ingredients2"
         android:textColor="@color/white"
         android:textColorHint = "@color/white"
-        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+
         android:id="@+id/ingredients">
 
     </TextView>
@@ -138,9 +154,10 @@
         android:layout_marginLeft="15dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:backgroundTint="@color/white"
         android:text="Add"
         android:textAllCaps="false"
-        android:textColor="@color/white"></Button>
+        android:textColor="@color/black"></Button>
 
     <Button
         android:id="@+id/button_submit_list"
@@ -150,7 +167,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
         android:textAllCaps="false"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
