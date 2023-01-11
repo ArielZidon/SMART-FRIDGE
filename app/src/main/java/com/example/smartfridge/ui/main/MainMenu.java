@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.R;
 import com.example.smartfridge.business_logic.getOut;
-import com.example.smartfridge.recipesDB.get_recipes;
 import com.example.smartfridge.local_customer_memory.ShoppingTables;
-import com.example.smartfridge.recipesDB.insertRecipe;
+import com.example.smartfridge.recipesDB.get_recipes;
 import com.example.smartfridge.recipesDB.insert_recipe;
 import com.example.smartfridge.recipesDB.recipes_wind;
 

@@ -32,6 +32,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome There!\nAre you back from the supermarket? 🧀🥕🫑🌽🥚🥑\njust hungry? 😋🍔🍟🍕 \nThis is the place for you!
+Put in the products you have, and receive from us all the recipes you can create with those products!"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="25dp"/>
         </LinearLayout>
 
     </ScrollView>

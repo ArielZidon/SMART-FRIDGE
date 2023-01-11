@@ -21,11 +21,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Map;
+import java.util.Objects;
 
 public class customer_user extends AppCompatActivity {
 
@@ -33,6 +31,9 @@ public class customer_user extends AppCompatActivity {
     private FirebaseAuth auth;
     public static String userName;
     public static String yourName;
+    private final customerLog logTrying = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,78 +49,47 @@ public class customer_user extends AppCompatActivity {
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
         MaterialButton forgotpass = (MaterialButton) findViewById(R.id.forgotpass);
 
+
         //open MaterialButton loginbtn - 0n click domain
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-//                //basic terms for email to not be empty.
-                if(email.getText().toString().equals("")){
-                    Toast.makeText(customer_user.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                }
+            public synchronized void onClick(View view) {
+                if(email.getText().toString().equals(""))
+                    Toast.makeText(customer_user.this,"TSDhe email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
                 else {
-                    if (password.getText().toString().contains("SFmanager")) {
-                        DocumentReference docRef = firestore.collection("manager_accounts").document(email.getText().toString());
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        Map<String, Object> info = document.getData();
-                                        if(info.containsValue(password.getText().toString())){
-                                            Toast.makeText(customer_user.this,"SINGIN SUCCESSFUL.\nHELLO MANAGER!",Toast.LENGTH_SHORT).show();
-                                            Auto_login(email,password);
-                                            openManager();
-                                        }
-                                        else {
-                                            Toast.makeText(customer_user.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                    else {
-                                        Toast.makeText(customer_user.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG, "No such document");
-                                    }
-                                }
-                                else {
-                                    Log.d(TAG, "get failed with ", task.getException());
-                                }
-                            }
-                        });
-                    }
-                    else {
-                        DocumentReference docRef = firestore.collection("costumer_accounts").document(email.getText().toString());
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        Map<String, Object> info = document.getData();
-                                        if(info.containsValue(password.getText().toString())){
-                                            yourName = (String) info.get("name");
-                                            Toast.makeText(customer_user.this,"SINGIN SUCCESSFUL.\nHELLO " + yourName + "! \uD83D\uDE03",Toast.LENGTH_SHORT).show();
-                                            Auto_login(email,password);
-                                            userName = email.getText().toString();
-                                            openCostumers();
-                                        }
-                                        else {
-                                            Toast.makeText(customer_user.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                    else {
-                                        Toast.makeText(customer_user.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG, "No such document");
-                                    }
-                                }
-                                else {
-                                    Log.d(TAG, "get failed with ", task.getException());
-                                }
-                            }
-                        });
+//                    logTrying.logIn(email.getText().toString(),password.getText().toString());
+                    JSONTask a = (JSONTask) new JSONTask().execute("http://10.0.2.2:8000/users/"+email.getText().toString()+"/"+password.getText().toString());
+                    while (Objects.equals(a.res, "")){}
+                    Log.d(TAG, "onClick: " + a.res);
                     }
 
-                }
-
+//                    else {
+//                        if (task.isSuccessful()) {
+//                            if (document.exists()) {
+//                                Map<String, Object> info = document.getData();
+//                                if(info.containsValue(password.getText().toString())){
+//                                    yourName = (String) info.get("name");
+//                                    Toast.makeText(customer_user.this,"SINGIN SUCCESSFUL.\nHELLO " + yourName + "! \uD83D\uDE03",Toast.LENGTH_SHORT).show();
+//                                    Auto_login(email,password);
+//                                    userName = email.getText().toString();
+//                                    openCostumers();
+//                                }
+//                                else {
+//                                    Toast.makeText(customer_user.this,"PASSWORD IS UNCORRECTED! \nTRY AGAIN PLEASE.",Toast.LENGTH_LONG).show();
+//                                }
+//                            }
+//                            else {
+//                                Toast.makeText(customer_user.this,"The email: "+email.getText().toString()+" is NOT registered in the system",Toast.LENGTH_SHORT).show();
+//                                Log.d(TAG, "No such document");
+//                            }
+//                        }
+//                        else {
+//                            Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//
+//                }
+/**  */
 //                if(email.getText().toString().equals("") && password.getText().toString().equals("")){
 //                    //correct
 //                    Toast.makeText(customer_user.this,"LOGIN SUCCESSFUL.\nHELLO COSTUMER!",Toast.LENGTH_SHORT).show();
@@ -186,3 +156,5 @@ public class customer_user extends AppCompatActivity {
         startActivity(intent);
 }
 }
+
+
