@@ -142,7 +142,7 @@
         </activity>
 
         <activity
-            android:name=".admin.usersManage"
+            android:name=".admin.usersManageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

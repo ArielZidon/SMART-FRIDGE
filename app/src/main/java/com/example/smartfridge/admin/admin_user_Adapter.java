@@ -1,6 +1,6 @@
 package com.example.smartfridge.admin;
 
-import static com.example.smartfridge.admin.usersManage.deleteUsers;
+import static com.example.smartfridge.Model.usersManageModel.deleteUsers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -57,7 +57,7 @@ public class admin_user_Adapter extends RecyclerView.Adapter<admin_user_Adapter.
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, usersManage.class);
+                Intent intent = new Intent(mContext, usersManageActivity.class);
                 deleteUsers(usersList.get(i));
                 mContext.startActivity(intent);
             }

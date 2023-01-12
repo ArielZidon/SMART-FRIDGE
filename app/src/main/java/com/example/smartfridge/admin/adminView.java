@@ -27,7 +27,7 @@ public class adminView extends AppCompatActivity {
     }
 
     public void openAdminUsers() {
-        Intent intent = new Intent(this, usersManage.class);
+        Intent intent = new Intent(this, usersManageActivity.class);
         startActivity(intent);
     }
     public void openAdminRecipes() {
