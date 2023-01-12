@@ -1,7 +1,7 @@
 package com.example.smartfridge.admin;
 
-import static com.example.smartfridge.admin.recipesManage.deleteRecipes;
-import static com.example.smartfridge.admin.recipesManage.loadRecipes;
+import static com.example.smartfridge.Model.recipesManageModel.deleteRecipes;
+import static com.example.smartfridge.Model.recipesManageModel.loadRecipes;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -67,7 +67,7 @@ public class adminAdapter extends RecyclerView.Adapter<adminAdapter.MyHolder> {
         holder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, recipesManage.class);
+                Intent intent = new Intent(mContext, recipesManageActivity.class);
                 loadRecipes(lisrecipe.get(i));
                 deleteRecipes(lisrecipe.get(i));
                 mContext.startActivity(intent);
@@ -76,7 +76,7 @@ public class adminAdapter extends RecyclerView.Adapter<adminAdapter.MyHolder> {
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, recipesManage.class);
+                Intent intent = new Intent(mContext, recipesManageActivity.class);
                 deleteRecipes(lisrecipe.get(i));
                 mContext.startActivity(intent);
             }

@@ -3,7 +3,6 @@ package com.example.smartfridge.admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +31,7 @@ public class adminView extends AppCompatActivity {
         startActivity(intent);
     }
     public void openAdminRecipes() {
-        Intent intent = new Intent(this, recipesManage.class);
+        Intent intent = new Intent(this, recipesManageActivity.class);
         startActivity(intent);
     }
     @Override

@@ -149,7 +149,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin.recipesManage"
+            android:name=".admin.recipesManageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
