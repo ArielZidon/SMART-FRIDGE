@@ -57,7 +57,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".local_customer_memory.my_category"
+            android:name=".local_customer_memory.myCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -85,35 +85,35 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".local_customer_memory.page_vegetables"
+            android:name=".local_customer_memory.vegCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".local_customer_memory.page_dryFood"
+            android:name=".local_customer_memory.dryFoodCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".local_customer_memory.page_milky"
+            android:name=".local_customer_memory.milkCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".local_customer_memory.page_meat"
+            android:name=".local_customer_memory.meatCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".local_customer_memory.page_cleaning_materials"
+            android:name=".local_customer_memory.cleaningCategoryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

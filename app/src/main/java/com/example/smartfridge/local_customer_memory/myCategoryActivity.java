@@ -3,36 +3,31 @@ package com.example.smartfridge.local_customer_memory;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.smartfridge.Model.myCategoryModel;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.business_entities.ModelClass;
 import com.example.smartfridge.R;
 import com.example.smartfridge.ui.main.MainMenu;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class my_category extends AppCompatActivity implements category{
-
+public class myCategoryActivity extends AppCompatActivity{
+    myCategoryModel model = new myCategoryModel(this);
     AlertDialog dialog;
     EditText name;
     EditText number;
     Button btSave;
-    TextView nameView;
+    public TextView nameView;
     ArrayList<ModelClass> arrayList;
     ImageButton home;
 
@@ -60,11 +55,10 @@ public class my_category extends AppCompatActivity implements category{
 
         editName = findViewById(R.id.edit);
 
-        loadData();
+        model.loadData();
         buildDialog();
         buildRename();
-
-        loadName();
+        model.loadName();
 
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,48 +91,47 @@ public class my_category extends AppCompatActivity implements category{
     }
 
 
-    /**
-     * Upload items form sharedPreferences
-     * if list == null => create new empty list
-     * else => show on the screen all items from the sharedPreferences "Item_Data_meat"
-     */
-    public void loadData() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("Item_Data_my_category", null);
-        Type type = new TypeToken<ArrayList<ModelClass>>() {
-        }.getType();
-        arrayList = gson.fromJson(json, type);
-        if (arrayList == null) {
-            arrayList = new ArrayList<>();
-//            tvSize.setText(""+0);
-        } else {
-            for (int i = 0; i < arrayList.size(); i++) {
-                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
-            }
-        }
-    }
-
-    /**
-     * @param name  => item name
-     * @param count => count of items (it String because we want to be able to show different options)
-     *              save on sharedPreferences item (name, count)
-     *              and upload the view with the new item
-     */
-    public void saveData(String name, String count) {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        arrayList.add((new ModelClass(name, count)));
-        String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_my_category", json);
-        editor.apply();
-        addCard(name, count);
-    }
-
-    @Override
-    public void nextPage() {}
-
+//    /**
+//     * Upload items form sharedPreferences
+//     * if list == null => create new empty list
+//     * else => show on the screen all items from the sharedPreferences "Item_Data_meat"
+//     */
+//    public void loadData() {
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
+//        Gson gson = new Gson();
+//        String json = sharedPreferences.getString("Item_Data_my_category", null);
+//        Type type = new TypeToken<ArrayList<ModelClass>>() {
+//        }.getType();
+//        arrayList = gson.fromJson(json, type);
+//        if (arrayList == null) {
+//            arrayList = new ArrayList<>();
+////            tvSize.setText(""+0);
+//        } else {
+//            for (int i = 0; i < arrayList.size(); i++) {
+//                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
+//            }
+//        }
+//    }
+//
+//    /**
+//     * @param name  => item name
+//     * @param count => count of items (it String because we want to be able to show different options)
+//     *              save on sharedPreferences item (name, count)
+//     *              and upload the view with the new item
+//     */
+//    public void saveData(String name, String count) {
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        Gson gson = new Gson();
+//        arrayList.add((new ModelClass(name, count)));
+//        String json = gson.toJson(arrayList);
+//        editor.putString("Item_Data_my_category", json);
+//        editor.apply();
+//        addCard(name, count);
+//    }
+//
+//
+//
 
     /**
      * create a view dialog between the customers on user to adds items
@@ -157,10 +150,10 @@ public class my_category extends AppCompatActivity implements category{
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        saveData(name.getText().toString(), number.getText().toString());
+                        model.saveData(name.getText().toString(), number.getText().toString());
                     }
                 })
-                .setNegativeButton("Cencel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -180,7 +173,7 @@ public class my_category extends AppCompatActivity implements category{
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        saveName(name.getText().toString());
+                        model.saveName(name.getText().toString());
                         nameView.setText(name.getText());
                     }
                 })
@@ -194,34 +187,34 @@ public class my_category extends AppCompatActivity implements category{
 
     }
 
-    /**
-     * @param str -> the name we what to view
-     *  save str in sharedPreferences
-     */
-    public void saveName(String str){
-        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+//    /**
+//     * @param str -> the name we what to view
+//     *  save str in sharedPreferences
+//     */
+//    public void saveName(String str){
+//        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString("text", str);
+//        editor.apply();
+//
+//        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    /**
+//     * load the name from sharedPreferences
+//     */
+//    public void loadName() {
+//        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
+//        text = sharedPreferences.getString("text", "");
+//        nameView.setText(text);
+//
+//    }
 
-        editor.putString("text", str);
-        editor.apply();
-
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * load the name from sharedPreferences
-     */
-    public void loadName() {
-        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
-        text = sharedPreferences.getString("text", "");
-        nameView.setText(text);
-
-    }
-
-    public boolean onCreteOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
+//    public boolean onCreteOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main_menu, menu);
+//        return true;
+//    }
 
     /**
      * @param name   => item name
@@ -241,33 +234,33 @@ public class my_category extends AppCompatActivity implements category{
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeArray(nameView.getText().toString(), countView.getText().toString());
+                model.removeArray(nameView.getText().toString(), countView.getText().toString());
                 layout.removeView(view);
             }
         });
         layout.addView(view);
     }
 
-    /**
-     * @param name  => item name that customer select to delete
-     * @param count => count item that customer select to delete
-     *              1. remove item from the screen
-     *              2. remove item from sharedPreferences
-     */
-    public void removeArray(String name, String count) {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).getItemName().equals(name) &&
-                    arrayList.get(i).itemNumber.equals(count)) {
-                arrayList.remove(i);
-            }
-        }
-        String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_my_category", json);
-        editor.apply();
-    }
+//    /**
+//     * @param name  => item name that customer select to delete
+//     * @param count => count item that customer select to delete
+//     *              1. remove item from the screen
+//     *              2. remove item from sharedPreferences
+//     */
+//    public void removeArray(String name, String count) {
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        Gson gson = new Gson();
+//        for (int i = 0; i < arrayList.size(); i++) {
+//            if (arrayList.get(i).getItemName().equals(name) &&
+//                    arrayList.get(i).itemNumber.equals(count)) {
+//                arrayList.remove(i);
+//            }
+//        }
+//        String json = gson.toJson(arrayList);
+//        editor.putString("Item_Data_my_category", json);
+//        editor.apply();
+//    }
 
     @Override
     public void onBackPressed() {

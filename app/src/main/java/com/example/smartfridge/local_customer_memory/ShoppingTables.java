@@ -53,27 +53,27 @@ public class ShoppingTables extends AppCompatActivity {
         startActivity(intent);
     }
     public void openPage_meat() {
-        Intent intent = new Intent(this, page_meat.class);
+        Intent intent = new Intent(this, meatCategoryActivity.class);
         startActivity(intent);
     }
     public void openPage_milky() {
-        Intent intent = new Intent(this, page_milky.class);
+        Intent intent = new Intent(this, milkCategoryActivity.class);
         startActivity(intent);
     }
     public void openPage_clean() {
-        Intent intent = new Intent(this, page_cleaning_materials.class);
+        Intent intent = new Intent(this, cleaningCategoryActivity.class);
         startActivity(intent);
     }
     public void openPage_dry() {
-        Intent intent = new Intent(this, page_dryFood.class);
+        Intent intent = new Intent(this, dryFoodCategoryActivity.class);
         startActivity(intent);
     }
     public void openPage_bt_vegetables() {
-        Intent intent = new Intent(this, page_vegetables.class);
+        Intent intent = new Intent(this, vegCategoryActivity.class);
         startActivity(intent);
     }
     public void openPage_bt_my_category() {
-        Intent intent = new Intent(this, my_category.class);
+        Intent intent = new Intent(this, myCategoryActivity.class);
         startActivity(intent);
     }
 
