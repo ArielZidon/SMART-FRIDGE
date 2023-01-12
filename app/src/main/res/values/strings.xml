@@ -30,4 +30,5 @@
     <string name="ingredients2">Ingredients :</string>
     <string name="upload_image">Upload Image</string>
     <string name="ingredients4">Ingredients :</string>
+    <item name="sign_in_Btn" type="id">sign_in_Btn</item>
 </resources>

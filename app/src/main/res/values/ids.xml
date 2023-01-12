@@ -4,4 +4,5 @@
     <item name="mamagebtn" type="id" />
     <item name="createbtn" type="id" />
     <item name="send" type="id" />
+    <item name="sign_in_btn" type="id" />
 </resources>

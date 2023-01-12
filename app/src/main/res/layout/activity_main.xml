@@ -31,7 +31,7 @@
         android:text="                    SIGN UP                   " />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@id/signinbtn"
+        android:id="@id/sign_in_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signupbtn"

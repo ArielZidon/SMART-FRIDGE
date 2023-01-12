@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         TextView title = (TextView) findViewById(R.id.title);
 
         MaterialButton signUpBtn = (MaterialButton) findViewById(R.id.signupbtn);
-        MaterialButton signInBtn = (MaterialButton) findViewById(R.id.signinbtn);
+        MaterialButton signInBtn = (MaterialButton) findViewById(R.id.sign_in_Btn);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override

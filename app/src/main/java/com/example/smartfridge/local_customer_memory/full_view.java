@@ -21,7 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class fullViewActivity extends AppCompatActivity {
+public class full_view extends AppCompatActivity {
     fullViewModel model = new fullViewModel(this);
     LinearLayout layout;
     ImageButton beckView;
