@@ -28,4 +28,6 @@
     <string name="edit_users">Edit Users</string>
     <string name="todo">TODO</string>
     <string name="ingredients2">Ingredients :</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="ingredients4">Ingredients :</string>
 </resources>

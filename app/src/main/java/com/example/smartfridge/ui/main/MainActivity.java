@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartfridge.R;
-import com.example.smartfridge.accountDB.createAccount;
+import com.example.smartfridge.accountDB.createAccountActivity;
 import com.example.smartfridge.accountDB.customer_user;
 import com.example.smartfridge.admin.adminView;
 //import com.example.smartfridge.databinding.ActivityMainBinding;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void  openCreateAccount(){
-        Intent intent = new Intent(this, createAccount.class);
+        Intent intent = new Intent(this, createAccountActivity.class);
         startActivity(intent);
     }
 

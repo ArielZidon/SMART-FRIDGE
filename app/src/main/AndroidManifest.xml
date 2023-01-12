@@ -170,7 +170,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".accountDB.createAccount"
+            android:name=".accountDB.createAccountActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -178,13 +178,6 @@
         </activity>
         <activity
             android:name=".recipesDB.insertRecipe"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".recipesDB.add_Ingredients"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

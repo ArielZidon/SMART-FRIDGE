@@ -8,17 +8,17 @@
     android:background="@drawable/background2"
     tools:context=".recipesDB.insert_recipe">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="cursive"
-        android:text="Enter YOUR Recipe"
-        android:textColor="@color/white"
-        android:textSize="35dp" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="cursive"
+            android:text="Enter YOUR Recipe"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
 
     <EditText
         android:id = "@+id/recipe_name"
@@ -28,12 +28,11 @@
         android:focusable = "true"
         android:textColorHighlight = "#000000"
         android:textColorHint = "@color/white"
-        android:layout_marginTop = "30dp"
+        android:layout_marginTop = "20dp"
         android:layout_alignParentStart = "true"
         android:layout_alignParentEnd = "true"
         android:textColor="@color/white"
-        android:fontFamily="sans-serif-medium"
-        android:hint = "Recipe Name"/>
+        android:hint = " Recipe Name"/>
 
     <EditText
         android:id = "@+id/recipe_time"
@@ -43,21 +42,21 @@
         android:focusable = "true"
         android:textColorHighlight = "#000000"
         android:textColorHint = "@color/white"
-        android:layout_marginTop = "20dp"
+        android:layout_marginTop = "10dp"
         android:layout_alignParentStart = "true"
         android:layout_alignParentEnd = "true"
         android:textColor="@color/white"
-        android:fontFamily="sans-serif-medium"
-        android:hint = "Recipe Time"/>
+        android:hint = " Recipe Time"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="10dp"
         android:scrollbars="none"
         android:layout_below="@+id/recipe_time"
         android:id="@+id/scroll">
         <EditText
             android:id = "@+id/recipe_instructions"
-            android:layout_width = "wrap_content"
+            android:layout_width = "match_parent"
             android:layout_height = "wrap_content"
             android:focusable = "true"
             android:textColorHighlight = "#000000"
@@ -65,9 +64,6 @@
             android:layout_marginTop = "1dp"
             android:layout_alignParentStart = "true"
             android:layout_alignParentEnd = "true"
-            android:textSize="18dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:fontFamily="sans-serif-medium"
             android:textColor="@color/white"
             android:hint = " Instructions"/>
     </ScrollView>
@@ -79,26 +75,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/scroll"
         android:layout_centerInParent="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
         android:fontFamily="sans-serif-medium"
-        android:text="Upload Image"
+        android:text="@string/upload_image"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/black"
-        android:textStyle="">
+        android:textColor="@color/black">
 
     </Button>
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="85dp"
         android:layout_below="@+id/upload_image_bt"
         android:id="@+id/img_gallery"
-        android:scaleType="fitXY"
-        android:contentDescription="@string/todo">
+        android:scaleType="fitXY">
 
     </ImageView>
 
@@ -109,28 +101,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_gallery"
-        android:layout_marginTop="-25dp"
-        android:text="@string/ingredients2"
+        android:layout_margin="10dp"
+        android:text="@string/ingredients4"
         android:textColor="@color/white"
         android:textColorHint = "@color/white"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="18sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-
+        android:textSize="20sp"
         android:id="@+id/ingredients">
 
     </TextView>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:scrollbars="none"
         android:layout_below="@+id/ingredients"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/white"
-        android:textColorHint = "@color/white"
         android:id="@+id/scrollView">
-
 
         <LinearLayout
             android:id="@+id/layout_list"
@@ -138,10 +123,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@+id/ingredients"
-            android:textColor="@color/white"
-            android:textColorHint = "@color/white"
             android:layout_margin="10dp"
-            ></LinearLayout>
+            >
+
+        </LinearLayout>
 
     </ScrollView>
 
@@ -154,8 +139,8 @@
         android:layout_marginLeft="15dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:backgroundTint="@color/white"
         android:text="Add"
+        android:backgroundTint="@color/white"
         android:textAllCaps="false"
         android:textColor="@color/black"></Button>
 

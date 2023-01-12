@@ -1,10 +1,18 @@
 package com.example.smartfridge.recipesDB;
 
 import static android.content.ContentValues.TAG;
-
+import static android.content.ContentValues.TAG;
 import static com.example.smartfridge.accountDB.customer_user.userName;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -15,32 +23,55 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartfridge.R;
 import com.example.smartfridge.ui.main.MainMenu;
+import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import org.jetbrains.annotations.Nullable;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
+
 public class insert_recipe extends AppCompatActivity {
-
+    ActivityResultLauncher<Intent> activityResultLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<ActivityResult>() {
+                        @Override
+                        public void onActivityResult(ActivityResult activityResult) {
+                            int requestCode = activityResult.getResultCode();
+                            Intent data = activityResult.getData();
+                            imageUri = data.getData();
+                            if (requestCode == RESULT_OK) {
+                                //FOR GALLERY
+                                imgGallery.setImageURI(data.getData());
+                                Toast.makeText(insert_recipe.this,"Your IMAGE is upload!",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
     private FirebaseFirestore firestore;
+    Uri imageUri;
+    StorageReference storageReference;
+    ProgressDialog progressDialog;
+    private final int IMAGE = 1000;
 
-    private int IMAGE;
     ImageView imgGallery;
     LinearLayout layoutList;
     Button add;
@@ -103,18 +134,19 @@ public class insert_recipe extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     //if document exists we wont create it again to prevent duplicate.
-                                    Toast.makeText(insert_recipe.this, "This This recipe exists - add of change ingredient", Toast.LENGTH_SHORT).show();
-                                }
-                                else {
+                                    Toast.makeText(insert_recipe.this, "This recipe exists - add of change ingredient", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    uploadImage();
 
-                                    new_recipe.put("recipeName",recipe_name.getText().toString());
-                                    new_recipe.put("recipeTime",recipe_time.getText().toString());
-                                    new_recipe.put("recipeIngredients",recipe_ingredients);
-                                    new_recipe.put("recipe",recipe_instructions.getText().toString());
-                                    new_recipe.put("status","Unapproved recipe");
-                                    new_recipe.put("user",userName);
+                                    new_recipe.put("recipeName", recipe_name.getText().toString());
+                                    new_recipe.put("recipeTime", recipe_time.getText().toString());
+                                    new_recipe.put("recipeIngredients", recipe_ingredients);
+                                    new_recipe.put("recipe", recipe_instructions.getText().toString());
+                                    new_recipe.put("status", "Unapproved recipe");
+                                    new_recipe.put("user", userName);
+                                    new_recipe.put("image", storageReference.getName());
 
-                                    Toast.makeText(insert_recipe.this,"Your RECIPE sent to admin!",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(insert_recipe.this, "Your RECIPE sent to admin!", Toast.LENGTH_LONG).show();
                                     recipe_DB.document(DocumentName).set(new_recipe);
                                     openMainMenu();
                                 }
@@ -139,19 +171,38 @@ public class insert_recipe extends AppCompatActivity {
             public void onClick(View view) {
                 Intent gallery = new Intent(Intent.ACTION_PICK);
                 gallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(gallery,IMAGE);
-
-                Toast.makeText(insert_recipe.this,"Your IMAGE is upload!",Toast.LENGTH_LONG).show();
-
-                new_recipe.put("image",IMAGE);
-
-//                ArrayList<Integer> recipe_image = new ArrayList<>();
-//                recipe_image.add(IMAGE);
-
-                //***NEED INSERT IMAGE TO DATABASE
+                activityResultLauncher.launch(gallery);
             }
         });
     }
+    private void uploadImage() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading File....");
+        progressDialog.show();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
+        Date now = new Date();
+        String fileName = formatter.format(now);
+        storageReference = FirebaseStorage.getInstance().getReference("images/"+fileName);
+        storageReference.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        binding.firebaseimage.setImageURI(null);
+                        Toast.makeText(insert_recipe.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
+                        if (progressDialog.isShowing())
+                            progressDialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (progressDialog.isShowing())
+                            progressDialog.dismiss();
+                        Toast.makeText(insert_recipe.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
+                    }
+                });
+        Log.d(TAG, "uploadImage: &&&&&&&&&&&&&&&&&&&&&&&&&"+storageReference.getName()+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    }
+
 
     private boolean checkIfValidAndRead() {
         ingredients_List.clear();
@@ -204,7 +255,7 @@ public class insert_recipe extends AppCompatActivity {
         EditText ingred = (EditText)cricketerView.findViewById(R.id.edit_ingredient_name);
         EditText quantity = (EditText)cricketerView.findViewById(R.id.quantity);
         ImageView imageClose = (ImageView)cricketerView.findViewById(R.id.image_remove);
-        
+
 //        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
 
         imageClose.setOnClickListener(new View.OnClickListener() {
@@ -253,18 +304,7 @@ public class insert_recipe extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_OK) {
 
-            if (requestCode == IMAGE) {
-                //FOR GALLERY
-                imgGallery.setImageURI(data.getData());
-            }
-
-        }
-    }
 
     public void openMainMenu(){
         Intent intent = new Intent(this, MainMenu.class);
