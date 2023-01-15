@@ -169,6 +169,7 @@ public class recipes_wind extends AppCompatActivity {
 //                "Make glaze: In a large bowl, whisk together milk, powdered sugar, and vanilla until smooth. Set aside.\n" +
 //                "Line a large baking sheet with paper towels. In a large dutch oven over medium heat, heat 2'' oil to 350°. Cook doughnuts, in batches, until deeply golden on both sides, about 1 minute per side. Holes will cook even faster!\n" +
 //                "Transfer doughnuts to paper towel-lined baking sheet to drain and cool slightly. Dip into glaze, then place onto a cooling rack (or eat immediately!)",R.drawable.donut1));
+
 //        recipes1.add(new recipe("Dosa","20 min","3 cups rice" +
 //                "1 cup urad daal (split, skinless black gram)" +
 //                "3/4 teaspoon fenugreek seeds" +
@@ -178,6 +179,7 @@ public class recipes_wind extends AppCompatActivity {
 //                        "Put some cooking oil in a small bowl and keep ready. You will also need a bowl of ice cold water, a large, flat nonstick pan, 2 sheets of paper towel, a ladle, a spatula, and a basting brush.\n" +
 //                        "When the upper surface begins to look cooked (it will no longer look soft or runny), flip the dosa. By this time, ideally, the surface that was underneath should be light golden in color. Cook for 1 minute after flipping.\n" +
 //                        "The dosa is almost done. Fold it in half and allow to cook for 30 seconds more.",R.drawable.dosa1));
+
 //        recipes1.add(new recipe("Pancake","20 min","1 1/4 cups milk" +
 //                "1 egg" +
 //                "3 tablespoons butter melted" +
@@ -187,6 +189,7 @@ public class recipes_wind extends AppCompatActivity {
 //                "1 tablespoon white sugar",
 //                "In a large bowl, sift together the flour, baking powder, salt and sugar. Make a well in the center and pour in the milk, egg and melted butter; mix until smooth." +
 //                        "Heat a lightly oiled griddle or frying pan over medium high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake. Brown on both sides and serve hot.",R.drawable.pancakes));
+
 //        recipes1.add(new recipe("Pasta","20 min","1 tsp oil" +
 //                "1 tsp butter" +
 //                "2 clove garlic, finely chopped" +

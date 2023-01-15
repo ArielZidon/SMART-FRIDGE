@@ -16,6 +16,7 @@
         android:layout_marginRight="5dp"
         android:layout_weight="1"
         android:hint="Ingredient Name"
+        android:textColorHint="@color/white"
         android:textSize="14sp"
         android:paddingLeft="10dp"
         android:textColor="@color/white"
@@ -37,6 +38,7 @@
         android:textSize="14sp"
         android:paddingLeft="10dp"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:hint="quantity"
         >
 
@@ -53,7 +55,7 @@
         android:layout_marginLeft="5dp"
         android:layout_gravity="center_vertical"
         android:src="@drawable/ic_baseline_delete_forever_24"
-        app:tint="@color/black">
+        app:tint="@color/white">
 
     </ImageView>
 

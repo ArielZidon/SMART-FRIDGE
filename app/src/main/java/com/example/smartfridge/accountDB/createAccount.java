@@ -63,7 +63,7 @@ public class createAccount extends AppCompatActivity {
         TextView name = (TextView) findViewById(R.id.name);
         TextView email = (TextView) findViewById(R.id.email);
         TextView password = (TextView) findViewById(R.id.password);
-        TextView user = (TextView) findViewById(R.id.user);
+//        TextView user = (TextView) findViewById(R.id.user);
 
 
         teamList.add("Customer");
@@ -79,14 +79,14 @@ public class createAccount extends AppCompatActivity {
         createbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Log.d(TAG, "onClick: -----------------------"+ spinnerTeam.getSelectedItem().toString()+"---------------------");
+                Log.d(TAG, "onClick: -----------------------"+ spinnerTeam.getSelectedItem().toString()+"---------------------");
                 //base terms to create a new account.
                 if (email.getText().toString().equals("") || password.getText().toString().length() < 5
-                        || user.getText().toString().equals("") || name.getText().toString().equals("")) {
+                        || name.getText().toString().equals("")) {
                     Toast.makeText(createAccount.this, "filled", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if(user.getText().toString().equals("costumer")){
+                    if(spinnerTeam.getSelectedItem().toString().equals("Customer")){
                         String collection = "costumer_accounts";
                         //this commend open a Document from our firestore cloud collection by a string collection path and document path.
                         //if the Document does not exist it will create the document as the path name.
@@ -107,12 +107,12 @@ public class createAccount extends AppCompatActivity {
                                         //not ideal but working.
                                         if (!managers_DB.document(email.getText().toString()).get().isSuccessful()){
                                             //authentication.
-                                            Auto_user(name,email,password,user);
+                                            Auto_user(name,email,password);
                                         }
                                         //if document does not exists - open a map & insert user data to the map.
                                         Map<String, Object> info = new HashMap<>();
                                         info.put("name", name.getText().toString());
-                                        info.put("user_type", user.getText().toString());
+                                        info.put("user_type", spinnerTeam.getSelectedItem().toString());
                                         info.put("password", password.getText().toString());
                                         info.put("Uid",auth.getCurrentUser().getUid());
                                         //insert map into database by a document path.
@@ -130,7 +130,7 @@ public class createAccount extends AppCompatActivity {
                         });
                     }
                     //if user is a manager  + base terms to create a new manager account.
-                    if(user.getText().toString().equals("manager") && password.getText().toString().contains("SFmanager")){
+                    if(spinnerTeam.getSelectedItem().toString().equals("Manager") && password.getText().toString().contains("SFmanager")){
                         String collection = "manager_accounts";
                         DocumentReference docRef = firestore.collection(collection).document(email.getText().toString());
                         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -143,11 +143,11 @@ public class createAccount extends AppCompatActivity {
                                     }
                                     else {
                                         if (!costumers_DB.document(email.getText().toString()).get().isSuccessful()){
-                                            Auto_user(name,email,password,user);
+                                            Auto_user(name,email,password);
                                         }
                                         Map<String, Object> info = new HashMap<>();
                                         info.put("name", name.getText().toString());
-                                        info.put("user_type", user.getText().toString());
+                                        info.put("user_type", spinnerTeam.getSelectedItem().toString());
                                         info.put("password", password.getText().toString());
                                         info.put("Uid",auth.getCurrentUser().getUid());
                                         managers_DB.document(email.getText().toString()).set(info);
@@ -169,7 +169,7 @@ public class createAccount extends AppCompatActivity {
     }
 
 
-    public void Auto_user(TextView name,TextView email,TextView password,TextView user){
+    public void Auto_user(TextView name,TextView email,TextView password){
         //create the user in the authentication on the firestore.
         auth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(createAccount.this, new OnCompleteListener<AuthResult>() {
             @Override
