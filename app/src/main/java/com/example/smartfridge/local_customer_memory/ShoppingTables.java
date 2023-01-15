@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartfridge.Model.fullViewModel;
 import com.example.smartfridge.R;
 import com.example.smartfridge.ui.main.MainMenu;
 
@@ -17,7 +18,6 @@ public class ShoppingTables extends AppCompatActivity {
     private ImageButton bt_clean;
     private ImageButton bt_dry;
     private ImageButton bt_vegetables;
-//    private ImageButton bt_recipes;
     private ImageButton bt_fullView;
     private Button bt_category;
 
@@ -32,7 +32,6 @@ public class ShoppingTables extends AppCompatActivity {
         bt_clean = (ImageButton) findViewById(R.id.bt_clean);
         bt_dry = (ImageButton) findViewById(R.id.bt_dty);
         bt_vegetables = (ImageButton) findViewById(R.id.bt_vegetables);
-//        bt_recipes = (ImageButton) findViewById(R.id.bt_recipes);
         bt_fullView = (ImageButton) findViewById(R.id.bt_full_view);
         bt_category = (Button) findViewById(R.id.my_category);
 
@@ -41,7 +40,6 @@ public class ShoppingTables extends AppCompatActivity {
         bt_clean.setOnClickListener(v -> openPage_clean());
         bt_dry.setOnClickListener(v -> openPage_dry());
         bt_vegetables.setOnClickListener(v -> openPage_bt_vegetables());
-//        bt_recipes.setOnClickListener(v -> createRecipes());
         bt_fullView.setOnClickListener(v -> openPage_full());
         bt_category.setOnClickListener(v -> openPage_bt_my_category());
 
@@ -76,56 +74,6 @@ public class ShoppingTables extends AppCompatActivity {
         Intent intent = new Intent(this, myCategoryActivity.class);
         startActivity(intent);
     }
-
-//    public void createRecipes(){
-//        SortProducts.getKeys().clear();
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        Gson gson = new Gson();
-//
-//        String json = sharedPreferences.getString("Item_Data_meat", null);
-//        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-//        ArrayList<ModelClass> arrayList_all = gson.fromJson(json, type);
-//
-//        ArrayList<ModelClass> arrayList_temp = new ArrayList<>();
-//        json = sharedPreferences.getString("Item_Data_milky", null);
-//        if (json != null){
-//            arrayList_temp = gson.fromJson(json, type);
-//            arrayList_all.addAll(arrayList_temp);
-//        }
-//
-//        json = sharedPreferences.getString("Item_Data_vege", null);
-//        if (json != null) {
-//            arrayList_temp = gson.fromJson(json, type);
-//            arrayList_all.addAll(arrayList_temp);
-//        }
-//
-//        json = sharedPreferences.getString("Item_Data_Dry", null);
-//        if (json != null) {
-//            arrayList_temp = gson.fromJson(json, type);
-//            arrayList_all.addAll(arrayList_temp);
-//        }
-//
-//        String[] products = new String[arrayList_all.size()];
-//        if (products.length!=0) {
-//            for (int i = 0; i < products.length; i++) {
-//                products[i] = arrayList_all.get(i).getItemName();
-////                Log.d(TAG, "createRecipes: " + products[i]);
-//            }
-//        }
-//
-//        boolean algo_has_been_activated = false;
-//        for (int i = 3; i <5 ; i++) { //try to find out if we got enough products to get a recipeObject.
-//            if (products.length >= i)
-//            {
-//                mixCombination(products, products.length, i);
-//                algo_has_been_activated = true;
-//            }
-//        }
-//        if (!algo_has_been_activated) //if w dont have the algorithm not gonna be active.
-//            Toast.makeText(ShoppingTables.this,"There is not enough products to create a recipeObject!",Toast.LENGTH_LONG).show();
-//
-//    }
-
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainMenu.class);

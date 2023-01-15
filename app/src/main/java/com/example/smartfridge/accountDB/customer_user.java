@@ -58,11 +58,17 @@ public class customer_user extends AppCompatActivity {
                     if (email.getText().toString().equals(""))
                         Toast.makeText(customer_user.this, "TSDhe email: " + email.getText().toString() + " is NOT registered in the system", Toast.LENGTH_SHORT).show();
                     else {
+                        /**the URL is for the emolator/phone this is way its 10.0.2.2 */
                         JSONTask connect = (JSONTask) new JSONTask().execute("http://10.0.2.2:8000/admin/" + email.getText().toString() + "/" + password.getText().toString());
                         while (Objects.equals(connect.res, "")) {}
                         customerLog logTrying = new customerLog(connect.res);
                         state = logTrying.logIn();
                         switch (state) {
+                            /**swich case -
+                             * 0: LOGIN ADMIN SUCCESSFUL
+                             * 1: LOGIN ADMIN FAILED Incorrect Password
+                             * 2: LOGIN ADMIN FAILED user Does Not Exist
+                             * */
                             case '0':
                                 userName = email.getText().toString();
                                 Toast.makeText(customer_user.this, "LOGIN ADMIN SUCCESSFUL.\nHELLO " + userName + "! \uD83D\uDE03", Toast.LENGTH_SHORT).show();
@@ -88,6 +94,11 @@ public class customer_user extends AppCompatActivity {
                         customerLog logTrying = new customerLog(connect.res);
                         state = logTrying.logIn();
                         switch (state) {
+                            /**swich case -
+                             * 0: LOGIN ADMIN SUCCESSFUL
+                             * 1: LOGIN ADMIN FAILED Incorrect Password
+                             * 2: LOGIN ADMIN FAILED manger Does Not Exist
+                             * */
                             case '0':
                                 userName = email.getText().toString();
                                 Toast.makeText(customer_user.this, "LOGIN SUCCESSFUL.\nHELLO " + userName + "! \uD83D\uDE03", Toast.LENGTH_SHORT).show();

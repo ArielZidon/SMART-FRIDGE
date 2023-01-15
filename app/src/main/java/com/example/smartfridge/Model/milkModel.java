@@ -27,7 +27,7 @@ public class milkModel {
     public void loadData() {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("Item_Data_Cleaning", null);
+        String json = sharedPreferences.getString("Item_Data_Milk", null);
         Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
         arrayList = gson.fromJson(json, type);
         if(arrayList == null){

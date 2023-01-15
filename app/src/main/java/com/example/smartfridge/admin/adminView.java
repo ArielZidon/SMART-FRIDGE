@@ -26,10 +26,12 @@ public class adminView extends AppCompatActivity {
         Recipes.setOnClickListener(v -> openAdminRecipes());
     }
 
+    /**let admin edit and delete the users*/
     public void openAdminUsers() {
         Intent intent = new Intent(this, usersManageActivity.class);
         startActivity(intent);
     }
+    /**let admin edit and delete the recipes*/
     public void openAdminRecipes() {
         Intent intent = new Intent(this, recipesManageActivity.class);
         startActivity(intent);

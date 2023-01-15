@@ -50,6 +50,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Model.fullViewModel"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".recipesDB.recipe_activity"
             android:exported="false">
             <meta-data

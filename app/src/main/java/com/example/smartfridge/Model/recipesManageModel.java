@@ -44,6 +44,7 @@ public class recipesManageModel {
         this.recipesCollection = db.collection(collection_name);
 
     }
+    /**adapter to the admin that can see the recipe*/
     public void setRecipes(RecyclerView cardView){
         this.cardView = cardView;
     this.recipesCollection.get()
@@ -64,7 +65,7 @@ public class recipesManageModel {
                             , time
                             ,ing
                             , recipe
-                            , R.drawable.chicken_roll
+                            , R.drawable.ic_kitchen
                             , document.getId()
                             , user));
 
@@ -86,6 +87,7 @@ public class recipesManageModel {
 }
     private void editRecipes(){}//need to be dev in the future
 
+    /**delete recipe from DB*/
     public static void deleteRecipes(admin_recipe recipe){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Get a reference to the document you want to delete
@@ -94,7 +96,7 @@ public class recipesManageModel {
         docRef.delete();
         Log.d(TAG, "deleteRecipes: "+ recipe.getKey());
     }
-
+    /**load the recipe to the costumers DB that they can see it*/
     public static void loadRecipes(admin_recipe recipe){
         Map<String, Object> enterRecipe = new HashMap<>();
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();

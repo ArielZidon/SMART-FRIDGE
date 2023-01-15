@@ -55,14 +55,13 @@ public class createAccountModel {
                 || userType.equals("") || userName.equals("")) {
             Toast.makeText(activity, "filled", Toast.LENGTH_SHORT).show();
         } else {
-            if (userType.equals("costumer")) {
+            if (userType.equals("Costumer")) {
                 insertIntoCostumers();
             }
-
                 //if user is a manager  + base terms to create a new manager account.
-            else if (userType.equals("manager") && userPassword.contains("SFmanager")) {
-                    insertIntoManagers();
-                }
+            else{
+                insertIntoManagers();}
+
             }
         }
     public void insertIntoCostumers(){
@@ -121,7 +120,7 @@ public class createAccountModel {
                     if (document.exists()) {
                         Toast.makeText(activity, "The email: " + userEmail + " is registered in the system", Toast.LENGTH_SHORT).show();
                     } else {
-                        if (!costumers_DB.document(userEmail).get().isSuccessful()) {
+                        if (!managers_DB.document(userEmail).get().isSuccessful()) {
                             Auto_user(userEmail, userPassword, userType);
                         }
                         user_info.put("name", userName);
@@ -131,7 +130,7 @@ public class createAccountModel {
 //                            user_info.put("Uid", Objects.requireNonNull(auth.getCurrentUser()).getUid());
 //                        }
                         //insert map into database by a document path.
-                        costumers_DB.document(userEmail).set(user_info);
+                        managers_DB.document(userEmail).set(user_info);
                         Toast.makeText(activity, "SING-UP SUCCESSFUL.\nHELLO MANAGER!", Toast.LENGTH_LONG).show();
                         Auto_login(userEmail, userPassword);
                         activity.openManagers();

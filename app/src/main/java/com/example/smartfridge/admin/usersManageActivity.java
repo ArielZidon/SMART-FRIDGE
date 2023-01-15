@@ -38,45 +38,9 @@ public class usersManageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_mange);
         cardView = (RecyclerView) findViewById(R.id.recyclerView_id);
+        /**bring the user card visibility*/
         model.setUsers(cardView);
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        CollectionReference costumerCollection = db.collection("costumer_accounts");
-//        costumerCollection.get()
-//            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                @Override
-//                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                    users_list.clear();
-//                    List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
-//                    for (DocumentSnapshot document : documents) {
-//                        Log.d(TAG, "onSuccess: "+ Objects.requireNonNull(document.getData()).get("password"));
-//                        users_map = document.getData();
-//                        users_list.add(new user(Objects.requireNonNull(users_map.get("name")).toString(),
-//                                document.getId()
-//                                , Objects.requireNonNull(users_map.get("password")).toString()));
-//
-//
-//
-//
-//                        Adapter = new admin_user_Adapter(usersManageActivity.this, users_list);
-//
-//                        cardView.setLayoutManager(new GridLayoutManager(usersManageActivity.this, 1));
-//
-//                        cardView.setAdapter(Adapter);
-//                    }
-//                }
-//            });
     }
-
-//    private void editUsers(){}
-//
-//    protected static void deleteUsers(user user){
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        // Get a reference to the document you want to delete
-//        DocumentReference docRef = db.collection("costumer_accounts").document(user.getEmail().toString());
-//        // Delete the document
-//        docRef.delete();
-//        Log.d(TAG, "deleteRecipes: "+ user.getEmail());
-//    }
 
     @Override
     public void onBackPressed() {

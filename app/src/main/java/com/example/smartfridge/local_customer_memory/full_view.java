@@ -35,10 +35,8 @@ public class full_view extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_view);
-
         layout = findViewById(R.id.container);
         model.loadData();
-
 
         /* Button to go beck to dry food page */
         beckView = (ImageButton) findViewById(R.id.bt_beck);
@@ -185,118 +183,12 @@ public class full_view extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model.removeArray_dry(nameView.getText().toString(), countView.getText().toString());
+                model.removeArray_my_category(nameView.getText().toString(), countView.getText().toString());
                 layout.removeView(view);
             }
         });
         layout.addView(view);
     }
-
-//    /**
-//     * @param name => item name that customer select to delete
-//     * @param count => count item that customer select to delete
-//     *  1. remove item from the screen
-//     *  2. remove item from sharedPreferences
-//     */
-//    private void removeArray_vege(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        for (int i = 0; i < arrayList.size();i++) {
-//            if (arrayList.get(i).getItemName().equals(name) &&
-//                    arrayList.get(i).itemNumber.equals(count)) {
-//                arrayList.remove(i);
-//            }
-//        }
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_vege", json);
-//        editor.apply();
-//    }
-//
-//
-//    /**
-//     * @param name => item name that customer select to delete
-//     * @param count => count item that customer select to delete
-//     *  1. remove item from the screen
-//     *  2. remove item from sharedPreferences
-//     */
-//    private void removeArray_meat(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        for (int i = 0; i < arrayList.size();i++) {
-//            if (arrayList.get(i).getItemName().equals(name) &&
-//                    arrayList.get(i).itemNumber.equals(count)) {
-//                arrayList.remove(i);
-//            }
-//        }
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_meat", json);
-//        editor.apply();
-//    }
-//
-//    /**
-//     * @param name => item name that customer select to delete
-//     * @param count => count item that customer select to delete
-//     *  1. remove item from the screen
-//     *  2. remove item from sharedPreferences
-//     */
-//    private void removeArray_milky(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        for (int i = 0; i < arrayList.size();i++) {
-//            if (arrayList.get(i).getItemName().equals(name) &&
-//                    arrayList.get(i).itemNumber.equals(count)) {
-//                arrayList.remove(i);
-//            }
-//        }
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_milky", json);
-//        editor.apply();
-//    }
-//
-//    /**
-//     * @param name => item name that customer select to delete
-//     * @param count => count item that customer select to delete
-//     *  1. remove item from the screen
-//     *  2. remove item from sharedPreferences
-//     */
-//    private void removeArray_clean(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        for (int i = 0; i < arrayList.size();i++) {
-//            if (arrayList.get(i).getItemName().equals(name) &&
-//                    arrayList.get(i).itemNumber.equals(count)) {
-//                arrayList.remove(i);
-//            }
-//        }
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_Clean", json);
-//        editor.apply();
-//    }
-//
-//    /**
-//     * @param name => item name that customer select to delete
-//     * @param count => count item that customer select to delete
-//     *  1. remove item from the screen
-//     *  2. remove item from sharedPreferences
-//     */
-//    private void removeArray_dry(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        for (int i = 0; i < arrayList.size();i++) {
-//            if (arrayList.get(i).getItemName().equals(name) &&
-//                    arrayList.get(i).itemNumber.equals(count)) {
-//                arrayList.remove(i);
-//            }
-//        }
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_Dry", json);
-//        editor.apply();
-//    }
 
     @Override
     public void onBackPressed() {

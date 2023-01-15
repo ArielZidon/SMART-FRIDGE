@@ -41,6 +41,7 @@ public class usersManageModel {
         this.costumerCollection = db.collection(collection_name);
 
     }
+    /**adapter to the admin that can see the users*/
     public void setUsers(RecyclerView cardView){
         this.cardView = cardView;
         costumerCollection.get()
@@ -75,7 +76,7 @@ public class usersManageModel {
     }
         //        Log.d(TAG, "onSuccess: "+ recipes_list);
 
-
+        /**delete user from the DB*/
         public static void deleteUsers(user user){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Get a reference to the document you want to delete

@@ -29,7 +29,7 @@ public class admin_user_Adapter extends RecyclerView.Adapter<admin_user_Adapter.
         this.mContext = mContext;
         this.usersList = usersList;
     }
-
+    /**adapter for costumer DB*/
     @NonNull
     @Override
     public admin_user_Adapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

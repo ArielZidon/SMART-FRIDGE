@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/recipe_img_admin_id"
             android:layout_width="match_parent"
-            android:layout_height="155dp"
+            android:layout_height="158dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:scaleType="centerCrop"

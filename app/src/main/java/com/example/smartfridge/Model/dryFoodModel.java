@@ -32,7 +32,6 @@ public class dryFoodModel implements category{
         arrayList = gson.fromJson(json, type);
         if(arrayList == null){
             arrayList = new ArrayList<>();
-//            tvSize.setText(""+0);
         }else {
             for (int i = 0; i < arrayList.size(); i++){
                 activity.addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
@@ -56,6 +55,7 @@ public class dryFoodModel implements category{
         editor.apply();
         activity.addCard(name, count);
     }
+
     /**
      * @param name => item name that customer select to delete
      * @param count => count item that customer select to delete

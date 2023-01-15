@@ -102,44 +102,6 @@ public class vegCategoryActivity extends AppCompatActivity  {
         startActivity(intent);
     }
 
-//    /**
-//     * Upload items form sharedPreferences
-//     * if list == null => create new empty list
-//     * else => show on the screen all items from the sharedPreferences "Item_Data_Clean"
-//     */
-//    public void loadData() {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        Gson gson = new Gson();
-//        String json = sharedPreferences.getString("Item_Data_Clean", null);
-//        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
-//        arrayList = gson.fromJson(json, type);
-//        if(arrayList == null){
-//            arrayList = new ArrayList<>();
-////            tvSize.setText(""+0);
-//        }else {
-//            for (int i = 0; i < arrayList.size(); i++){
-//                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
-//            }
-//        }
-//    }
-//
-//    /**
-//     * @param name => item name
-//     * @param count => count of items (it String because we want to be able to show different options)
-//     *  save on sharedPreferences item (name, count)
-//     *  and upload the view with the new item
-//     */
-//    public void saveData(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        arrayList.add((new ModelClass(name, count)));
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_Clean", json);
-//        editor.apply();
-//        addCard(name, count);
-//    }
-
     /**
      * create a view dialog between the customers on use to adds items
      * add new card with the name and number from the dialog
@@ -180,11 +142,11 @@ public class vegCategoryActivity extends AppCompatActivity  {
      * update the view screen with new card (name, cumber)
      */
     public void addCard(String name, String number) {
-        View view = getLayoutInflater().inflate(R.layout.clean_card, null);
+        View view = getLayoutInflater().inflate(R.layout.vege_card, null);
 
-        TextView nameView = view.findViewById(R.id.clean_name);
-        TextView countView = view.findViewById(R.id.clean_number);
-        Button delete = view.findViewById(R.id.clean_delete);
+        TextView nameView = view.findViewById(R.id.vege_name);
+        TextView countView = view.findViewById(R.id.vege_number);
+        Button delete = view.findViewById(R.id.vege_delete);
 
         nameView.setText(name);
         countView.setText(number);
@@ -199,28 +161,7 @@ public class vegCategoryActivity extends AppCompatActivity  {
         layout.addView(view);
     }
 
-
-    //    /**
-//     * @param name => item name that customer select to delete
-//     * @param count => count item that customer select to delete
-//     *  1. remove item from the screen
-//     *  2. remove item from sharedPreferences
-//     */
-//    public void removeArray(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        for (int i = 0; i < arrayList.size();i++) {
-//            if (arrayList.get(i).getItemName().equals(name) &&
-//                    arrayList.get(i).itemNumber.equals(count)) {
-//                arrayList.remove(i);
-//            }
-//        }
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_Clean", json);
-//        editor.apply();
-//    }
-    @Override
+   @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, ShoppingTables.class);
         startActivity(intent);

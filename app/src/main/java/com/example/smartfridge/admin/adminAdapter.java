@@ -31,7 +31,7 @@ public class adminAdapter extends RecyclerView.Adapter<adminAdapter.MyHolder> {
         this.mContext = mContext;
         this.lisrecipe = lisrecipe;
     }
-
+    /**adapter for admin recipes DB*/
     @NonNull
     @Override
     public adminAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

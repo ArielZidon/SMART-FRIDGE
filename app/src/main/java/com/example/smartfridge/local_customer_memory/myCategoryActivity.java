@@ -33,12 +33,7 @@ public class myCategoryActivity extends AppCompatActivity{
 
     AlertDialog rename;
     LinearLayout layout;
-    ImageButton color;
     ImageButton editName;
-
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String TEXT = "text";
-    private String text;
 
 
     @SuppressLint("MissingInflatedId")
@@ -91,48 +86,6 @@ public class myCategoryActivity extends AppCompatActivity{
     }
 
 
-//    /**
-//     * Upload items form sharedPreferences
-//     * if list == null => create new empty list
-//     * else => show on the screen all items from the sharedPreferences "Item_Data_meat"
-//     */
-//    public void loadData() {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
-//        Gson gson = new Gson();
-//        String json = sharedPreferences.getString("Item_Data_my_category", null);
-//        Type type = new TypeToken<ArrayList<ModelClass>>() {
-//        }.getType();
-//        arrayList = gson.fromJson(json, type);
-//        if (arrayList == null) {
-//            arrayList = new ArrayList<>();
-////            tvSize.setText(""+0);
-//        } else {
-//            for (int i = 0; i < arrayList.size(); i++) {
-//                addCard(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
-//            }
-//        }
-//    }
-//
-//    /**
-//     * @param name  => item name
-//     * @param count => count of items (it String because we want to be able to show different options)
-//     *              save on sharedPreferences item (name, count)
-//     *              and upload the view with the new item
-//     */
-//    public void saveData(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        arrayList.add((new ModelClass(name, count)));
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_my_category", json);
-//        editor.apply();
-//        addCard(name, count);
-//    }
-//
-//
-//
-
     /**
      * create a view dialog between the customers on user to adds items
      * add new card with the name and number from the dialog
@@ -184,37 +137,8 @@ public class myCategoryActivity extends AppCompatActivity{
                     }
                 });
         rename = builder.create();
-
     }
 
-//    /**
-//     * @param str -> the name we what to view
-//     *  save str in sharedPreferences
-//     */
-//    public void saveName(String str){
-//        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        editor.putString("text", str);
-//        editor.apply();
-//
-//        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
-//    }
-//
-//    /**
-//     * load the name from sharedPreferences
-//     */
-//    public void loadName() {
-//        SharedPreferences sharedPreferences = getSharedPreferences("Name", MODE_PRIVATE);
-//        text = sharedPreferences.getString("text", "");
-//        nameView.setText(text);
-//
-//    }
-
-//    public boolean onCreteOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
 
     /**
      * @param name   => item name
@@ -240,27 +164,6 @@ public class myCategoryActivity extends AppCompatActivity{
         });
         layout.addView(view);
     }
-
-//    /**
-//     * @param name  => item name that customer select to delete
-//     * @param count => count item that customer select to delete
-//     *              1. remove item from the screen
-//     *              2. remove item from sharedPreferences
-//     */
-//    public void removeArray(String name, String count) {
-//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("DATA", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        Gson gson = new Gson();
-//        for (int i = 0; i < arrayList.size(); i++) {
-//            if (arrayList.get(i).getItemName().equals(name) &&
-//                    arrayList.get(i).itemNumber.equals(count)) {
-//                arrayList.remove(i);
-//            }
-//        }
-//        String json = gson.toJson(arrayList);
-//        editor.putString("Item_Data_my_category", json);
-//        editor.apply();
-//    }
 
     @Override
     public void onBackPressed() {

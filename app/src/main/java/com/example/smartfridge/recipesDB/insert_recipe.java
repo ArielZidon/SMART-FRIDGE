@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -50,6 +51,10 @@ import java.util.Map;
 
 
 public class insert_recipe extends AppCompatActivity {
+
+    /**activityResultLauncher- this is for the uplaod of the image as a URI
+     * when&if the user choose a photo form the gallery the activityResultLauncher notes it
+     * and insert the URI into imgGallery ImageView **/
     ActivityResultLauncher<Intent> activityResultLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
@@ -58,7 +63,12 @@ public class insert_recipe extends AppCompatActivity {
                         public void onActivityResult(ActivityResult activityResult) {
                             int requestCode = activityResult.getResultCode();
                             Intent data = activityResult.getData();
+
                             imageUri = data.getData();
+                            String packageName = getApplicationContext().getPackageName();
+                            Resources resources = getApplicationContext().getResources();
+                            int drawableId = resources.getIdentifier(packageName + ":drawable/" + imageUri.getLastPathSegment(),null,null);
+
                             if (requestCode == RESULT_OK) {
                                 //FOR GALLERY
                                 imgGallery.setImageURI(data.getData());
@@ -66,6 +76,9 @@ public class insert_recipe extends AppCompatActivity {
                             }
                         }
                     });
+
+
+
     private FirebaseFirestore firestore;
     Uri imageUri;
     StorageReference storageReference;
@@ -104,7 +117,7 @@ public class insert_recipe extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                /**addView - func to add a card of ingreden every time the user click on add button**/
                 addView();
             }
         });
@@ -136,17 +149,19 @@ public class insert_recipe extends AppCompatActivity {
                                     //if document exists we wont create it again to prevent duplicate.
                                     Toast.makeText(insert_recipe.this, "This recipe exists - add of change ingredient", Toast.LENGTH_SHORT).show();
                                 } else {
+                                    /**uploadImage- this func uplaod the image to firebase storge**/
                                     uploadImage();
-
+                                    /**inserting all the elements of the recipe to a hashmap**/
                                     new_recipe.put("recipeName", recipe_name.getText().toString());
                                     new_recipe.put("recipeTime", recipe_time.getText().toString());
                                     new_recipe.put("recipeIngredients", recipe_ingredients);
                                     new_recipe.put("recipe", recipe_instructions.getText().toString());
                                     new_recipe.put("status", "Unapproved recipe");
                                     new_recipe.put("user", userName);
-                                    new_recipe.put("image", storageReference.getName());
+//                                    new_recipe.put("image", storageReference.getName());
 
                                     Toast.makeText(insert_recipe.this, "Your RECIPE sent to admin!", Toast.LENGTH_LONG).show();
+                                    /**inserting the hash map firebase recipe_DB**/
                                     recipe_DB.document(DocumentName).set(new_recipe);
                                     openMainMenu();
                                 }
@@ -175,6 +190,7 @@ public class insert_recipe extends AppCompatActivity {
             }
         });
     }
+    /****/
     private void uploadImage() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading File....");

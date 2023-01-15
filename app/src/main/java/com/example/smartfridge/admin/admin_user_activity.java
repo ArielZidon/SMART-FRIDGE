@@ -10,6 +10,7 @@ import com.example.smartfridge.R;
 
 public class admin_user_activity extends AppCompatActivity {
 
+    /**here we can see how the recipe will represent in admin view*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

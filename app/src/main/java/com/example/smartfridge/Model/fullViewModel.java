@@ -71,7 +71,7 @@ public class fullViewModel {
         if (json != null) {
             arrayList = gson.fromJson(json, type);
             for (int i = 0; i < arrayList.size(); i++) {
-               activity.addCard_my_category(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
+                activity.addCard_my_category(arrayList.get(i).itemName, arrayList.get(i).itemNumber);
             }
         }
     }
@@ -85,14 +85,17 @@ public class fullViewModel {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        String json = sharedPreferences.getString("Item_Data_Veg", null);
+        arrayList = gson.fromJson(json, type);
         for (int i = 0; i < arrayList.size();i++) {
             if (arrayList.get(i).getItemName().equals(name) &&
                     arrayList.get(i).itemNumber.equals(count)) {
                 arrayList.remove(i);
             }
         }
-        String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_vege", json);
+        json = gson.toJson(arrayList);
+        editor.putString("Item_Data_Veg", json);
         editor.apply();
     }
 
@@ -107,14 +110,17 @@ public class fullViewModel {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        String json = sharedPreferences.getString("Item_Data_Meat", null);
+        arrayList = gson.fromJson(json, type);
         for (int i = 0; i < arrayList.size();i++) {
             if (arrayList.get(i).getItemName().equals(name) &&
                     arrayList.get(i).itemNumber.equals(count)) {
                 arrayList.remove(i);
             }
         }
-        String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_meat", json);
+        json = gson.toJson(arrayList);
+        editor.putString("Item_Data_Meat", json);
         editor.apply();
     }
 
@@ -128,14 +134,17 @@ public class fullViewModel {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        String json = sharedPreferences.getString("Item_Data_Milk", null);
+        arrayList = gson.fromJson(json, type);
         for (int i = 0; i < arrayList.size();i++) {
             if (arrayList.get(i).getItemName().equals(name) &&
                     arrayList.get(i).itemNumber.equals(count)) {
                 arrayList.remove(i);
             }
         }
-        String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_milky", json);
+        json = gson.toJson(arrayList);
+        editor.putString("Item_Data_Milk", json);
         editor.apply();
     }
 
@@ -149,14 +158,17 @@ public class fullViewModel {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        String json = sharedPreferences.getString("Item_Data_Cleaning", null);
+        arrayList = gson.fromJson(json, type);
         for (int i = 0; i < arrayList.size();i++) {
             if (arrayList.get(i).getItemName().equals(name) &&
                     arrayList.get(i).itemNumber.equals(count)) {
                 arrayList.remove(i);
             }
         }
-        String json = gson.toJson(arrayList);
-        editor.putString("Item_Data_Clean", json);
+        json = gson.toJson(arrayList);
+        editor.putString("Item_Data_Cleaning", json);
         editor.apply();
     }
 
@@ -170,14 +182,35 @@ public class fullViewModel {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        String json = sharedPreferences.getString("Item_Data_Dry", null);
+        arrayList = gson.fromJson(json, type);
         for (int i = 0; i < arrayList.size();i++) {
             if (arrayList.get(i).getItemName().equals(name) &&
                     arrayList.get(i).itemNumber.equals(count)) {
                 arrayList.remove(i);
             }
         }
-        String json = gson.toJson(arrayList);
+        json = gson.toJson(arrayList);
         editor.putString("Item_Data_Dry", json);
+        editor.apply();
+    }
+
+    public void removeArray_my_category(String name, String count) {
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("DATA",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<ModelClass>>(){}.getType();
+        String json = sharedPreferences.getString("Item_Data_my_category", null);
+        arrayList = gson.fromJson(json, type);
+        for (int i = 0; i < arrayList.size();i++) {
+            if (arrayList.get(i).getItemName().equals(name) &&
+                    arrayList.get(i).itemNumber.equals(count)) {
+                arrayList.remove(i);
+            }
+        }
+        json = gson.toJson(arrayList);
+        editor.putString("Item_Data_my_category", json);
         editor.apply();
     }
 

@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.example.smartfridge.Model.createAccountModel;
 import com.example.smartfridge.R;
@@ -16,6 +18,9 @@ import com.example.smartfridge.admin.adminView;
 import com.example.smartfridge.ui.main.MainActivity;
 import com.example.smartfridge.ui.main.MainMenu;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class createAccountActivity extends AppCompatActivity {
@@ -29,6 +34,7 @@ public class createAccountActivity extends AppCompatActivity {
     TextView password;
     TextView userType;
     MaterialButton createBtn;
+    private List<String> teamList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +48,11 @@ public class createAccountActivity extends AppCompatActivity {
         createBtn = (MaterialButton) findViewById(R.id.createbtn);
 
 
-//        teamList.add("Customer");
-//        teamList.add("Manager");
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamList);
-//        AppCompatSpinner spinnerTeam = findViewById(R.id.spinner_team);
-//        spinnerTeam.setAdapter(arrayAdapter);
-
+        teamList.add("Customer");
+        teamList.add("Manager");
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamList);
+        AppCompatSpinner spinnerTeam = (AppCompatSpinner) findViewById(R.id.spinner_team);
+        spinnerTeam.setAdapter(arrayAdapter);
 
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +60,7 @@ public class createAccountActivity extends AppCompatActivity {
                 String name1 = name.getText().toString();
                 String email1 = email.getText().toString();
                 String password1 = password.getText().toString();
-                String userType1 = userType.getText().toString();
+                String userType1 = spinnerTeam.getSelectedItem().toString();
                 Log.d(TAG,name1);
                 model.setNewAccount(userType1,name1,email1,password1);
             }
