@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="button" type="id" />
+    <item name="mamagebtn" type="id" />
+    <item name="createbtn" type="id" />
+    <item name="send" type="id" />
+</resources>

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Smart FRIDGE</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="what_to_cook">WHAT TO COOK?</string>
+    <string name="recipes">RECIPES</string>
+    <string name="upload_recipes">Upload recipes</string>
+    <string name="title_activity_shoping_list_new">shopingListNew</string>
+    <string name="done">done</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_forgot_password">forgot_password</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="recipeName" />
+    <string name="ingredients" />
+    <string name="Time" />
+    <string name="recipe" />
+    <string name="recipeTitle" />
+    <string name="recipetime" />
+    <string name="users">Users</string>
+    <string name="edit_users">Edit Users</string>
+    <string name="todo">TODO</string>
+    <string name="ingredients2">Ingredients :</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="ingredients4">Ingredients :</string>
+</resources>

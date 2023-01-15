@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    tools:context=".recipesDB.row_add_cricketer">
+
+    <EditText
+        android:id="@+id/edit_ingredient_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:hint="Ingredient Name"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+    </EditText>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    <EditText
+        android:id="@+id/quantity"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:hint="quantity"
+        >
+
+    </EditText>
+
+</FrameLayout>
+
+
+    <ImageView
+        android:id="@+id/image_remove"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_baseline_delete_forever_24"
+        app:tint="@color/black">
+
+    </ImageView>
+
+
+
+</LinearLayout>

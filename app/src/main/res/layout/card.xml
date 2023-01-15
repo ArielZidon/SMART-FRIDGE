@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/new_color"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="2dp"
+            app:cardElevation="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@android:color/white"
+                    android:textFontWeight="1000"
+                    android:textSize="25dp"/>
+
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Delete"
+                    android:backgroundTint="@color/black"
+                    android:layout_alignParentRight="true"/>
+
+                 <CheckBox
+                     android:id="@+id/checkbox"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentEnd="true"
+                     android:layout_marginRight="90dp"/>
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="@id/name"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="49dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="190dp"
+                    android:layout_toEndOf="@+id/name"
+                    android:text="Number"
+                    android:textFontWeight="400"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp">
+
+                </TextView>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</RelativeLayout>

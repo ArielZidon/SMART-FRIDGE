@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background2"
+    tools:context=".local_customer_memory.fullViewActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:textColor="@color/black"
+        android:fontFamily="cursive"
+        android:text="FULL VIEW">
+    </TextView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="60dp"
+        android:scrollbars="none"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/bt_home"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/ic_baseline_home_24"
+        android:backgroundTint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck">
+
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/bt_beck"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_baseline_navigate_before_24"
+        android:backgroundTint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck">
+    </ImageButton>
+
+</RelativeLayout>

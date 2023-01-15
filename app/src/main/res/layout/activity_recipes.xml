@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/background2"
+    tools:context=".recipesDB.get_recipes">
+
+    <TextView
+        android:id="@+id/recipes_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:textColor="@color/black"
+        android:fontFamily="cursive"
+        android:text="RECIPES"/>
+
+    <ScrollView
+        android:id="@+id/view_recipes"
+        android:layout_below="@+id/recipes_name"
+        android:layout_above="@+id/read"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/container_recipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome There!\nAre you back from the supermarket? 🧀🥕🫑🌽🥚🥑\njust hungry? 😋🍔🍟🍕 \nThis is the place for you!
+Put in the products you have, and receive from us all the recipes you can create with those products!"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="25dp"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/read"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/new_color"
+        android:paddingBottom="10dp"
+        android:text="GET RECIPES"
+        android:textSize="20dp"
+        app:cornerRadius="10dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/crete_recipes"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/new_color"
+        android:textSize="20dp"
+        app:cornerRadius="10dp"
+        android:text="Create Recipes">
+
+    </com.google.android.material.button.MaterialButton>
+
+
+
+</RelativeLayout>

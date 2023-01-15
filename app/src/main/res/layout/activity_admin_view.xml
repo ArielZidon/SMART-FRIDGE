@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Categories_text"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:foregroundTint="#EC3A3A"
+    android:orientation="vertical"
+    android:background="@drawable/background2"
+    tools:context=".admin.adminView">
+
+    <LinearLayout
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_height="70dp">>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_baseline_home_24" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="28dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/image_USER"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/category"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        tools:ignore="ExtraText">
+
+        <Button
+            android:id="@+id/bt_EditUsers"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37dp"
+
+            android:backgroundTint="@color/cardview_dark_background"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+
+            android:text="@string/edit_users"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="35sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:id="@+id/image_recipes_manager"
+        android:layout_below="@+id/image_USER"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/EnterRecipes"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37dp"
+            android:backgroundTint="@color/cardview_dark_background"
+
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="Enter Recipes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="35dp" />
+    </LinearLayout>
+</RelativeLayout>
