@@ -75,7 +75,9 @@ public class forgot_password extends AppCompatActivity {
 //                startActivity(Intent.createChooser(email_s, "Your verification code is : " + message));
 
                 //**need to send a code to user and verify the code**
+
                 //***random 6 number between 0-9 send to an email or a sms.
+
 //                if (auth.getCurrentUser().isEmailVerified()) {
                 //open wind new password
 //                    if (code.getText().toString().equals(message)) {

@@ -1,26 +1,44 @@
 package com.example.smartfridge.recipesDB;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.drawable.Drawable;
+
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartfridge.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyHolder> {
 
     private Context mContext;
     private List<recipe> lisrecipe;
+    static String imageName;
+    ImageView img;
+
 
     public RecyclerViewAdapter (Context mContext , List<recipe> lisrecipe){
         this.mContext = mContext;
@@ -33,6 +51,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         View view;
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         view = layoutInflater.inflate(R.layout.cardview_recipe,parent,false);
+
+
         return new MyHolder(view);
     }
 
@@ -76,6 +96,33 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             img = (ImageView)itemView.findViewById(R.id.recipe_img_id);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
 
+//            try {
+//                FirebaseStorage storage = FirebaseStorage.getInstance();
+//                StorageReference storageRef = storage.getReference();
+//                StorageReference imageRef = storageRef.child("images/"+RecyclerViewAdapter.imageName+".jpg");
+//                File localFile = File.createTempFile("image", "jpg");
+//                imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                        // Local temp file has been created
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception exception) {
+//                        // Handle any errors
+//                    }
+//                });
+//                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+//                img.setImageBitmap(bitmap);
+//            }
+//            catch (@NonNull Exception exception){
+//
+//            }
+
+
+
         }
     }
+
+
 }

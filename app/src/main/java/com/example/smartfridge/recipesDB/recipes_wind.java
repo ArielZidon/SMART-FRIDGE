@@ -9,22 +9,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.smartfridge.R;
+import com.example.smartfridge.business_entities.ModelClass;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.BlockingDeque;
 
 public class recipes_wind extends AppCompatActivity {
 
@@ -35,7 +58,7 @@ public class recipes_wind extends AppCompatActivity {
     RecyclerViewAdapter myAdapter;
 
     static List<recipe> recipes1 = new ArrayList<recipe>();
-    static List<recipe> recipes2 = new ArrayList<recipe>();
+    static List<ModelClass> fullView = new ArrayList<ModelClass>();
 
     Map<String, Object> recipe_map;
 
@@ -43,6 +66,14 @@ public class recipes_wind extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_wind);
+
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pathReference = storageRef.child("images/2023_01_11_19_42_38.jpg");
+
+
+
 
 
         firestore = FirebaseFirestore.getInstance();//Initialization of the object firestore
@@ -59,51 +90,53 @@ public class recipes_wind extends AppCompatActivity {
 
         keys.clear();
         giveMeKeys(keys);
-        Log.d(TAG, "onCreate: &&&&&&&&&&&&&&&&&"+keys.size()+"&&&&&&&&&&&&&&&&&&&&&&&&&");
 
 
-        for (int i = 0; i < keys.size(); i++) {
-            DocumentReference docRef = firestore.collection("recipe_DB").document(keys.get(i));
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            recipe_map = document.getData();
-                            recipes1.add(new recipe(recipe_map.get("recipeName").toString()
-                                , recipe_map.get("recipeTime").toString()
-                                , recipe_map.get("recipeIngredients").toString()
-                                , recipe_map.get("recipe").toString()
-                                , R.drawable.chicken_roll));
-
-                            myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
-
-                            myAdapter = new RecyclerViewAdapter(recipes_wind.this,recipes1);
-
-
-                            myrecyclerView.setLayoutManager(new GridLayoutManager(recipes_wind.this,1));
-
-
-                            myrecyclerView.setAdapter(myAdapter);
-
-
-
-                            Log.d(TAG, "MAP: ************"+recipe_map.get("recipeName").toString()+"*************************************");
+        recipe_DB.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                for (int i = 0; i < keys.size(); i++) {
+                                    recipes1.clear();
+                                if (document.toString().contains("1")) {
+//                                    Log.d(TAG, "convertURI: *******************************************"+recipe_map.get("image").toString()+"*************************************");
+                                }
+                                            convertURI(document.getData());
+//                                }
                             }
-                            else {
-                                Log.d(TAG, "document doesn't exist: no Result for  ");
-                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                        else {
-                            Log.d(TAG, "No such document");
-                        }
-
                     }
+                });
 
-            });
-            recipes1.clear();
-       }
+
+//        for (int i = 0; i < keys.size(); i++) {
+//            recipes1.clear();
+//            DocumentReference docRef = firestore.collection("recipe_DB").document(keys.get(i));
+//            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//                        if (document.exists()) {
+//                            recipe_map = document.getData();
+//                            insertToDisplay(recipe_map);
+//                            }
+//                            else {
+//                                Log.d(TAG, "document doesn't exist: no Result for  ");
+//                            }
+//                        }
+//                        else {
+//                            Log.d(TAG, "No such document");
+//                        }
+//
+//                    }
+//
+//            });
+//       }
 
 
 
@@ -194,12 +227,183 @@ public class recipes_wind extends AppCompatActivity {
 
     }
 
-    public void insertToRecipes(Map<String, Object> recipe_map){
-        recipes1.add(new recipe(recipe_map.get("recipeName").toString()
-                , recipe_map.get("recipeTime").toString()
-                , recipe_map.get("recipeIngredients").toString()
-                , recipe_map.get("recipe").toString()
-                , R.drawable.chicken_roll));
+//    public void imageDisplay(){
+//        StorageReference storageRef =
+//                FirebaseStorage.getInstance().getReference();
+//        storageRef.child(recipe_map.get("image").toString()).getDownloadUrl()
+//                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                    @Override
+//                    public void onSuccess(Uri uri) {
+//                        // Got the download URL for 'users/me/profile.png'
+//                    }
+//                });
+//    }
+//
+//        public static Drawable drawableFromUrl(String url) throws IOException {
+//            Bitmap x;
+//
+//            StorageReference storageRef =
+//                    FirebaseStorage.getInstance().getReference();
+//
+//            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+//            connection.connect();
+//            InputStream input = connection.getInputStream();
+//
+//            x = BitmapFactory.decodeStream(input);
+//            return new BitmapDrawable(Resources.getSystem(), x);
+//
+//        }
+
+
+    public void convertURI(Map<String, Object> recipe_map){
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pathReference = storageRef.child("/images/2023_01_12_09_00_18");
+        //smart-fridge-c19d3.appspot.com/images/2023_01_11_17_06_18
+
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Got the download URL for 'images/my_image.jpg'
+                String packageName = getApplicationContext().getPackageName();
+                Resources resources = getApplicationContext().getResources();
+                int drawableId = resources.getIdentifier(packageName + ":drawable/" + uri.getLastPathSegment(), null, null);
+
+
+                Log.d(TAG, "onSuccess:&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7"+packageName + ":drawable/" + uri.getLastPathSegment()+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&77");
+
+                recipes1.add(new recipe(recipe_map.get("recipeName").toString()
+                        , recipe_map.get("recipeTime").toString()
+                        , recipe_map.get("recipeIngredients").toString()
+                        , recipe_map.get("recipe").toString()
+                        , drawableId));
+
+                myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
+
+                myAdapter = new RecyclerViewAdapter(recipes_wind.this,recipes1);
+
+
+                myrecyclerView.setLayoutManager(new GridLayoutManager(recipes_wind.this,1));
+
+
+                myrecyclerView.setAdapter(myAdapter);
+
+
+//                try {
+//                    InputStream inputStream = getContentResolver().openInputStream(uri);
+//                    String packageName = getApplicationContext().getPackageName();
+//                    Resources resources = getApplicationContext().getResources();
+//                    int drawableId = resources.getIdentifier(packageName + ":drawable/" + uri.getLastPathSegment(), null, null);
+//                    Drawable myDrawable = resources.getDrawable(drawableId);
+////                  myDrawable = Drawable.createFromStream(inputStream, uri.toString() );
+//
+//
+//                    recipes1.add(new recipe(recipe_map.get("recipeName").toString()
+//                            , recipe_map.get("recipeTime").toString()
+//                            , recipe_map.get("recipeIngredients").toString()
+//                            , recipe_map.get("recipe").toString()
+//                            , drawableId));
+//
+//                    myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
+//
+//                    myAdapter = new RecyclerViewAdapter(recipes_wind.this,recipes1);
+//
+//
+//                    myrecyclerView.setLayoutManager(new GridLayoutManager(recipes_wind.this,1));
+//
+//
+//                    myrecyclerView.setAdapter(myAdapter);
+//
+//
+//                    // use the Drawable as you need
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
+    }
+
+//    public void signIn(){
+//        FirebaseAuth auth = FirebaseAuth.getInstance();
+//        FirebaseUser user = auth.getCurrentUser();
+//        if (user != null) {
+//            user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+//                public void onComplete(@NonNull Task<GetTokenResult> task) {
+//                    if (task.isSuccessful()) {
+//                        String idToken = task.getResult().getToken();
+//                        // Sign in successful, proceed to access Firebase Storage
+//                        // ...
+//                    } else {
+//                        // Handle error -> task.getException();
+//                    }
+//                }
+//            });
+//        } else {
+//            // user not signed in, please sign in before trying to get a token
+//            auth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if (task.isSuccessful()) {
+//                        // Sign in successful
+//                        FirebaseUser user = task.getResult().getUser();
+//                        user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+//                            public void onComplete(@NonNull Task<GetTokenResult> task) {
+//                                if (task.isSuccessful()) {
+//                                    String idToken = task.getResult().getToken();
+//                                    // Sign in successful, proceed to access Firebase Storage
+//                                    // ...
+//                                } else {
+//                                    // Handle error -> task.getException();
+//                                }
+//                            }
+//                        });
+//                    } else {
+//                        // Handle error -> task.getException();
+//                    }
+//                }
+//            });
+//        }
+//
+//    }
+
+    public void insertToDisplay(Map<String, Object> recipe_map){
+//        if (recipe_map.get("image") == null) {
+//            recipes1.add(new recipe(recipe_map.get("recipeName").toString()
+//                    , recipe_map.get("recipeTime").toString()
+//                    , recipe_map.get("recipeIngredients").toString()
+//                    , recipe_map.get("recipe").toString()
+//                    , R.drawable.no_IMAGE));
+//
+//        }
+//        else {
+            recipes1.add(new recipe(recipe_map.get("recipeName").toString()
+                    , recipe_map.get("recipeTime").toString()
+                    , recipe_map.get("recipeIngredients").toString()
+                    , recipe_map.get("recipe").toString()
+                    , R.drawable.chicken_roll));
+//        recipes1.add(new recipe(recipe_map.get("recipeName").toString()
+//                , recipe_map.get("recipeTime").toString()
+//                , recipe_map.get("recipeIngredients").toString()
+//                , recipe_map.get("recipe").toString()
+//                , "2023_01_11_19_42_38"));
+//        }
+
+        myrecyclerView = (RecyclerView)findViewById(R.id.recyclerView_id);
+
+        myAdapter = new RecyclerViewAdapter(recipes_wind.this,recipes1);
+
+
+        myrecyclerView.setLayoutManager(new GridLayoutManager(recipes_wind.this,1));
+
+
+        myrecyclerView.setAdapter(myAdapter);
     }
 //    public static void throwAll(List<recipe> recipes1) {
 //        recipes2.add(recipes1.get(0));
